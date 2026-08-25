@@ -1044,7 +1044,9 @@ input.inp,textarea.inp,select.inp{font-size:16px}
 <script>
 'use strict';
 const P = window.CalParser;
-const APP_VERSION = '2026-08-25 11:28';   // ビルド時に日時が入る
+const APP_VERSION = '2026-08-25 11:37';
+/** 設定の保管先。合言葉がないと読めないので、ここに書いてあっても支障はない */
+const GAS_ENDPOINT = 'https://script.google.com/macros/s/AKfycbzuvhJTx-J3ClQl3Y6nydpOm3rc4vR2jcwjuKZDZBsfS3YKUDm-R7eq6hMU8FMfoinuLw/exec';   // ビルド時に日時が入る
 
 /* ═══════════════ データ ═══════════════ */
 const KIND_META = {   // 自分で足した区分もここに入る
@@ -1336,17 +1338,28 @@ function setupBanner(){
 /** 設定の文字列を直接貼って入れる（QRが読めないときの逃げ道） */
 function pasteSetupDlg(){
   dlg('設定を貼り付ける', `
-    <p style="margin-top:0;font-size:14px">設定の文字列（<b>#setupz=</b> で始まる長い文字、またはURL全体）を貼ってください。</p>
-    <textarea class="inp" id="setup_tx" style="min-height:110px" placeholder="https://…#setupz=…"></textarea>
+    <p style="margin-top:0;font-size:14px"><b>合言葉（28文字）</b>を貼るだけで設定が入ります。</p>
+    <textarea class="inp" id="setup_tx" style="min-height:88px" placeholder="ここに合言葉を貼る"></textarea>
     <div class="rowg" style="margin-top:12px">
       <button class="btn pri" onclick="doPasteSetup()">読みこむ</button>
       <button class="btn" onclick="closeDlg()">やめる</button></div>
     <p class="hint" style="margin-top:11px">設定QRを読めば同じことが起きます。うまく読めないときだけ、こちらを使ってください。</p>`);
 }
 async function doPasteSetup(){
-  const v = (document.getElementById('setup_tx')||{}).value || '';
+  const v = ((document.getElementById('setup_tx')||{}).value || '').trim();
+  // 合言葉だけを貼った場合
+  const only = v.match(/^[A-Za-z0-9_-]{16,64}$/) || v.match(/[#&]s=([A-Za-z0-9_-]{16,64})/);
+  if(only){
+    const sec = only[1] || only[0];
+    toast('設定を取りにいきます…');
+    const cfg = await loadConfigBySecret(sec);
+    closeDlg();
+    if(cfg && applyConfig(cfg)){ render(); toast('設定が入りました'); }
+    else toast('取ってこられませんでした。合言葉をご確認ください');
+    return;
+  }
   const m = v.match(/setupz=([A-Za-z0-9+/=_%-]+)/) || v.match(/setup=([A-Za-z0-9+/=_%-]+)/);
-  if(!m){ toast('「setupz=」で始まる部分が見つかりません'); return; }
+  if(!m){ toast('合言葉、または setupz= で始まる部分が見つかりません'); return; }
   location.hash = (v.indexOf('setupz=')>=0 ? 'setupz=' : 'setup=') + m[1];
   closeDlg();
   const ok = await applySetupFromUrl();
@@ -3182,9 +3195,46 @@ function toast(m){ const t=document.getElementById('toast'); t.textContent=m; t.
 /** URLに設定が付いていたら取りこむ（#setup=…）。
  *  公開の置き場に置くとき、ページ本体に合言葉を書かずに済ませるための入口。
  *  読み取ったらURLからは消すので、履歴にも残らない。 */
+/** 合言葉だけで、保管してある設定を取りにいく */
+function loadConfigBySecret(secret){
+  return new Promise(resolve => {
+    const cb = 'cfg' + Math.floor(Math.random()*1e9);
+    const sc = document.createElement('script');
+    const to = setTimeout(() => { done(null); }, 15000);
+    function done(v){ clearTimeout(to); try{ delete window[cb]; }catch(e){} if(sc.parentNode) sc.remove(); resolve(v); }
+    window[cb] = r => done(r && r.ok ? r.config : null);
+    sc.onerror = () => done(null);
+    sc.src = GAS_ENDPOINT + '?action=config&secret=' + encodeURIComponent(secret) + '&callback=' + cb;
+    document.head.appendChild(sc);
+  });
+}
+/** 取ってきた設定を入れる */
+function applyConfig(cfg){
+  if(!cfg) return false;
+  if(cfg.gas)     DB.settings.gas     = Object.assign({}, DB.settings.gas, cfg.gas);
+  if(cfg.calIds)  DB.settings.calIds  = Object.assign({}, DB.settings.calIds, cfg.calIds);
+  if(cfg.origins) DB.settings.origins = cfg.origins;
+  if(cfg.kinds){ DB.settings.kinds = Object.assign({}, DB.settings.kinds, cfg.kinds); mergeKinds(); }
+  (cfg.people||[]).forEach(x => { if(!DB.people.find(y=>y.name===x.name)) DB.people.push(Object.assign({count:0,last:''},x)); });
+  (cfg.places||[]).forEach(x => { if(!DB.places.find(y=>y.label===x.label)) DB.places.push(Object.assign({count:0,last:''},x)); });
+  saveDB();
+  return true;
+}
 async function applySetupFromUrl(){
   try{
     const h = String(location.hash||'');
+    // いちばん短い形：#s=合言葉 だけで、保管してある設定を取ってくる
+    const sq = h.match(/[#&]s=([A-Za-z0-9_-]{16,64})/);
+    if(sq){
+      const cfg = await loadConfigBySecret(sq[1]);
+      if(cfg && applyConfig(cfg)){
+        history.replaceState(null, '', location.pathname + location.search);
+        setTimeout(()=>{ render(); toast('設定を読みこみました'); }, 300);
+        return true;
+      }
+      setTimeout(()=>toast('設定を取ってこられませんでした'), 400);
+      return false;
+    }
     const z = h.match(/setupz=([A-Za-z0-9+/=_%-]+)/);
     const m = h.match(/setup=([A-Za-z0-9+/=_%-]+)/);
     if(!z && !m) return false;
