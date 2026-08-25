@@ -1044,7 +1044,7 @@ input.inp,textarea.inp,select.inp{font-size:16px}
 <script>
 'use strict';
 const P = window.CalParser;
-const APP_VERSION = '2026-08-25 10:39';   // ビルド時に日時が入る
+const APP_VERSION = '2026-08-25 10:43';   // ビルド時に日時が入る
 
 /* ═══════════════ データ ═══════════════ */
 const KIND_META = {   // 自分で足した区分もここに入る
@@ -1631,8 +1631,8 @@ function stepBody(k){
       </select>
       <div class="rowg" style="margin-top:10px">
         <button class="btn" style="min-height:42px;padding:9px 13px" onclick="addPersonDlg()">＋ 追加</button>
-        ${W.people.length?`<button class="btn" style="min-height:42px;padding:9px 13px" onclick="editPersonDlg('${esc(W.people[W.people.length-1]).replace(/'/g,"\\'")}')">✏️ 名前を修正</button>
-        <button class="btn" style="min-height:42px;padding:9px 13px" onclick="togglePin('people','name','${esc(W.people[W.people.length-1]).replace(/'/g,"\\'")}')">📌 上に</button>`:''}
+        <button class="btn" style="min-height:42px;padding:9px 13px" onclick="peopleListDlg()">✏️ 一覧を修正</button>
+        ${W.people.length?`<button class="btn" style="min-height:42px;padding:9px 13px" onclick="togglePin('people','name','${esc(W.people[W.people.length-1]).replace(/'/g,"\\'")}')">📌 上に</button>`:''}
       </div>`;
   }
 
@@ -1708,15 +1708,41 @@ function togglePin(listName, keyName, val){
 function editPersonDlg(name){
   const p = DB.people.find(x=>x.name===name);
   if(!p) return;
+  // すでに使われている会社名を集める（選ぶだけで入る）
+  const comps = [...new Set(DB.people.map(x=>x.company).filter(Boolean))].sort();
   dlg('相手を修正', `
     <div class="set"><label>名前</label><input class="inp" id="ed_n" value="${esc(p.name)}"></div>
-    <div class="set"><label>会社</label><input class="inp" id="ed_c" value="${esc(p.company||'')}"></div>
-    <p class="hint">名前を直すと、覚えている記録もいっしょに直ります。</p>
-    <div class="rowg" style="margin-top:13px">
+    <div class="set"><label>会社（一覧から選ぶ）</label>
+      <select class="inp" id="ed_sel" onchange="if(this.value){document.getElementById('ed_c').value=this.value;}">
+        <option value="">選択してください</option>
+        ${comps.map(c=>`<option value="${esc(c)}"${p.company===c?' selected':''}>${esc(c)}</option>`).join('')}
+      </select></div>
+    <div class="set"><label>会社（自由に書く）</label>
+      <input class="inp" id="ed_c" value="${esc(p.company||'')}" placeholder="例：◯◯商事"></div>
+    <div class="hint">使った回数：<b class="num">${p.count||0}回</b>${p.pin?' ・ 📌 上に固定中':''}</div>
+    <p class="hint" style="margin-top:8px">名前を修正すると、覚えている記録もいっしょに直ります。</p>
+    <div class="rowg" style="margin-top:14px">
       <button class="btn pri" onclick="savePersonEdit('${esc(name).replace(/'/g,"\\'")}')">保存</button>
-      <button class="btn" onclick="closeDlg()">やめる</button>
+      <button class="btn" onclick="togglePin('people','name','${esc(name).replace(/'/g,"\\'")}');closeDlg()">${p.pin?'📌 固定をはずす':'📌 上に固定'}</button>
       <span class="grow"></span>
       <button class="btn" style="color:var(--bad);border-color:var(--bad)" onclick="delPerson('${esc(name).replace(/'/g,"\\'")}')">🗑 消す</button></div>`);
+}
+/** 相手の一覧（ここから誰でも修正できる） */
+function peopleListDlg(){
+  const list = [...DB.people].sort(byUse);
+  dlg('相手の一覧', `
+    <p style="margin-top:0;font-size:13.5px">会社名が違っていたら、その行の ✏️ を押してください。</p>
+    <div class="tw"><table>
+      ${list.map(p=>`<tr>
+        <td><b>${p.pin?'📌 ':''}${esc(p.name)}</b></td>
+        <td style="font-size:12px;color:${p.company?'var(--sub)':'var(--warn)'}">${esc(p.company||'（未記入）')}</td>
+        <td class="n">${p.count||0}</td>
+        <td><button class="mini" onclick="closeDlg();editPersonDlg('${esc(p.name).replace(/'/g,"\\'")}')">✏️</button></td>
+      </tr>`).join('')}
+    </table></div>
+    <div class="rowg" style="margin-top:13px">
+      <button class="btn" onclick="closeDlg();addPersonDlg()">＋ 追加</button>
+      <button class="btn pri" onclick="closeDlg()">閉じる</button></div>`);
 }
 function savePersonEdit(oldName){
   const nn = dropPunct((document.getElementById('ed_n')||{}).value);
@@ -2618,8 +2644,14 @@ function vMaster(){
   } else if(MTAB==='people'){
     const list=[...DB.people].sort(byUse);
     body = `<div class="tw"><table><tr><th>相手</th><th>会社</th><th>回数</th><th></th></tr>
-      ${list.map(p=>`<tr><td><b>${esc(p.name)}</b></td><td>${esc(p.company||'—')}</td><td class="n">${p.count||0}</td>
-      <td><button class="mini" onclick="delItem('people','name','${esc(p.name).replace(/'/g,"\\'")}')">🗑</button></td></tr>`).join('')}
+      ${list.map(p=>`<tr>
+        <td><b>${p.pin?'📌 ':''}${esc(p.name)}</b></td>
+        <td style="font-size:12.5px;color:${p.company?'var(--sub)':'var(--warn)'}">${esc(p.company||'（会社が未記入）')}</td>
+        <td class="n">${p.count||0}</td>
+        <td style="white-space:nowrap">
+          <button class="mini" onclick="editPersonDlg('${esc(p.name).replace(/'/g,"\\'")}')">✏️</button>
+          <button class="mini" onclick="togglePin('people','name','${esc(p.name).replace(/'/g,"\\'")}')">📌</button>
+        </td></tr>`).join('')}
       </table></div><div class="pad"><button class="btn" onclick="addPersonDlg()">＋ 相手を追加</button></div>`;
   } else {
     const key = MTAB;
