@@ -1,0 +1,3143 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+</head>
+<body>
+<title>カレンダー登録</title>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="カレンダー登録">
+<meta name="theme-color" content="#0f3d47">
+<link rel="apple-touch-icon" href="data:image/png;base64,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">
+<link rel="icon" type="image/png" href="data:image/png;base64,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">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,500;12..96,700;12..96,800&display=swap">
+
+<style>
+/* ═══════════ 土台 ═══════════ */
+:root{
+  --ground:#eaeef0; --surface:#ffffff; --sunk:#dfe5e8;
+  --line:#c9d3d7; --line-soft:#dde4e7;
+  --ink:#111819; --sub:#5b6a6f; --faint:#8a999e;
+  --act:#0f3d47; --act-ink:#ffffff; --act-soft:#dcebee;
+  --ok:#1d6b4f; --warn:#8a5a12; --warn-bg:#fbf1dc; --bad:#a32020;
+  --k-hyp:#3f51b5; --k-oki:#0b8043; --k-cap:#d50000; --k-pri:#8e24aa; --k-rem:#e67c73; --k-ban:#f6bf26;
+  --r:7px;
+  --mono:"Bricolage Grotesque","Helvetica Neue",Arial,sans-serif;
+  --jp:-apple-system,BlinkMacSystemFont,"Hiragino Sans","Hiragino Kaku Gothic ProN","Yu Gothic UI","Yu Gothic",Meiryo,sans-serif;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --ground:#0b1012; --surface:#141c1f; --sunk:#0e1517;
+    --line:#2a3639; --line-soft:#1e2a2d;
+    --ink:#e7eef0; --sub:#95a6ab; --faint:#6b7d82;
+    --act:#5fd3c4; --act-ink:#04231f; --act-soft:#12302f;
+    --ok:#4fc38f; --warn:#e0b160; --warn-bg:#2b2312; --bad:#f2726f;
+  }
+}
+:root[data-theme="dark"]{
+  --ground:#0b1012; --surface:#141c1f; --sunk:#0e1517;
+  --line:#2a3639; --line-soft:#1e2a2d;
+  --ink:#e7eef0; --sub:#95a6ab; --faint:#6b7d82;
+  --act:#5fd3c4; --act-ink:#04231f; --act-soft:#12302f;
+  --ok:#4fc38f; --warn:#e0b160; --warn-bg:#2b2312; --bad:#f2726f;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--ground);color:var(--ink);font-family:var(--jp);
+     font-size:15px;line-height:1.7;-webkit-text-size-adjust:100%}
+.num{font-family:var(--mono);font-variant-numeric:tabular-nums;font-feature-settings:"tnum"}
+button,input,select,textarea{font-family:inherit;font-size:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--act);outline-offset:2px}
+@media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+
+/* ═══════════ 骨格 ═══════════ */
+.app{max-width:760px;margin:0 auto;min-height:100vh;background:var(--ground);
+     display:flex;flex-direction:column}
+.bar-top{position:sticky;top:0;z-index:30;background:var(--surface);border-bottom:1px solid var(--line);
+     display:flex;align-items:center;gap:8px;padding:10px 12px;flex-wrap:nowrap;overflow:hidden}
+.brand{font-family:var(--mono);font-weight:800;font-size:17px;letter-spacing:-.02em}
+.brand small{font-family:var(--jp);font-weight:400;font-size:11px;color:var(--faint);margin-left:7px;letter-spacing:0}
+.grow{flex:1}
+.icon{border:1px solid var(--line);background:transparent;border-radius:var(--r);
+      padding:7px 10px;cursor:pointer;font-size:13px;color:var(--sub)}
+.icon:hover{border-color:var(--act);color:var(--act)}
+main{flex:1;padding:16px 14px 210px}
+@media(min-width:700px){ main{padding:22px 20px 130px} }
+
+/* ═══════════ 部品 ═══════════ */
+.card{background:var(--surface);border:1px solid var(--line-soft);border-radius:var(--r)}
+.card+.card{margin-top:12px}
+.pad{padding:15px}
+.lbl{font-family:var(--mono);font-size:10.5px;font-weight:700;letter-spacing:.14em;
+     text-transform:uppercase;color:var(--faint)}
+h2.q{font-size:23px;line-height:1.45;font-weight:800;margin:6px 0 3px;text-wrap:balance;letter-spacing:-.01em}
+.sub{color:var(--sub);font-size:13.5px}
+.rowg{display:flex;flex-wrap:wrap;gap:8px}
+.chip{display:inline-flex;align-items:center;gap:7px;min-height:46px;padding:10px 15px;
+      background:var(--surface);border:1px solid var(--line);border-radius:var(--r);
+      cursor:pointer;font-size:15px;transition:.1s;text-align:left}
+.chip:hover{border-color:var(--act);color:var(--act)}
+.chip[aria-pressed="true"]{background:var(--act);border-color:var(--act);color:var(--act-ink);font-weight:700}
+.chip .cnt{font-family:var(--mono);font-size:11px;color:var(--faint);font-variant-numeric:tabular-nums}
+.chip[aria-pressed="true"] .cnt{color:var(--act-ink);opacity:.75}
+.chip.ghost{border-style:dashed;color:var(--sub)}
+.sq{width:11px;height:11px;border-radius:2px;flex:none}
+.inp{width:100%;padding:12px 13px;background:var(--surface);border:1px solid var(--line);
+     border-radius:var(--r);font-size:16px}
+.inp:focus{outline:2px solid var(--act);outline-offset:-1px;border-color:transparent}
+textarea.inp{min-height:96px;resize:vertical;line-height:1.8}
+.btn{min-height:48px;padding:12px 18px;background:var(--surface);border:1px solid var(--line);
+     border-radius:var(--r);cursor:pointer;font-size:15px;font-weight:700;transition:.1s}
+.btn:hover{border-color:var(--act);color:var(--act)}
+.btn.pri{background:var(--act);border-color:var(--act);color:var(--act-ink)}
+.btn.pri:hover{opacity:.88;color:var(--act-ink)}
+.btn.pri[disabled]{opacity:.35;cursor:not-allowed}
+.btn.wide{width:100%}
+.warn{background:var(--warn-bg);color:var(--warn);border:1px solid transparent;border-radius:var(--r);
+      padding:11px 13px;font-size:13.5px;font-weight:600}
+
+/* 進捗 */
+.prog{height:3px;background:var(--sunk);border-radius:2px;overflow:hidden;margin-bottom:14px}
+.prog i{display:block;height:100%;background:var(--act);transition:width .25s}
+.stepno{font-family:var(--mono);font-size:11.5px;font-weight:700;color:var(--faint);letter-spacing:.1em}
+
+/* マイク */
+.mic{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;min-height:58px;
+     border:1.5px dashed var(--line);background:transparent;border-radius:var(--r);
+     font-size:16px;font-weight:700;color:var(--sub);cursor:pointer;margin-top:12px}
+.mic:hover{border-color:var(--act);color:var(--act)}
+.mic.on{background:var(--bad);border-color:var(--bad);border-style:solid;color:#fff;animation:bp 1.2s infinite}
+@keyframes bp{0%,100%{opacity:1}50%{opacity:.68}}
+.heard{margin-top:9px;font-size:13.5px;color:var(--sub);min-height:22px}
+.heard b{color:var(--ink)}
+
+/* 下部バー */
+.bar-bot{position:fixed;bottom:0;left:0;right:0;z-index:30;background:var(--surface);
+     border-top:1px solid var(--line);padding:11px 14px calc(11px + env(safe-area-inset-bottom));}
+.bar-in{max-width:760px;margin:0 auto;display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+
+/* 予定カード */
+.ev{background:var(--surface);border:1px solid var(--line-soft);border-radius:var(--r);overflow:hidden}
+.ev+.ev{margin-top:12px}
+.ev-h{padding:13px 15px;border-bottom:1px solid var(--line-soft);display:flex;align-items:flex-start;gap:10px}
+.badge{font-size:11px;font-weight:700;padding:4px 10px;border-radius:4px;color:#fff;white-space:nowrap;flex:none;margin-top:2px}
+.ev-t{font-size:16.5px;font-weight:800;line-height:1.5;flex:1;word-break:break-all}
+.kv{display:grid;grid-template-columns:78px 1fr}
+.kv>div{padding:9px 15px;border-bottom:1px solid var(--line-soft);display:flex;align-items:center;min-height:42px;font-size:14px}
+.kv>div:nth-child(odd){color:var(--sub);font-size:12px;font-weight:700;background:var(--sunk)}
+.kv .edit{background:none;border:none;color:var(--act);cursor:pointer;font-size:12px;padding:2px 6px;
+          border-radius:4px;margin-left:auto;font-weight:700}
+.kv .edit:hover{background:var(--act-soft)}
+
+/* 表 */
+table{width:100%;border-collapse:collapse;font-size:13.5px}
+th,td{text-align:left;padding:10px 13px;border-bottom:1px solid var(--line-soft);vertical-align:middle}
+th{font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;color:var(--faint);text-transform:uppercase}
+td.n{font-family:var(--mono);font-variant-numeric:tabular-nums;color:var(--sub);white-space:nowrap}
+.tw{overflow-x:auto}
+.mini{border:none;background:none;color:var(--sub);cursor:pointer;padding:5px 7px;border-radius:5px;font-size:13px}
+.mini:hover{background:var(--sunk);color:var(--act)}
+.tabs{display:flex;gap:6px;padding:12px 13px 0}
+.tab{padding:9px 14px;border:1px solid var(--line);border-bottom:none;border-radius:var(--r) var(--r) 0 0;
+     background:var(--sunk);cursor:pointer;font-size:13.5px;font-weight:700;color:var(--sub)}
+.tab[aria-selected="true"]{background:var(--surface);color:var(--ink);border-color:var(--line-soft)}
+.empty{padding:34px 16px;text-align:center;color:var(--faint);font-size:13.5px}
+.toast{position:fixed;left:50%;bottom:96px;transform:translateX(-50%) translateY(8px);z-index:60;
+       background:var(--ink);color:var(--ground);padding:12px 20px;border-radius:var(--r);
+       font-weight:700;font-size:14px;opacity:0;pointer-events:none;transition:.22s;max-width:88%}
+.toast.on{opacity:1;transform:translateX(-50%)}
+dialog{border:1px solid var(--line);border-radius:var(--r);background:var(--surface);color:var(--ink);
+       padding:0;width:92%;max-width:640px}
+dialog::backdrop{background:rgba(0,0,0,.55)}
+dialog .dl-h{padding:12px 14px;border-bottom:1px solid var(--line);font-weight:800;
+  position:sticky;top:0;background:var(--surface);z-index:2}
+dialog .dl-b{padding:16px;max-height:72vh;overflow:auto;-webkit-overflow-scrolling:touch}
+pre{background:var(--sunk);border-radius:var(--r);padding:13px;font-size:12.5px;line-height:1.7;
+    white-space:pre-wrap;word-break:break-word;margin:0;font-family:ui-monospace,SFMono-Regular,Menlo,monospace}
+.set{display:grid;grid-template-columns:1fr;gap:6px;margin-bottom:15px}
+.set label{font-size:12.5px;font-weight:700;color:var(--sub)}
+.hint{font-size:12.5px;color:var(--faint);line-height:1.65}
+.big-btn{display:flex;align-items:center;gap:14px;width:100%;padding:19px 17px;background:var(--surface);
+     border:1px solid var(--line);border-radius:var(--r);cursor:pointer;text-align:left}
+.big-btn:hover{border-color:var(--act)}
+.big-btn .ic{font-size:25px;flex:none}
+.big-btn .t{font-size:16.5px;font-weight:800}
+.big-btn .d{font-size:12.5px;color:var(--sub);font-weight:400}
+.stat{display:flex;gap:10px;flex-wrap:wrap}
+.stat>div{flex:1 1 0;min-width:0;background:var(--surface);border:1px solid var(--line-soft);
+          border-radius:var(--r);padding:12px 11px;overflow:hidden}
+.stat .v{font-family:var(--mono);font-size:24px;font-weight:800;font-variant-numeric:tabular-nums;line-height:1.2}
+.stat .k{font-size:11px;color:var(--faint);font-weight:700;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+a{color:var(--act)}
+
+/* ── 1画面完結の行 ── */
+.row-btn{display:flex;width:100%;align-items:center;gap:11px;padding:11px 14px;background:none;
+  border:none;text-align:left;cursor:pointer;min-height:48px;color:var(--ink)}
+.row-btn:hover{background:rgba(127,127,127,.05)}
+.row-k{font-size:12px;color:var(--sub);font-weight:700;width:44px;flex:none;letter-spacing:.04em}
+.row-v{flex:1;font-size:15.5px;font-weight:700;min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.row-v.empty{color:var(--faint);font-weight:400}
+.row-mic{font-size:11px;color:var(--warn);flex:none}
+.row-arrow{color:var(--faint);font-size:11px;flex:none}
+.row-body{padding:0 14px 15px;animation:rowin .14s ease-out}
+@keyframes rowin{from{opacity:.4}to{opacity:1}}
+.row-open{background:rgba(127,127,127,.04)}
+.pat{background:var(--surface);border:1px solid var(--line);border-radius:var(--r);padding:14px 15px}
+.pat+.pat{margin-top:10px}
+.pat-t{font-size:16.5px;font-weight:800;line-height:1.4}
+.pat-d{font-size:13px;color:var(--sub);margin-top:4px}
+.pat-b{display:flex;gap:7px;margin-top:12px}
+.pat-b .btn{flex:1;min-height:44px;padding:10px 8px;font-size:14px}
+.ttl-prev{font-family:var(--jp);font-size:14px;font-weight:700;line-height:1.5}
+
+/* ── 画面が狭いとき（スマホ） ── */
+@media (max-width:430px){
+  .brand{font-size:16px}
+  .brand small{display:none}          /* 「声でつくるカレンダー」を隠して幅を確保 */
+  .icon{padding:7px 9px;font-size:12.5px;white-space:nowrap}
+  .icon .lbl-full{display:none}       /* ボタンの長い文字を隠す */
+  .stat .v{font-size:20px}
+  main{padding:14px 12px 230px}
+  h2.q{font-size:21px}
+  .btn{padding:11px 14px;font-size:14.5px}
+  .bar-bot{padding:9px 12px calc(9px + env(safe-area-inset-bottom))}
+  .kv{grid-template-columns:66px 1fr}
+  .kv>div{padding:8px 11px;font-size:13.5px}
+}
+/* 入力欄は必ず16px以上（これ未満だと iPhone が勝手に拡大する） */
+input.inp,textarea.inp,select.inp{font-size:16px}
+</style>
+
+<div class="app">
+  <div class="bar-top">
+    <span id="navBack"></span>
+    <span class="brand" onclick="go('home')" style="cursor:pointer">カレンダー登録</span>
+    <span class="grow"></span>
+    <button class="icon" onclick="updateApp()" title="最新にする">🔄</button>
+    <button class="icon" onclick="helpDlg()" title="使い方">❓</button>
+    <button class="icon" onclick="go('master')">📚<span class="lbl-full"> データ</span></button>
+    <button class="icon" onclick="go('settings')">⚙️</button>
+  </div>
+  <main id="view"></main>
+</div>
+<div class="bar-bot" id="botbar" style="display:none"><div class="bar-in" id="botin"></div></div>
+<div class="toast" id="toast"></div>
+
+<dialog id="dlg"><div class="dl-h" id="dlgH"></div><div class="dl-b" id="dlgB"></div></dialog>
+
+<script>
+/* ══════════ パーサー（src/parser.js を埋め込み） ══════════ */
+/**
+ * 出張カレンダー登録ツール — 日本語パーサー（単一ソース）
+ *
+ * ブラウザでは  window.CalParser
+ * Node では     require('./src/parser.js')
+ * どちらからも同じ関数が使える（テストと画面で同じコードを動かすため）。
+ */
+(function (root, factory) {
+  const api = factory();
+  if (typeof module !== 'undefined' && module.exports) module.exports = api;
+  else root.CalParser = api;
+})(typeof globalThis !== 'undefined' ? globalThis : this, function () {
+  'use strict';
+
+  // ══════════════════════════════════════════
+  // 定数
+  // ══════════════════════════════════════════
+
+  /** カレンダー区分 → Google の colorId（必ず文字列） */
+  const COLOR_MAP = {
+    HYP: '9', // ブルー（Blueberry）
+    沖実: '10', // グリーン（Basil）
+    キャパテクノ: '11', // レッド（Tomato）
+    プライベート: '3', // パープル（Grape）
+    リモート: '4', // ※仕様書は「バナナ黄色」だが Google の 4 は Flamingo（サーモン）。黄色は 5
+  };
+
+  /** colorId → 画面に出す色（Google 公式の実際の色） */
+  const COLOR_HEX = {
+    1: '#7986cb', 2: '#33b679', 3: '#8e24aa', 4: '#e67c73', 5: '#f6bf26', 6: '#f4511e',
+    7: '#039be5', 8: '#616161', 9: '#3f51b5', 10: '#0b8043', 11: '#d50000',
+  };
+
+  const COLOR_NAME = {
+    1: 'ラベンダー', 2: 'セージ', 3: 'グレープ（紫）', 4: 'フラミンゴ（サーモン）', 5: 'バナナ（黄）',
+    6: 'ミカン', 7: 'ピーコック', 8: 'グラファイト', 9: 'ブルーベリー（青）', 10: 'バジル（緑）', 11: 'トマト（赤）',
+  };
+
+  /** カレンダーID（2026-08-22 に Google から実際の一覧を取得して確定） */
+  const CALENDAR_IDS = { HYP:'', リモート:'', 沖実:'', キャパテクノ:'', プライベート:'' };
+
+  /** 参考：他に使えるカレンダー（必要になったら区分を足す） */
+  const OTHER_CALENDARS = {};
+
+  const KNOWN_CONTACTS = [];
+
+  /** 5区分に無い会社は HYP カレンダーへ寄せる（画面で確認を出す） */
+  const KINDS = ['HYP', '沖実', 'キャパテクノ', 'プライベート', 'リモート'];
+
+  const AREA_WORDS = ['沖縄', '東京', '大阪', '千葉', '神奈川', '埼玉', '愛知', '福岡', '北海道', '京都',
+    '兵庫', '広島', '宮城', '静岡', '石川', '熊本', '鹿児島', '長崎', '新潟', '岡山', '香川'];
+
+  const CITY_TO_AREA = {
+    那覇: '沖縄', 浦添: '沖縄', 宜野湾: '沖縄', 糸満: '沖縄', 豊見城: '沖縄', 南城: '沖縄',
+    うるま: '沖縄', 沖縄市: '沖縄', 名護: '沖縄', 石垣: '沖縄', 宮古島: '沖縄', 読谷: '沖縄',
+    北谷: '沖縄', 中城: '沖縄', 西原: '沖縄', 与那原: '沖縄', 南風原: '沖縄', 八重瀬: '沖縄',
+    恩納: '沖縄', 今帰仁: '沖縄', 北中城: '沖縄',
+    新宿: '東京', 渋谷: '東京', 品川: '東京', 池袋: '東京', 銀座: '東京', 丸の内: '東京', 八重洲: '東京',
+    四街道: '千葉', 船橋: '千葉', 幕張: '千葉', 横浜: '神奈川', 川崎: '神奈川',
+    梅田: '大阪', 難波: '大阪', 心斎橋: '大阪', 博多: '福岡', 名駅: '愛知', 栄: '愛知', 札幌: '北海道', 仙台: '宮城',
+  };
+
+  const FACILITY = '空港|モデルハウス|本社|支社|支店|営業所|事務所|オフィス|工場|現場|会場|ホテル|センター|ビル|役所|銀行|商工会|会議室|倉庫|店舗|工事現場|駅';
+
+  const TRANSPORTS = ['飛行機', '新幹線', 'レンタカー', 'タクシー', 'フェリー', '電車', 'バス', '車', '徒歩'];
+
+  const WEEK = ['日', '月', '火', '水', '木', '金', '土'];
+  const BYDAY = ['SU', 'MO', 'TU', 'WE', 'TH', 'FR', 'SA'];
+
+  // ══════════════════════════════════════════
+  // 小道具
+  // ══════════════════════════════════════════
+
+  const pad = (n) => String(n).padStart(2, '0');
+
+  /** 日付は「時差の事故」を避けるため、すべて UTC の 0時 で持つ */
+  function ymd(y, m, d) {
+    return new Date(Date.UTC(y, m - 1, d));
+  }
+  function addDays(dt, n) {
+    return new Date(dt.getTime() + n * 86400000);
+  }
+  const dateStr = (dt) => `${dt.getUTCFullYear()}-${pad(dt.getUTCMonth() + 1)}-${pad(dt.getUTCDate())}`;
+
+  function toDate(v) {
+    if (v instanceof Date) return ymd(v.getFullYear(), v.getMonth() + 1, v.getDate());
+    if (typeof v === 'string') {
+      const m = v.match(/(\d{4})-(\d{1,2})-(\d{1,2})/);
+      if (m) return ymd(+m[1], +m[2], +m[3]);
+    }
+    const n = new Date();
+    return ymd(n.getFullYear(), n.getMonth() + 1, n.getDate());
+  }
+
+  /** 全角→半角、表記ゆれの吸収 */
+  function normalize(text) {
+    return String(text || '')
+      .replace(/[Ａ-Ｚａ-ｚ０-９]/g, (c) => String.fromCharCode(c.charCodeAt(0) - 0xfee0))
+      .replace(/[　]/g, ' ')
+      .replace(/[〜~ー–—]/g, (c, i, s) => c) // 範囲記号は後段で個別に扱う
+      .replace(/：/g, ':')
+      .replace(/[／]/g, '/')
+      .replace(/[（）]/g, (c) => (c === '（' ? '(' : ')'))
+      .replace(/\s+/g, ' ')
+      .trim();
+  }
+
+  const clean = (s) =>
+    String(s || '')
+      .replace(/\s+/g, ' ')
+      .replace(/^[\s,、。．.・のでにをはがともへ]+/, '')
+      .replace(/[\s,、。．.・のでにをはがともへ]+$/, '')
+      .trim();
+
+  function findContact(name) {
+    if (!name) return null;
+    return KNOWN_CONTACTS.find((c) => c.name === name) ||
+      KNOWN_CONTACTS.find((c) => name.includes(c.name)) || null;
+  }
+
+  /** 【】で囲んで連結（空の要素は捨てる） */
+  function formatTitle(...parts) {
+    return parts
+      .filter((p) => p !== undefined && p !== null && String(p).trim() !== '')
+      .map((p) => '【' + String(p).trim() + '】')
+      .join('');
+  }
+
+  // ══════════════════════════════════════════
+  // 複数予定の切り分け
+  // ══════════════════════════════════════════
+
+  const SPLIT_WORDS = '次に|その次に|それから|その後|続いて|翌日|翌々日|同じ日の|同じ日|同日の|同日';
+
+  function splitEvents(text) {
+    const byLine = text.split(/[\n]+/).map((s) => s.trim()).filter(Boolean);
+    const out = [];
+    for (const line of byLine) {
+      const re = new RegExp(`[、,\\s]*(${SPLIT_WORDS})`, 'g');
+      let last = 0;
+      let m;
+      const parts = [];
+      while ((m = re.exec(line)) !== null) {
+        parts.push(line.slice(last, m.index));
+        last = m.index + m[0].length - m[1].length; // 区切り語そのものは次のかたまりに残す
+      }
+      parts.push(line.slice(last));
+      for (const p of parts) {
+        const t = p.replace(/^[、,\s]+/, '').trim();
+        if (t && !/^(まとめて|一括で?)$/.test(t)) out.push(t);
+      }
+    }
+    return out.length ? out : [];
+  }
+
+  // ══════════════════════════════════════════
+  // 繰り返し（RRULE）
+  // ══════════════════════════════════════════
+
+  function extractRecurrence(text) {
+    let rest = text;
+    let rrule = null;
+    let weekday = null;
+
+    // 毎月第3水曜
+    let m = rest.match(/毎月\s*第\s*([1-5])\s*([日月火水木金土])曜?日?/);
+    if (m) {
+      weekday = WEEK.indexOf(m[2]);
+      rrule = `RRULE:FREQ=MONTHLY;BYDAY=${m[1]}${BYDAY[weekday]}`;
+      rest = rest.replace(m[0], ' ');
+    }
+    // 隔週月曜
+    if (!rrule && (m = rest.match(/隔週\s*(?:の)?\s*([日月火水木金土])曜?日?/))) {
+      weekday = WEEK.indexOf(m[1]);
+      rrule = `RRULE:FREQ=WEEKLY;INTERVAL=2;BYDAY=${BYDAY[weekday]}`;
+      rest = rest.replace(m[0], ' ');
+    }
+    // 毎週金曜
+    if (!rrule && (m = rest.match(/毎週\s*(?:の)?\s*([日月火水木金土])曜?日?/))) {
+      weekday = WEEK.indexOf(m[1]);
+      rrule = `RRULE:FREQ=WEEKLY;BYDAY=${BYDAY[weekday]}`;
+      rest = rest.replace(m[0], ' ');
+    }
+    // 毎月10日
+    if (!rrule && (m = rest.match(/毎月\s*(\d{1,2})\s*日/))) {
+      rrule = `RRULE:FREQ=MONTHLY;BYMONTHDAY=${+m[1]}`;
+      rest = rest.replace(m[0], ' ');
+    }
+    if (!rrule && /毎日/.test(rest)) {
+      rrule = 'RRULE:FREQ=DAILY';
+      rest = rest.replace('毎日', ' ');
+    }
+    if (!rrule && (m = rest.match(/毎年\s*(\d{1,2})月(\d{1,2})日/))) {
+      rrule = 'RRULE:FREQ=YEARLY';
+      rest = rest.replace('毎年', ' ');
+    }
+    // 終わり方：10回まで／12月末まで
+    if (rrule) {
+      const c = rest.match(/(\d{1,2})\s*回(?:まで|分)?/);
+      if (c) {
+        rrule += `;COUNT=${+c[1]}`;
+        rest = rest.replace(c[0], ' ');
+      }
+    }
+    return { rest, rrule, weekday };
+  }
+
+  // ══════════════════════════════════════════
+  // 日付
+  // ══════════════════════════════════════════
+
+  /**
+   * 年の省略を埋める。
+   * 基本は「今年」。少し前の日付（数日前・先月など）も今年のこととして扱う。
+   * ただし 90日以上さかのぼる場合は「来年のこと」と判断する。
+   * （2026-08-25：「8月23日」が来年になってしまった不具合の対策）
+   */
+  const PAST_LIMIT_DAYS = 90;
+  function pickYear(month, day, today) {
+    const y = today.getUTCFullYear();
+    const daysAgo = (today.getTime() - ymd(y, month, day).getTime()) / 86400000;
+    return daysAgo > PAST_LIMIT_DAYS ? y + 1 : y;
+  }
+
+  function weekStartMonday(dt) {
+    const dow = dt.getUTCDay(); // 0=日
+    return addDays(dt, -((dow + 6) % 7));
+  }
+
+  function extractDate(text, today, prev) {
+    let rest = text;
+    let start = null;
+    let end = null; // 終日の「最終日」（exclusive にする前）
+    let explicit = false;
+    const notes = [];
+    let m;
+
+    // ① 期間： 5月21日から25日まで／2026年5月21日〜6月2日／5/21-5/25
+    m = rest.match(/(?:(\d{4})年)?\s*(\d{1,2})\s*月\s*(\d{1,2})\s*日?\s*(?:から|〜|~|-|–|ー)\s*(?:(\d{4})年)?\s*(?:(\d{1,2})\s*月)?\s*(\d{1,2})\s*日\s*(?:まで)?/);
+    if (m) {
+      const y1 = m[1] ? +m[1] : pickYear(+m[2], +m[3], today);
+      start = ymd(y1, +m[2], +m[3]);
+      const m2 = m[5] ? +m[5] : +m[2];
+      const y2 = m[4] ? +m[4] : m2 < +m[2] ? y1 + 1 : y1;
+      end = ymd(y2, m2, +m[6]);
+      explicit = true;
+      if (!m[1]) notes.push(`年の指定がないので ${y1}年 と判断しました`);
+      rest = rest.replace(m[0], ' ');
+    }
+
+    // ② 年月日／月日
+    if (!start && (m = rest.match(/(?:(\d{4})年)?\s*(\d{1,2})\s*月\s*(\d{1,2})\s*日/))) {
+      const y = m[1] ? +m[1] : pickYear(+m[2], +m[3], today);
+      start = ymd(y, +m[2], +m[3]);
+      explicit = true;
+      if (!m[1]) notes.push(`年の指定がないので ${y}年 と判断しました`);
+      rest = rest.replace(m[0], ' ');
+    }
+
+    // ③ 5/20 形式
+    if (!start && (m = rest.match(/(?:^|[^\d:])(\d{1,2})\/(\d{1,2})(?![\d:])/))) {
+      const y = pickYear(+m[1], +m[2], today);
+      start = ymd(y, +m[1], +m[2]);
+      explicit = true;
+      notes.push(`年の指定がないので ${y}年 と判断しました`);
+      rest = rest.replace(m[0], ' ');
+    }
+
+    // ④ 相対（今日・明日・翌日・来週金曜 …）
+    if (!start) {
+      const rel = [
+        [/今日|本日/, () => today],
+        [/明後日|あさって/, () => addDays(today, 2)],
+        [/明日|あした|あす/, () => addDays(today, 1)],
+        [/翌々日/, () => addDays(prev || today, 2)],
+        [/翌日/, () => addDays(prev || today, 1)],
+        [/同じ日|同日/, () => prev || today],
+      ];
+      for (const [re, fn] of rel) {
+        if ((m = rest.match(re))) {
+          start = fn();
+          explicit = true;
+          rest = rest.replace(m[0], ' ');
+          break;
+        }
+      }
+    }
+
+    // ⑤ 来週金曜／今週火曜／再来週月曜／次の金曜
+    if (!start && (m = rest.match(/(再来週|来週|今週|次の|今度の)?\s*([日月火水木金土])曜(?:日)?/))) {
+      const target = WEEK.indexOf(m[2]);
+      const kind = m[1] || '';
+      let d;
+      if (kind === '今週' || kind === '来週' || kind === '再来週') {
+        const ws = weekStartMonday(today);
+        const offset = kind === '来週' ? 7 : kind === '再来週' ? 14 : 0;
+        d = addDays(ws, offset + ((target + 6) % 7));
+      } else {
+        // 次に来るその曜日（今日を含む）
+        const diff = (target - today.getUTCDay() + 7) % 7;
+        d = addDays(today, diff);
+      }
+      start = d;
+      explicit = true;
+      rest = rest.replace(m[0], ' ');
+    }
+
+    // ⑥ 「25日」だけ（月は今月または前の予定の月）
+    if (!start && (m = rest.match(/(?:^|[^\d])(\d{1,2})\s*日(?![時分])/))) {
+      const base = prev || today;
+      const day = +m[1];
+      let d = ymd(base.getUTCFullYear(), base.getUTCMonth() + 1, day);
+      if (d.getTime() < today.getTime()) d = ymd(base.getUTCFullYear(), base.getUTCMonth() + 2, day);
+      start = d;
+      explicit = true;
+      notes.push(`月の指定がないので ${d.getUTCMonth() + 1}月 と判断しました`);
+      rest = rest.replace(m[0], ' ');
+    }
+
+    return { rest, start, end, explicit, notes };
+  }
+
+  // ══════════════════════════════════════════
+  // 時刻
+  // ══════════════════════════════════════════
+
+  function applyMeridiem(h, mer) {
+    if (!mer) return h;
+    if (/午後|夜|夕方|夕|晩/.test(mer)) return h < 12 ? h + 12 : h;
+    if (/午前|朝/.test(mer)) return h === 12 ? 0 : h;
+    if (/昼/.test(mer)) return h < 6 ? h + 12 : h;
+    return h;
+  }
+
+  const MER = '午前|午後|朝|昼|夜|夕方|夕|晩';
+
+  function minutesOf(x) {
+    if (!x) return 0;
+    if (x === '半') return 30;
+    return Math.min(59, +x);
+  }
+
+  function extractTime(text) {
+    let rest = text;
+    let sh = null, sm = 0, eh = null, em = 0;
+    let allDayForced = false;
+
+    if (/終日|一日中|丸一日/.test(rest)) {
+      allDayForced = true;
+      rest = rest.replace(/終日|一日中|丸一日/, ' ');
+    }
+
+    // 範囲： 午後2時から4時まで／14:00-16:00／10時半〜12時
+    const rangeRe = new RegExp(
+      `(${MER})?\\s*(\\d{1,2})\\s*(?:時|:)\\s*(半|\\d{1,2})?\\s*分?\\s*(?:から|〜|~|-|–|ー|to)\\s*(${MER})?\\s*(\\d{1,2})\\s*(?:時|:)?\\s*(半|\\d{1,2})?\\s*分?\\s*(?:まで)?`
+    );
+    let m = rest.match(rangeRe);
+    if (m) {
+      sh = applyMeridiem(+m[2], m[1]);
+      sm = minutesOf(m[3]);
+      em = minutesOf(m[6]);
+      if (m[5] != null) {
+        eh = m[4] ? applyMeridiem(+m[5], m[4]) : +m[5];
+        if (!m[4] && eh * 60 + em < sh * 60 + sm && eh < 12) eh += 12; // 「午後2時から4時」
+      }
+      rest = rest.replace(m[0], ' ');
+    } else {
+      // 単独： 14時から／朝10時／15:30
+      const oneRe = new RegExp(`(${MER})?\\s*(\\d{1,2})\\s*(?:時|:)\\s*(半|\\d{1,2})?\\s*分?\\s*(?:から|より)?`);
+      m = rest.match(oneRe);
+      if (m) {
+        sh = applyMeridiem(+m[2], m[1]);
+        sm = minutesOf(m[3]);
+        rest = rest.replace(m[0], ' ');
+      }
+    }
+
+    if (allDayForced) return { rest, start: null, end: null };
+    if (sh === null) return { rest, start: null, end: null };
+    if (eh === null) {
+      // 終わりの指定が無ければ1時間
+      eh = sh + 1;
+      em = sm;
+    }
+    return { rest, start: { h: sh, m: sm }, end: { h: eh, m: em } };
+  }
+
+  // ══════════════════════════════════════════
+  // 区分・相手・場所・その他
+  // ══════════════════════════════════════════
+
+  function extractKind(text) {
+    let rest = text;
+    let kind = null;
+    let isTrip = false;
+
+    if (/出張/.test(rest)) {
+      isTrip = true;
+      rest = rest.replace(/出張/g, ' ');
+    }
+    const table = [
+      ['リモート', /リモート|オンライン|zoom|ズーム|ｚｏｏｍ|meet|ミート|web会議|ウェブ会議|テレビ会議|電話会議/i],
+      ['プライベート', /プライベート|私用|個人的|家族|お休み|休暇/],
+      ['沖実', /沖実|沖縄実業/],
+      ['キャパテクノ', /キャパテクノ|キャパ/],
+      ['HYP', /HYP|ヒップ/i],
+    ];
+    for (const [k, re] of table) {
+      const m = rest.match(re);
+      if (m) {
+        kind = k;
+        // 「家族」は相手として残したいので消さない
+        if (!/家族/.test(m[0])) rest = rest.replace(m[0], ' ');
+        break;
+      }
+    }
+    return { rest, kind, isTrip };
+  }
+
+  function extractPeople(text) {
+    let rest = text;
+    const people = [];
+    // ① 既知の相手を先に（誤読しないため）
+    for (const c of KNOWN_CONTACTS) {
+      if (rest.includes(c.name)) {
+        people.push(c.name);
+        rest = rest.replace(new RegExp(c.name, 'g'), ' ');
+      }
+    }
+    // ② 役職つきの名前
+    const titleRe = /([一-龥ァ-ヶA-Za-z][一-龥ァ-ヶーA-Za-z]{0,5})(社長|専務|常務|会長|部長|課長|係長|主任|取締役|店長|所長|税理士|弁護士|社労士|先生|さん|様|氏)/g;
+    let m;
+    while ((m = titleRe.exec(rest)) !== null) {
+      const name = m[1] + m[2];
+      if (!people.includes(name)) people.push(name);
+    }
+    for (const p of people) rest = rest.split(p).join(' ');
+    // ③ プライベートの相手
+    for (const w of ['家族', '妻', '両親', '息子', '娘', '友人']) {
+      if (rest.includes(w) && !people.includes(w)) {
+        people.push(w);
+        rest = rest.split(w).join(' ');
+      }
+    }
+    return { rest, people };
+  }
+
+  function extractPlace(text) {
+    let rest = text;
+    let area = null;
+    let place = null;
+
+    // 施設名（〇〇空港・〇〇モデルハウス …）
+    const fac = rest.match(new RegExp(`([一-龥ぁ-んァ-ヶーA-Za-z0-9]{0,10}(?:${FACILITY}))`));
+    if (fac) {
+      place = fac[1];
+      rest = rest.replace(fac[0], ' ');
+    }
+    // 都道府県クラス
+    for (const a of AREA_WORDS) {
+      if (rest.includes(a)) {
+        area = a;
+        rest = rest.split(a).join(' ');
+        break;
+      }
+    }
+    // 市区名
+    if (!place || !area) {
+      for (const city of Object.keys(CITY_TO_AREA)) {
+        if (rest.includes(city)) {
+          if (!place) place = city;
+          if (!area) area = CITY_TO_AREA[city];
+          rest = rest.split(city).join(' ');
+          break;
+        }
+      }
+    }
+    // 施設名の頭が市区名なら、エリアはその県
+    if (!area && place) {
+      for (const city of Object.keys(CITY_TO_AREA)) {
+        if (place.startsWith(city)) {
+          area = CITY_TO_AREA[city];
+          break;
+        }
+      }
+    }
+    return { rest, area, place };
+  }
+
+  // ══════════════════════════════════════════
+  // 質問に答える形の言い回し（「場所は〜です」「用件は〜で」）
+  // ══════════════════════════════════════════
+
+  /** 「特にありません」の類 */
+  const NONE_RE = /^(?:特に)?(?:ありません|ございません|ないです|無いです|なし|無し|未定|不明|特になし)[。、]?$/;
+
+  const LABEL_KEY = {
+    日付: 'date', 日にち: 'date', いつ: 'date',
+    時間: 'time', 何時: 'time', 時刻: 'time',
+    場所: 'place', どこ: 'place', 行き先: 'place',
+    相手: 'who', お相手: 'who', 誰: 'who', だれ: 'who', 会う人: 'who',
+    用件: 'what', 要件: 'what', 目的: 'what', 内容: 'what', 議題: 'what',
+    移動手段: 'move', 移動: 'move', 交通手段: 'move', 交通: 'move',
+    宿泊: 'stay', 泊まり: 'stay',
+    メモ: 'memo', 備考: 'memo', 補足: 'memo',
+  };
+  const LABEL_RE = new RegExp(
+    '(?:^|[\\s、。,])(' + Object.keys(LABEL_KEY).sort((a, b) => b.length - a.length).join('|') +
+    ')\\s*(?:[はがも]\\s*)?(?:[:：]\\s*)?', 'g'
+  );
+
+  /** 答えの末尾の「です」「で、」などを落とす */
+  function cleanAnswer(v) {
+    let t = String(v || '').trim();
+    t = t.replace(/(?:になります|でお願いします|でした|ですね|です|ます)[。、]?\s*$/, '');
+    t = clean(t);
+    if (NONE_RE.test(t)) return '';
+    return t;
+  }
+
+  /**
+   * ラベル付きの発話を {場所:…, 相手:…} の形にほどく。
+   * ラベルが1つも無ければ null（従来どおりの解析にまかせる）。
+   */
+  function extractLabeled(text) {
+    LABEL_RE.lastIndex = 0;
+    const hits = [];
+    let m;
+    while ((m = LABEL_RE.exec(text)) !== null) {
+      hits.push({ key: LABEL_KEY[m[1]], from: m.index + m[0].length, at: m.index + (m[0].length - m[0].replace(/^[\s、。,]/, '').length) });
+    }
+    if (!hits.length) return null;
+    const out = { _head: text.slice(0, hits[0].at) };
+    for (let i = 0; i < hits.length; i++) {
+      const v = cleanAnswer(text.slice(hits[i].from, i + 1 < hits.length ? hits[i + 1].at : text.length));
+      if (out[hits[i].key] === undefined || v) out[hits[i].key] = v;
+    }
+    return out;
+  }
+
+  // ══════════════════════════════════════════
+  // 1件分の組み立て
+  // ══════════════════════════════════════════
+
+  let seq = 0;
+
+  function parseOne(raw, today, prev) {
+    const notes = [];
+    const ambiguities = [];
+    let rest = normalize(raw);
+
+    // URL
+    let meetingUrl = null;
+    const u = rest.match(/https?:\/\/[^\s、。)]+/);
+    if (u) {
+      meetingUrl = u[0];
+      rest = rest.replace(u[0], ' ');
+    }
+    // 「メモは特にありません」のような打ち消しは、先に落とす
+    rest = rest.replace(/(?:メモ|備考|補足|宿泊|移動手段|移動|相手|場所)は\s*(?:特に)?(?:ありません|ございません|ないです|なし|無し|未定)[。、]?/g, ' ');
+
+    // 質問に答える形（「場所は〜です」「用件は〜で」）をほどく
+    const lab = extractLabeled(rest);
+    const forced = lab || {};
+    if (lab) {
+      // 日付と時刻の手がかりだけを本文として残す
+      rest = [lab._head || '', lab.date || '', lab.time || ''].join(' ').trim();
+    }
+
+    // メモ
+    let memo = null;
+    if (forced.memo !== undefined) {
+      memo = forced.memo || null;
+    } else {
+      const mm = rest.match(/メモ[:：\s]+(.+)$/);
+      if (mm) {
+        memo = clean(mm[1]);
+        rest = rest.replace(mm[0], ' ');
+      }
+    }
+    // 繰り返し
+    const rec = extractRecurrence(rest);
+    rest = rec.rest;
+
+    // 日付
+    const d = extractDate(rest, today, prev);
+    rest = d.rest;
+    notes.push(...d.notes);
+    let startDate = d.start;
+    let endDate = d.end;
+
+    if (!startDate && rec.rrule && rec.weekday !== null && rec.weekday !== undefined) {
+      const diff = (rec.weekday - today.getUTCDay() + 7) % 7;
+      startDate = addDays(today, diff);
+    }
+    if (!startDate) {
+      startDate = today;
+      ambiguities.push('日付が読み取れませんでした（今日として仮置きしています）');
+    }
+
+    // 時刻
+    const t = extractTime(rest);
+    rest = t.rest;
+
+    // 区分
+    const k = extractKind(rest);
+    rest = k.rest;
+
+    // 移動手段・宿泊
+    let transport = null;
+    const moveSrc = forced.move !== undefined ? forced.move : rest;
+    for (const tr of TRANSPORTS) {
+      if (moveSrc.includes(tr)) {
+        transport = tr;
+        if (forced.move === undefined) rest = rest.split(tr).join(' ');
+        break;
+      }
+    }
+    let hasAccommodation = null;
+    const staySrc = [forced.stay || '', forced.move || '', rest].join(' ');
+    const nights = staySrc.match(/(\d+)\s*泊/);
+    if (nights) {
+      hasAccommodation = true;
+      rest = rest.replace(/(\d+)\s*泊/, ' ');
+    } else if (/宿泊あり|泊まり|一泊|素泊まり/.test(staySrc)) {
+      hasAccommodation = true;
+      rest = rest.replace(/宿泊あり|泊まり|一泊|素泊まり/, ' ');
+    } else if (/日帰り|宿泊なし/.test(staySrc)) {
+      hasAccommodation = false;
+      rest = rest.replace(/日帰り|宿泊なし/, ' ');
+    }
+
+    // 相手（「相手は〜」と言われていればそこから、なければ本文から）
+    const p = extractPeople(forced.who !== undefined ? forced.who : rest);
+    if (forced.who === undefined) rest = p.rest;
+
+    // 場所（同上）
+    const pl = extractPlace(forced.place !== undefined ? forced.place : rest);
+    if (forced.place === undefined) rest = pl.rest;
+
+    // 用件
+    const purpose = forced.what !== undefined ? (forced.what || null) : (clean(rest) || null);
+
+    // ── 区分の決定 ────────────────────────
+    let kind = k.kind;
+    let contactCompany = null;
+    if (!kind) {
+      for (const name of p.people) {
+        const c = findContact(name);
+        if (c) {
+          contactCompany = c.company;
+          break;
+        }
+      }
+      if (contactCompany) {
+        kind = KINDS.includes(contactCompany) ? contactCompany : 'HYP';
+        if (!KINDS.includes(contactCompany)) {
+          notes.push(`${contactCompany} は5区分にないため HYP カレンダーに入れます`);
+        }
+      }
+    }
+    if (!kind) {
+      kind = 'HYP';
+      notes.push('区分の指定がないので HYP としました');
+    }
+
+    // 知らない相手は確認に出す（会社＝カレンダーが決められないため）
+    for (const name of p.people) {
+      if (!findContact(name) && !['家族', '妻', '両親', '息子', '娘', '友人'].includes(name)) {
+        ambiguities.push(`「${name}」は登録済みの相手にいません。区分（${kind}）で合っていますか`);
+      }
+    }
+
+    // ── 種類の決定 ────────────────────────
+    let eventType;
+    if (kind === 'リモート') eventType = 'リモート';
+    else if (kind === 'プライベート') eventType = 'プライベート';
+    else if (k.isTrip || pl.place || pl.area) eventType = '出張';
+    else eventType = '会社内';
+
+    // ── 日時の組み立て ────────────────────
+    const isAllDay = !t.start;
+    let startTime, endTime;
+    if (isAllDay) {
+      const last = endDate || startDate;
+      startTime = `${dateStr(startDate)}T00:00:00Z`; // 終日は必ず UTC
+      endTime = `${dateStr(addDays(last, 1))}T00:00:00Z`; // 終わりは最終日の翌日
+    } else {
+      const ds = dateStr(startDate);
+      const de = dateStr(endDate || startDate);
+      startTime = `${ds}T${pad(t.start.h)}:${pad(t.start.m)}:00+09:00`;
+      let eh = t.end.h;
+      let dayShift = 0;
+      if (eh >= 24) {
+        eh -= 24;
+        dayShift = 1;
+      }
+      const deShifted = dayShift ? dateStr(addDays(endDate || startDate, 1)) : de;
+      endTime = `${deShifted}T${pad(eh)}:${pad(t.end.m)}:00+09:00`;
+    }
+
+    // ── タイトル ──────────────────────────
+    // 入れるのは「場所」と「相手」だけ。用件などは説明欄へ回す。
+    // （2026-08-22：話した文章がまるごとタイトルに入ってしまう不具合の対策）
+    const TITLE_MAX = 24;
+    const short = (v) => (v && String(v).trim().length <= TITLE_MAX ? String(v).trim() : null);
+    const who = p.people.join('・');
+    const areaPlace = [pl.area, pl.place].filter(Boolean).join('　'); // 全角スペース
+    let title;
+    if (eventType === '出張') {
+      title = formatTitle('出張', areaPlace || short(purpose), who);
+    } else if (eventType === 'リモート') {
+      title = formatTitle('リモート', who || short(purpose) || '打ち合わせ');
+    } else if (eventType === 'プライベート') {
+      title = formatTitle('プライベート', [who, short(purpose)].filter(Boolean).join(' ') || '予定');
+    } else {
+      const body = [areaPlace, who].filter(Boolean).join('　') || short(purpose) || '予定';
+      title = formatTitle(kind, body);
+    }
+
+    // ── 説明欄 ────────────────────────────
+    const lines = ['【訪問予定】'];
+    lines.push(`・目的：${purpose || '（未記入）'}`);
+    lines.push(`・相手：${who || '（未記入）'}`);
+    if (areaPlace) lines.push(`・場所：${areaPlace}`);
+    if (eventType === '出張') {
+      lines.push(`・移動手段：${transport || '（未記入）'}`);
+      lines.push(`・宿泊：${hasAccommodation ? 'あり' : 'なし'}`);
+    }
+    if (memo) lines.push(`・メモ：${memo}`);
+    if (meetingUrl) lines.push(`・会議URL：${meetingUrl}`);
+    const description = lines.join('\n');
+
+    if (isAllDay) notes.push('時刻の指定がないので終日にしました');
+    if (!isAllDay && endDate && dateStr(endDate) !== dateStr(startDate)) {
+      ambiguities.push(
+        `${dateStr(startDate)} ${pad(t.start.h)}:${pad(t.start.m)} から ${dateStr(endDate)} まで、` +
+        '日をまたいで続く1件になります。日ごとに分けたいときは「次に」で区切って言い直してください'
+      );
+    }
+
+    return {
+      id: 'ev' + ++seq,
+      raw: String(raw).trim(),
+      calendarKind: kind,
+      calendarId: CALENDAR_IDS[kind] || '',
+      colorId: COLOR_MAP[kind],
+      eventType,
+      title,
+      isAllDay,
+      startTime,
+      endTime,
+      timeZone: 'Asia/Tokyo',
+      location: meetingUrl || areaPlace || null,
+      meetingUrl,
+      area: pl.area,
+      place: pl.place,
+      purpose,
+      attendees: p.people,
+      transport,
+      hasAccommodation: hasAccommodation === null ? false : hasAccommodation,
+      memo,
+      recurrence: rec.rrule,
+      description,
+      reminderMinutes: 30,
+      notes,
+      ambiguities,
+    };
+  }
+
+  // ══════════════════════════════════════════
+  // 入口
+  // ══════════════════════════════════════════
+
+  function parse(text, options) {
+    const opt = options || {};
+    const today = toDate(opt.today);
+    const segments = splitEvents(normalize(text));
+    const events = [];
+    const ambiguities = [];
+    let prev = null;
+
+    for (const seg of segments) {
+      const ev = parseOne(seg, today, prev);
+      events.push(ev);
+      ambiguities.push(...ev.ambiguities);
+      prev = toDate(ev.startTime.slice(0, 10));
+    }
+    return { events, ambiguities };
+  }
+
+  return {
+    parse,
+    parseOne,
+    formatTitle,
+    splitEvents,
+    findContact,
+    normalize,
+    COLOR_MAP,
+    COLOR_HEX,
+    COLOR_NAME,
+    CALENDAR_IDS,
+    OTHER_CALENDARS,
+    KNOWN_CONTACTS,
+    KINDS,
+  };
+});
+
+</script>
+
+<script>
+'use strict';
+const P = window.CalParser;
+const APP_VERSION = '2026-08-25 10:13';   // ビルド時に日時が入る
+
+/* ═══════════════ データ ═══════════════ */
+const KIND_META = {   // 自分で足した区分もここに入る
+  'HYP':          {color:'9',  hex:'var(--k-hyp)', cal:'仕事（HYP)'},
+  '沖実':          {color:'10', hex:'var(--k-oki)', cal:'仕事（沖実）'},
+  'キャパテクノ':   {color:'11', hex:'var(--k-cap)', cal:'ｷｬﾊﾟ・ｾﾞｵ 関係'},
+  'プライベート':   {color:'3',  hex:'var(--k-pri)', cal:'Private'},
+  'リモート':      {color:'4',  hex:'var(--k-rem)', cal:'仕事（HYP) 内で色分け'},
+};
+const SEED = {
+  places: [],
+  purposes: ['打ち合わせ','現場確認','商談','会食','定例会議','面談','視察','契約','支払い','見積提出'],
+  transports: ['飛行機','レンタカー','車','電車','新幹線','タクシー','徒歩'],
+};
+/** 地図帳：よく使う場所の位置。国土地理院とOpenStreetMap（どちらも無料）で調べて入れてある。
+ *  ここに無い場所は、Googleマップで開いた画面のURLを貼れば読み取れる。 */
+/** 市区町村の位置（国土地理院で取得・86件）。住所から位置を割り出すのと、
+ *  現在地が「どのあたりか」を通信なしで言うために使う。 */
+const CITY_BOOK = {'那覇市':{lat:26.21237,lng:127.67911,area:'沖縄'},'宜野湾市':{lat:26.28167,lng:127.77842,area:'沖縄'},'石垣市':{lat:24.34442,lng:124.18525,area:'沖縄'},'浦添市':{lat:26.24572,lng:127.72184,area:'沖縄'},'名護市':{lat:26.59167,lng:127.9775,area:'沖縄'},'糸満市':{lat:26.12346,lng:127.66581,area:'沖縄'},'沖縄市':{lat:26.3342,lng:127.80565,area:'沖縄'},'豊見城市':{lat:26.17713,lng:127.68123,area:'沖縄'},'うるま市':{lat:26.37878,lng:127.8582,area:'沖縄'},'宮古島市':{lat:24.78997,lng:125.29475,area:'沖縄'},'南城市':{lat:26.16319,lng:127.77062,area:'沖縄'},'国頭村':{lat:26.74574,lng:128.17828,area:'沖縄'},'大宜味村':{lat:26.70178,lng:128.1201,area:'沖縄'},'東村':{lat:26.63338,lng:128.15683,area:'沖縄'},'今帰仁村':{lat:26.68279,lng:127.97292,area:'沖縄'},'本部町':{lat:26.65751,lng:127.89782,area:'沖縄'},'恩納村':{lat:26.49737,lng:127.85373,area:'沖縄'},'宜野座村':{lat:26.48162,lng:127.97564,area:'沖縄'},'金武町':{lat:26.45622,lng:127.92602,area:'沖縄'},'伊江村':{lat:26.71344,lng:127.80708,area:'沖縄'},'読谷村':{lat:26.39611,lng:127.74445,area:'沖縄'},'嘉手納町':{lat:26.3618,lng:127.75542,area:'沖縄'},'北谷町':{lat:26.32006,lng:127.76384,area:'沖縄'},'北中城村':{lat:26.30074,lng:127.79289,area:'沖縄'},'中城村':{lat:26.26201,lng:127.78962,area:'沖縄'},'西原町':{lat:26.22295,lng:127.75893,area:'沖縄'},'与那原町':{lat:26.19958,lng:127.75446,area:'沖縄'},'南風原町':{lat:26.19113,lng:127.72852,area:'沖縄'},'八重瀬町':{lat:26.15834,lng:127.71865,area:'沖縄'},'久米島町':{lat:26.34069,lng:126.80495,area:'沖縄'},'渡嘉敷村':{lat:26.1975,lng:127.36437,area:'沖縄'},'座間味村':{lat:26.22886,lng:127.30318,area:'沖縄'},'千代田区':{lat:35.69389,lng:139.75362,area:'東京'},'中央区':{lat:35.6706,lng:139.772,area:'東京'},'港区':{lat:35.65805,lng:139.75166,area:'東京'},'新宿区':{lat:35.69389,lng:139.70361,area:'東京'},'文京区':{lat:35.70782,lng:139.75266,area:'東京'},'台東区':{lat:35.71263,lng:139.77968,area:'東京'},'墨田区':{lat:35.71068,lng:139.80151,area:'東京'},'江東区':{lat:35.67318,lng:139.81705,area:'東京'},'品川区':{lat:35.609,lng:139.73022,area:'東京'},'目黒区':{lat:35.64148,lng:139.6982,area:'東京'},'大田区':{lat:35.56121,lng:139.71602,area:'東京'},'世田谷区':{lat:35.64595,lng:139.65318,area:'東京'},'渋谷区':{lat:35.66367,lng:139.69772,area:'東京'},'中野区':{lat:35.70889,lng:139.66287,area:'東京'},'杉並区':{lat:35.69953,lng:139.63647,area:'東京'},'豊島区':{lat:35.72611,lng:139.71666,area:'東京'},'北区':{lat:35.75278,lng:139.73361,area:'東京'},'荒川区':{lat:35.73611,lng:139.78334,area:'東京'},'板橋区':{lat:35.75122,lng:139.70923,area:'東京'},'練馬区':{lat:35.73564,lng:139.65184,area:'東京'},'足立区':{lat:35.775,lng:139.80473,area:'東京'},'葛飾区':{lat:35.74333,lng:139.84723,area:'東京'},'江戸川区':{lat:35.70674,lng:139.86806,area:'東京'},'八王子市':{lat:35.66667,lng:139.31584,area:'東京'},'立川市':{lat:35.71389,lng:139.40778,area:'東京'},'武蔵野市':{lat:35.71778,lng:139.56612,area:'東京'},'三鷹市':{lat:35.68332,lng:139.55983,area:'東京'},'府中市':{lat:35.6694,lng:139.47759,area:'東京'},'調布市':{lat:35.65055,lng:139.54083,area:'東京'},'町田市':{lat:35.5466,lng:139.43864,area:'東京'},'千葉市':{lat:35.60704,lng:140.10606,area:'千葉'},'四街道市':{lat:35.67022,lng:140.16823,area:'千葉'},'船橋市':{lat:35.69472,lng:139.9825,area:'千葉'},'市川市':{lat:35.72185,lng:139.93106,area:'千葉'},'松戸市':{lat:35.78767,lng:139.9032,area:'千葉'},'柏市':{lat:35.86751,lng:139.97594,area:'千葉'},'市原市':{lat:35.49806,lng:140.11556,area:'千葉'},'八千代市':{lat:35.7225,lng:140.09973,area:'千葉'},'習志野市':{lat:35.68166,lng:140.02727,area:'千葉'},'成田市':{lat:35.77667,lng:140.31834,area:'千葉'},'佐倉市':{lat:35.72349,lng:140.22397,area:'千葉'},'木更津市':{lat:35.38125,lng:139.9249,area:'千葉'},'浦安市':{lat:35.65316,lng:139.90198,area:'千葉'},'さいたま市':{lat:35.86168,lng:139.64568,area:'埼玉'},'川口市':{lat:35.80672,lng:139.7234,area:'埼玉'},'川越市':{lat:35.9251,lng:139.48583,area:'埼玉'},'所沢市':{lat:35.79965,lng:139.4687,area:'埼玉'},'越谷市':{lat:35.89064,lng:139.79103,area:'埼玉'},'草加市':{lat:35.82539,lng:139.80537,area:'埼玉'},'春日部市':{lat:35.97404,lng:139.75476,area:'埼玉'},'上尾市':{lat:35.97742,lng:139.59319,area:'埼玉'},'熊谷市':{lat:36.14722,lng:139.38861,area:'埼玉'},'新座市':{lat:35.79316,lng:139.56563,area:'埼玉'},'朝霞市':{lat:35.79719,lng:139.59374,area:'埼玉'}};
+
+const PLACE_BOOK = {};
+
+/** 座標の読み取り：GoogleマップのURLでも、素の「35.68, 139.83」でも受け付ける */
+function parseCoords(str){
+  const s = String(str||'');
+  let m = s.match(/!3d(-?\d+\.\d+)!4d(-?\d+\.\d+)/);            // 地図でクリックした地点
+  if(m) return {lat:+m[1], lng:+m[2]};
+  m = s.match(/@(-?\d+\.\d+),\s*(-?\d+\.\d+)/);                 // 地図URLの中心
+  if(m) return {lat:+m[1], lng:+m[2]};
+  m = s.match(/[?&](?:q|ll|daddr)=(-?\d+\.\d+),\s*(-?\d+\.\d+)/);
+  if(m) return {lat:+m[1], lng:+m[2]};
+  m = s.match(/(-?\d{1,3}\.\d{3,})\s*[,、]\s*(-?\d{1,3}\.\d{3,})/); // 素の座標
+  if(m) return {lat:+m[1], lng:+m[2]};
+  return null;
+}
+
+/** よくある組み合わせ。実際のカレンダー76件から作成（2026-02〜08） */
+const SEED_PATTERNS = [];
+
+const DEF_DB = {
+  places: SEED.places.map(p => Object.assign({count:0, last:''}, p)),
+  people: [],
+  purposes: SEED.purposes.map(l => ({label:l, count:0, last:''})),
+  transports: SEED.transports.map(l => ({label:l, count:0, last:''})),
+  times: [],
+  patterns: SEED_PATTERNS.map(x=>Object.assign({},x)),
+  log: [],
+  settings: {
+    /* 起点＝旅費の距離をはかる出発地。予定の区分に合う起点が自動で選ばれる */
+    origins: [],
+    kinds: {},   // 自分で足した区分（区分名 → {color, cal, calendarId}）
+    gas: {url:'', secret:''},
+    remoteColor:'5',   // 仕様書の「🟡バナナ黄色」に合わせた。4はサーモン色なので5が正しい
+    calIds: Object.assign({}, P.CALENDAR_IDS),
+  },
+};
+let DB = loadDB();
+
+function loadDB(){
+  try{
+    const raw = localStorage.getItem('koekare.db');
+    if(!raw) return structuredClone(DEF_DB);
+    const d = JSON.parse(raw);
+    const out = structuredClone(DEF_DB);
+    for(const k of ['places','people','purposes','transports','times','patterns','log']) if(Array.isArray(d[k])) out[k]=d[k];
+    out.settings = Object.assign({}, DEF_DB.settings, d.settings||{});
+    out.settings.calIds = Object.assign({}, P.CALENDAR_IDS, (d.settings&&d.settings.calIds)||{});
+    out.settings.kinds = Object.assign({}, (d.settings&&d.settings.kinds)||{});
+    out.settings.gas = Object.assign({url:'', secret:''}, (d.settings&&d.settings.gas)||{});
+    return out;
+  }catch(e){ return structuredClone(DEF_DB); }
+}
+function saveDB(){ try{ localStorage.setItem('koekare.db', JSON.stringify(DB)); }catch(e){} }
+
+const todayISO = () => { const d=new Date(); return d.getFullYear()+'-'+p2(d.getMonth()+1)+'-'+p2(d.getDate()); };
+const p2 = n => String(n).padStart(2,'0');
+const esc = s => String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+/** 音声入力の後始末：末尾に付く句読点を落とす（Aqua Voice 対策）。
+ *  文の途中の「、」は複数予定の区切りに使うので消さない。 */
+const dropPunct = s => String(s==null?'':s).trim()
+  .replace(/[。．｡、，,・\s]+$/,'')
+  .replace(/^[。．｡、，,・\s]+/,'')
+  .trim();
+const byUse = (a,b) => ((b.pin?1:0)-(a.pin?1:0)) || (b.count-a.count) || String(b.last||'').localeCompare(String(a.last||'')) ;
+
+function bump(list, key, val){
+  let it = list.find(x => x[key]===val);
+  if(!it){ it = {count:0, last:''}; it[key]=val; list.push(it); }
+  it.count = (it.count||0)+1; it.last = todayISO();
+  return it;
+}
+/** 区分に合う起点を返す（無ければ座標の入っているもの→先頭の順） */
+function originFor(kind){
+  const os = DB.settings.origins||[];
+  return os.find(o=>o.key===kind && o.lat!=null) || os.find(o=>o.key===kind)
+      || os.find(o=>o.lat!=null) || os[0] || null;
+}
+/** その場所にいちばん近い起点を返す（旅費は近い事務所から出るのが自然なため） */
+function originNear(place){
+  const os = (DB.settings.origins||[]).filter(o=>o.lat!=null);
+  if(!os.length) return null;
+  if(!place || place.lat==null) return os[0];
+  return os.reduce((a,b)=> distKm(place,a) <= distKm(place,b) ? a : b);
+}
+function colorOf(kind){ return kind==='リモート' ? DB.settings.remoteColor : KIND_META[kind].color; }
+function hexOf(kind){ return kind==='リモート' && DB.settings.remoteColor==='5' ? 'var(--k-ban)' : KIND_META[kind].hex; }
+
+/* ═══════════════ 画面遷移 ═══════════════ */
+let VIEW = (() => {
+  try{ return new URLSearchParams(location.search).get('v') || 'wizard'; }catch(e){ return 'wizard'; }
+})();
+function go(v){ VIEW=v; if(v==='wizard'&&!W) newWizard(); render(); window.scrollTo(0,0); }
+function render(){
+  const m = document.getElementById('view');
+  const fns = {home:vHome, wizard:vWizard, confirm:vConfirm, master:vMaster, settings:vSettings, bulk:vBulk};
+  m.innerHTML = (fns[VIEW]||vHome)();
+  const nb = document.getElementById('navBack');
+  if(nb) nb.innerHTML = (VIEW==='wizard') ? ''
+    : `<button class="icon" onclick="go('wizard')" style="font-weight:700">←<span class="lbl-full"> 戻る</span></button>`;
+  const bb = document.getElementById('botbar');
+  const bar = ({wizard:barWizard, confirm:barConfirm, bulk:barBulk})[VIEW];
+  if(bar){ document.getElementById('botin').innerHTML = bar(); bb.style.display='block'; }
+  else bb.style.display='none';
+  if(typeof afterRender==='function') afterRender();
+}
+let afterRender = () => {
+  if(VIEW==='wizard'){
+    const el = document.getElementById('freeIn');
+    try{ if(el && window.matchMedia && matchMedia('(pointer:fine)').matches) el.focus(); }catch(e){}
+  }
+};
+
+/* ═══════════════ いつものパターン ═══════════════ */
+function patternList(){
+  return [...(DB.patterns||[])].sort(byUse);
+}
+/** パターンを使う。日付まで決まれば、あとは確かめて登録するだけ */
+function usePattern(i, when){
+  const p = patternList()[i];
+  if(!p) return;
+  newWizard();
+  W.kind = p.kind; W.type = p.type; W.purpose = p.purpose || null;
+  W.people = (p.people||[]).slice();
+  W.transport = p.transport || null; W.nights = p.nights || 0;
+  if(p.place){
+    W.place = DB.places.find(x=>x.label===p.place) || {label:p.place, area:p.area||'', address:'', lat:null, lng:null};
+    W.placeArea = W.place.area || p.area || '';
+  }
+  W.allDay = true;
+  if(when === 'today')      W.date = todayISO();
+  else if(when === 'tomorrow') W.date = addDayISO(todayISO());
+  W.open = when ? null : 'date';
+  go('wizard');
+  if(when) toast('あとは確かめて登録するだけです');
+}
+/** 登録した組み合わせを覚える（次からパターンとして出る） */
+function learnPattern(e){
+  const place = e.place ? e.place.label : '';
+  const people = (e.attendees||[]).join('・');
+  if(!place && !people) return;
+  const key = [e.calendarKind, place, people, e.purpose||''].join('|');
+  DB.patterns = DB.patterns || [];
+  let p = DB.patterns.find(x => x.key === key);
+  if(!p){
+    p = {key, kind:e.calendarKind, type:e.eventType, place, area:(e.place&&e.place.area)||'',
+         people:(e.attendees||[]).slice(), purpose:e.purpose||'',
+         transport:e.transport||'', nights:e.nights||0, count:0, last:''};
+    DB.patterns.push(p);
+  }
+  p.count = (p.count||0)+1; p.last = todayISO();
+  DB.patterns = DB.patterns.sort(byUse).slice(0,20);
+}
+
+/* ═══════════════ 使い方ガイド ═══════════════ */
+function helpDlg(){
+  const direct = !!MCP;
+  dlg('使い方（1分で読めます）', `
+    <div style="font-size:14.5px;line-height:1.85">
+      <p style="margin-top:0"><b>やることは3つだけです。</b></p>
+
+      <div class="card pad" style="margin-bottom:11px">
+        <div class="lbl">① 話す</div>
+        <div style="margin-top:5px">「予定をつくる」を押すと、大きな枠が出ます。
+        そこを<b>クリックしてから Aqua Voice で話す</b>と文字が入ります。</div>
+        <div class="hint" style="margin-top:6px">この順で話すと、きれいに入ります：<br>
+        <b>いつ → 場所は〜 → 相手は〜 → 時間は〜 → 用件は〜 → 移動手段は〜 → メモは〜</b></div>
+      </div>
+
+      <div class="card pad" style="margin-bottom:11px">
+        <div class="lbl">② 確かめる</div>
+        <div style="margin-top:5px">「読み取って、下の質問に入れる」を押すと、答えが全部埋まります。
+        <b>声で入れた項目には黄色い印</b>が付くので、「✓ これでOK」を押して確かめます。</div>
+        <div class="hint" style="margin-top:6px">名前が違っていたら「もしかして：〇〇社長」の候補を押すだけで直ります。
+        急ぐときは右上の「⏭ まとめて確認へ」。</div>
+      </div>
+
+      <div class="card pad" style="margin-bottom:11px">
+        <div class="lbl">③ 入れる</div>
+        <div style="margin-top:5px">${direct
+          ? '一番下の<b>「✅ カレンダーに入れる」</b>を押すだけで、Googleカレンダーに入ります。色も振り分けも自動です。'
+          : 'いまは<b>コピー方式</b>です。「✅ 登録する」を押すと文章が出るので、コピーして Claude に貼ってください。'}</div>
+      </div>
+
+      <div class="lbl" style="margin-top:16px">困ったときに押す場所</div>
+      <div class="tw" style="margin-top:7px"><table>
+        <tr><td>最初に戻る</td><td><b>左上の ←</b></td></tr>
+        <tr><td>言い間違えた</td><td><b>✕</b>（入力欄の隣）</td></tr>
+        <tr><td>その質問をやり直す</td><td><b>🗑</b>（下のバー）</td></tr>
+        <tr><td>全部やり直す</td><td><b>🗑 最初から</b></td></tr>
+        <tr><td>間違って消した</td><td><b>↩︎ 戻す</b>（消した直後だけ出ます）</td></tr>
+        <tr><td>声のボタンが効かない</td><td>入力欄に <b>Aqua Voice</b> で直接話す</td></tr>
+      </table></div>
+
+      <div class="lbl" style="margin-top:16px">スマホで使う</div>
+      <div class="hint" style="margin-top:5px">Safari でこのページを開く → 下の共有ボタン →
+      <b>「ホーム画面に追加」</b>。アプリのように1タップで開きます。</div>
+    </div>
+    <div class="rowg" style="margin-top:16px">
+      <button class="btn pri" onclick="closeDlg();startDemo()">お手本を入れて試してみる</button>
+      <button class="btn" onclick="closeDlg()">閉じる</button>
+    </div>`);
+  try{ localStorage.setItem('koekare.seenHelp','1'); }catch(e){}
+}
+/** お手本を入れた状態で1問目を開く（最初の1件を試すため） */
+function startDemo(){
+  newWizard();
+  W.allText = BULK_SAMPLE;
+  go('wizard');
+  setTimeout(()=>{ const el=document.getElementById('freeIn'); if(el){ el.value=BULK_SAMPLE; el.focus(); } }, 60);
+  toast('お手本を入れました。「読み取って…」を押してみてください');
+}
+
+/* ═══════════════ ホーム ═══════════════ */
+function vHome(){
+  return `
+  <div class="rowg">
+    <button class="btn" style="flex:1" onclick="go('wizard')">＋ 予定をつくる</button>
+    <button class="btn" style="flex:1" onclick="helpDlg()">❓ 使い方</button>
+  </div>
+  <div class="stat" style="margin-top:14px">
+    <div><div class="v num">${(DB.log||[]).length}</div><div class="k">登録した予定</div></div>
+    <div><div class="v num">${DB.places.length}</div><div class="k">覚えた場所</div></div>
+    <div><div class="v num">${DB.people.length}</div><div class="k">覚えた相手</div></div>
+  </div>`;
+}
+
+/* ═══════════════ 1問1答 ═══════════════ */
+let W = null;
+function newWizard(){
+  W = {i:0, kind:null, type:null, date:null, dateEnd:null, allDay:true, st:null, et:null,
+       place:null, url:'', people:[], purpose:null, transport:null, nights:0, memo:'', heard:'',
+       voiced:{}, okd:{}, allText:'', open:'all', moreWho:false, roundTrip:true};
+}
+const STEPS = [
+  {k:'all',   q:'まとめて話しますか？',       need:()=>true},
+  {k:'kind',  q:'どこの予定ですか？',        need:w=>!!w.kind},
+  {k:'type',  q:'出張ですか？ 社内ですか？',   show:w=>['HYP','沖実','キャパテクノ'].includes(w.kind), need:w=>!!w.type},
+  {k:'date',  q:'いつですか？',              need:w=>!!w.date},
+  {k:'time',  q:'何時からですか？',          need:w=>w.allDay||!!w.st},
+  {k:'place', q:'どこで会いますか？',        show:w=>w.type==='出張', need:()=>true},
+  {k:'url',   q:'会議のURLはありますか？',    show:w=>w.kind==='リモート', need:()=>true},
+  {k:'who',   q:'だれと会いますか？',        need:()=>true},
+  {k:'what',  q:'目的は何ですか？',          need:()=>true},
+  {k:'move',  q:'移動と宿泊は？',            show:w=>w.type==='出張', need:()=>true},
+  {k:'memo',  q:'メモはありますか？',        need:()=>true},
+];
+const steps = () => STEPS.filter(s => !s.show || s.show(W));
+
+const ROW_LABEL = {kind:'区分', type:'種類', date:'日付', time:'時間', place:'場所',
+                   url:'URL', who:'相手', what:'用件', move:'移動', memo:'メモ'};
+
+function vWizard(){
+  const rows = steps().filter(x => x.k !== 'all');
+  return `
+  <div class="card">
+    <button class="row-btn" onclick="toggleRow('all')" style="border-bottom:1px solid var(--line-soft)">
+      <span class="row-k">話す</span>
+      <span class="row-v ${W.allText?'':'empty'}">${W.allText?esc(W.allText.slice(0,28))+(W.allText.length>28?'…':''):'まとめて話す・書く（任意）'}</span>
+      <span class="row-arrow">${W.open==='all'?'▲':'▼'}</span>
+    </button>
+    ${W.open==='all' ? `<div class="row-body" style="padding-top:12px">
+      <textarea class="inp" id="freeIn" style="min-height:96px"
+        placeholder="">${esc(W.allText||'')}</textarea>
+      <div class="rowg" style="margin-top:10px">
+        <button class="btn pri" style="flex:1" onclick="readAll()">↓ 下の欄に入れる</button>
+        <button class="btn" onclick="clearFree()">✕</button>
+      </div>
+      <div class="hint" style="margin-top:8px">この順で：いつ → 場所は〜 → 相手は〜 → 時間は〜 → 用件は〜 → 移動手段は〜 → メモは〜</div>
+    </div>` : ''}
+  </div>
+
+  <div class="card" style="margin-top:11px">
+    ${rows.map((x,i) => rowHtml(x,i)).join('')}
+  </div>
+
+  <div class="card pad" style="margin-top:11px">
+    <div class="lbl">できあがり</div>
+    <div class="ttl-prev" style="margin-top:6px">${esc(previewTitle())}</div>
+    <div class="hint" style="margin-top:5px">${esc(previewWhen())}</div>
+  </div>`;
+}
+
+function rowHtml(x, i){
+  const open = W.open === x.k;
+  const v = checkValue(x.k);
+  const voiced = W.voiced && W.voiced[x.k];
+  return `<div class="${open?'row-open':''}" style="${i?'border-top:1px solid var(--line-soft)':''}">
+    <button class="row-btn" onclick="toggleRow('${x.k}')">
+      <span class="row-k">${ROW_LABEL[x.k]||x.k}</span>
+      <span class="row-v ${v?'':'empty'}">${v?esc(v):'—'}</span>
+      ${voiced?'<span class="row-mic">🎤</span>':''}
+      <span class="row-arrow">${open?'▲':'▼'}</span>
+    </button>
+    ${open ? `<div class="row-body">${stepBody(x.k)}${freeBox(x.k)}</div>` : ''}
+  </div>`;
+}
+
+function toggleRow(k){
+  W.open = (W.open === k) ? null : k;
+  PENDING = [];
+  render();
+  if(W.open) setTimeout(()=>{
+    const el = document.querySelector('.row-open');
+    if(el && el.scrollIntoView) el.scrollIntoView({block:'start'});
+  }, 50);
+}
+/** 選び終わったら、次のまだ空いている欄を開く */
+function openNext(k){
+  const rows = steps().filter(x => x.k !== 'all');
+  const i = rows.findIndex(x => x.k === k);
+  for(let j=i+1; j<rows.length; j++){
+    if(!checkValue(rows[j].k)){ W.open = rows[j].k; return; }
+  }
+  W.open = null;
+}
+function previewTitle(){
+  const e = buildEvent();
+  return e.title || '（まだ決まっていません）';
+}
+function previewWhen(){
+  if(!W.date) return '日付がまだです';
+  const e = buildEvent();
+  return e.isAllDay
+    ? e.startTime.slice(0,10).replace(/-/g,'/') + '  終日'
+    : e.startTime.slice(0,10).replace(/-/g,'/') + '  ' + e.startTime.slice(11,16) + '〜' + e.endTime.slice(11,16);
+}
+
+function barWizard(){
+  const ok = !!(W.kind && W.date);
+  return `<button class="btn" onclick="resetWizard()" title="全部消す">🗑</button>
+    ${UNDO?`<button class="btn" onclick="undo()" style="color:var(--act);border-color:var(--act)">↩︎</button>`:''}
+    <span class="grow"></span>
+    ${ok?'':`<span class="hint" style="margin-right:9px;white-space:nowrap">区分と日付が必要です</span>`}
+    <button class="btn pri" id="goBtn" onclick="finishOne()" ${ok?'':'disabled'} style="min-width:140px">
+      ${MCP?'✅ カレンダーに入れる':'✅ Googleを開いて登録'}</button>`;
+}
+
+/** 登録の前に、声で入れた項目だけ1回まとめて確かめる */
+function finishOne(){
+  syncInputs();
+  const ps = pendingChecks();
+  if(ps.length){
+    dlg('声で入れた項目の確認', `
+      <p style="margin-top:0;font-size:14px">音声は<b>人の名前と場所</b>を間違えやすいので、ここだけ確かめてください。</p>
+      <div class="tw"><table>${ps.map(k=>`<tr>
+        <td style="color:var(--sub);font-size:12.5px;white-space:nowrap">${esc(ROW_LABEL[k]||k)}</td>
+        <td style="font-weight:700">${esc(checkValue(k)||'（空）')}</td>
+        <td><button class="mini" onclick="closeDlg();toggleRow('${k}')">直す</button></td></tr>`).join('')}</table></div>
+      <div class="rowg" style="margin-top:15px">
+        <button class="btn pri" onclick="closeDlg();markAllOk();doRegister()">これで登録する</button>
+        <button class="btn" onclick="closeDlg()">やめる</button></div>`);
+    return;
+  }
+  doRegister();
+}
+function doRegister(){
+  const list = [buildEvent()];
+  if(MCP){ registerDirect(list); return; }        // Claude経由（色・カレンダー指定つき）
+  learn(list);
+  if(gasReady()){ sendViaGas(list[0]); return; }  // Googleの受け口へ直接（色・カレンダー指定つき）
+  openGcal(list[0]);                              // 受け口がなければGoogleの画面をひらく
+}
+/** Googleの受け口（Apps Script）へ直接送って登録する */
+function gasReady(){ const g=(DB.settings&&DB.settings.gas)||{}; return !!(g.url && g.url.indexOf('script.google.com')>=0); }
+async function sendViaGas(e){
+  const g = DB.settings.gas;
+  const body = {
+    secret: g.secret || '',
+    calendarId: e.calendarId || '',
+    title: e.title,
+    start: e.startTime,
+    end: e.endTime,
+    allDay: !!e.isAllDay,
+    description: e.description || '',
+    location: e.location || '',
+    colorId: String(e.colorId || ''),
+    reminderMinutes: e.reminderMinutes || 30
+  };
+  try{
+    await fetch(g.url, {
+      method: 'POST', mode: 'no-cors',
+      headers: {'Content-Type': 'text/plain;charset=utf-8'},
+      body: JSON.stringify(body)
+    });
+    dlg('カレンダーに送りました', `
+      <div class="card pad"><div class="ttl-prev">${esc(e.title)}</div>
+        <div class="hint" style="margin-top:5px">${esc(e.isAllDay
+          ? e.startTime.slice(0,10).replace(/-/g,'/')+' 終日'
+          : e.startTime.slice(0,10).replace(/-/g,'/')+' '+e.startTime.slice(11,16)+'〜'+e.endTime.slice(11,16))}</div></div>
+      <p class="hint" style="margin-top:11px">色とカレンダーの指定つきで入っています。
+        念のため、Googleカレンダーで見えているか確かめてください。</p>
+      <div class="rowg" style="margin-top:14px">
+        <a class="btn" href="https://calendar.google.com/calendar/r/day/${e.startTime.slice(0,4)}/${+e.startTime.slice(5,7)}/${+e.startTime.slice(8,10)}" target="_blank" rel="noopener">📅 その日を見る</a>
+        <button class="btn pri" onclick="closeDlg();newWizard();render()">続けてもう1件</button>
+        <button class="btn" onclick="closeDlg()">閉じる</button></div>`);
+    return true;
+  }catch(err){
+    dlg('送れませんでした', `<p style="margin-top:0">${esc(String(err))}</p>
+      <p class="hint">⚙️設定の「Googleの受け口」を確かめてください。</p>
+      <div class="rowg" style="margin-top:13px">
+        <button class="btn" onclick="closeDlg();go('settings')">設定を開く</button>
+        <button class="btn pri" onclick="closeDlg();openGcal(PENDING[0]||buildEvent())">Googleの画面で登録する</button></div>`);
+    return false;
+  }
+}
+
+/** Googleカレンダーの登録画面をひらく */
+function openGcal(e){
+  const url = gcalUrl(e);
+  try{
+    const a = document.createElement('a');
+    a.href = url; a.target = '_blank'; a.rel = 'noopener';
+    document.body.appendChild(a); a.click(); a.remove();
+  }catch(err){ window.open(url, '_blank'); }
+  dlg('Googleカレンダーをひらきました', `
+    <p style="margin-top:0;font-size:14px">中身が入った状態で開きます。<b>「保存」を押せば登録完了</b>です。</p>
+    <div class="card pad"><div class="ttl-prev">${esc(e.title)}</div>
+      <div class="hint" style="margin-top:5px">${esc(e.isAllDay
+        ? e.startTime.slice(0,10).replace(/-/g,'/')+' 終日'
+        : e.startTime.slice(0,10).replace(/-/g,'/')+' '+e.startTime.slice(11,16)+'〜'+e.endTime.slice(11,16))}</div></div>
+    <p class="hint" style="margin-top:11px">⚠️ この入れ方では<b>色の指定ができません</b>（Googleの決まり）。
+      入れ先のカレンダーは指定していますが、違っていたらGoogleの画面で選び直してください。</p>
+    <div class="rowg" style="margin-top:14px">
+      <a class="btn pri" href="${esc(url)}" target="_blank" rel="noopener">開かないときはここ</a>
+      <button class="btn" onclick="closeDlg();newWizard();render()">続けてもう1件</button>
+      <button class="btn" onclick="closeDlg()">閉じる</button></div>`);
+}
+
+function stepHint(k){
+  return ({
+    all:'一気に話せば、下の質問に自動で入ります。話さずに「次へ」でも進めます',
+    kind:'カレンダーの色が決まります',
+    type:'外に出るなら「出張」、社内の用事なら「社内」',
+    date:'「明日」「来週の金曜」でも大丈夫です',
+    time:'決まっていなければ「終日」でOK',
+    place:'よく行く場所は覚えていきます',
+    url:'なければ「とばす」を押してください',
+    who:'複数えらべます',
+    what:'例：打ち合わせ／現場確認',
+    move:'泊まりの有無まで入れておくと精算がラクです',
+    memo:'持ち物・確認事項など（任意）',
+  })[k]||'';
+}
+
+/** よく使う順に並んだプルダウンを作る（ピン留めしたものが最上位） */
+function selOpts(list, cur){
+  return list.map(x => `<option value="${esc(x.v)}"${cur===x.v?' selected':''}>${esc(x.t)}</option>`).join('');
+}
+function pinMark(on){ return on ? '📌 ' : ''; }
+
+function stepBody(k){
+  if(k==='all') return '';
+
+  /* ── 区分 ── */
+  if(k==='kind'){
+    const ks = kindList();
+    return `<select class="inp" onchange="pick('kind',this.value)">
+        <option value="">— えらぶ —</option>
+        ${selOpts(ks.map(x=>({v:x, t:x+'（色 '+colorOf(x)+'）'})), W.kind)}
+      </select>
+      ${W.kind?`<div class="hint" style="margin-top:7px">
+        <span class="sq" style="display:inline-block;background:${hexOf(W.kind)};margin-right:6px"></span>
+        ${esc(KIND_META[W.kind]?KIND_META[W.kind].cal:'（カレンダー未設定）')} に入ります</div>`:''}
+      <div class="rowg" style="margin-top:9px">
+        <button class="btn" style="padding:8px 12px;min-height:38px" onclick="go('settings')">＋ 区分を足す・直す</button>
+      </div>`;
+  }
+
+  /* ── 種類 ── */
+  if(k==='type'){
+    return `<select class="inp" onchange="pick('type',this.value)">
+      <option value="">— えらぶ —</option>
+      ${selOpts([{v:'出張',t:'🚙 出張（外に出る）'},{v:'社内',t:'🏢 社内・その他'}], W.type)}
+    </select>`;
+  }
+
+  /* ── 日付 ── */
+  if(k==='date'){
+    const q = quickDates();
+    return `<div class="rowg">${q.slice(0,6).map(d=>`
+      <button class="chip" style="min-height:42px;padding:8px 13px" aria-pressed="${W.date===d.v}" onclick="pick('date','${d.v}')">${d.t}
+        <span class="cnt">${d.v.slice(5).replace('-','/')}</span></button>`).join('')}</div>
+      <div class="rowg" style="margin-top:12px;gap:10px">
+        <div style="flex:1;min-width:140px">
+          <div class="lbl">この日</div>
+          <input class="inp" type="date" style="margin-top:4px" value="${W.date||''}" onchange="pick('date',this.value)">
+        </div>
+        <div style="flex:1;min-width:140px">
+          <div class="lbl">最終日（連泊のとき）</div>
+          <input class="inp" type="date" style="margin-top:4px" value="${W.dateEnd||''}" onchange="pick('dateEnd',this.value)">
+        </div>
+      </div>`;
+  }
+
+  /* ── 時間 ── */
+  if(k==='time'){
+    const learned = [...DB.times].sort(byUse).slice(0,4).map(t=>t.label);
+    const common = ['09:00-10:00','10:00-12:00','13:00-15:00','14:00-16:00','15:00-17:00','16:00-17:00'];
+    const list = [...new Set([...learned, ...common])].slice(0,8);
+    const cur = W.allDay ? 'allday' : (W.st||'')+'-'+(W.et||'');
+    return `<select class="inp" onchange="pick('time',this.value)">
+        ${selOpts([{v:'allday',t:'🌤 終日（時間を決めない）'}].concat(
+          list.map(t=>({v:t, t:t.replace('-','　〜　')}))), cur)}
+        ${list.indexOf(cur)<0 && cur!=='allday' && W.st ? `<option value="${esc(cur)}" selected>${esc(cur.replace('-','　〜　'))}</option>`:''}
+      </select>
+      <div class="rowg" style="margin-top:11px;gap:10px">
+        <div style="flex:1;min-width:118px">
+          <div class="lbl">開始</div>
+          <input class="inp" type="time" style="margin-top:4px" value="${W.st||''}" onchange="pick('st',this.value)">
+        </div>
+        <div style="flex:1;min-width:118px">
+          <div class="lbl">終了</div>
+          <input class="inp" type="time" style="margin-top:4px" value="${W.et||''}" onchange="pick('et',this.value)">
+        </div>
+      </div>`;
+  }
+
+  /* ── 場所 ── */
+  if(k==='place'){
+    const areas = areaList();
+    const cur = W.placeArea || (W.place&&W.place.area) || areas[0];
+    const list = DB.places.filter(x=>(x.area||'その他')===cur).sort(byUse);
+    return `
+      <div class="rowg" style="gap:9px">
+        <div style="flex:1;min-width:110px">
+          <div class="lbl">地域</div>
+          <select class="inp" style="margin-top:4px" onchange="W.placeArea=this.value;render()">
+            ${selOpts(areas.map(a=>({v:a,t:a})), cur)}
+          </select>
+        </div>
+        <div style="flex:2;min-width:160px">
+          <div class="lbl">場所（よく行く順）</div>
+          <select class="inp" style="margin-top:4px" onchange="pickPlace(this.value)">
+            <option value="">— えらぶ —</option>
+            ${selOpts(list.map(x=>({v:x.label, t:pinMark(x.pin)+x.label+(x.count?'（'+x.count+'回）':'')})), W.place?W.place.label:'')}
+          </select>
+        </div>
+      </div>
+      <div class="rowg" style="margin-top:10px">
+        <button class="btn" style="flex:1;min-height:42px;padding:9px" onclick="useHere()">📍 いまいる場所</button>
+        <button class="btn" style="min-height:42px;padding:9px" onclick="addPlaceDlg()">＋ 追加</button>
+        ${W.place?`<button class="btn" style="min-height:42px;padding:9px" onclick="editPlaceDlg('${esc(W.place.label).replace(/'/g,"\\'")}')">✏️ 直す</button>
+        <button class="btn" style="min-height:42px;padding:9px" onclick="togglePin('places','label','${esc(W.place.label).replace(/'/g,"\\'")}')">${W.place.pin?'📌 解除':'📌 上に'}</button>`:''}
+      </div>
+      ${W.place?placeInfo(W.place):''}`;
+  }
+
+  /* ── 会議URL ── */
+  if(k==='url') return `<input class="inp" id="freeIn" placeholder="https://meet.google.com/..." value="${esc(W.url)}"
+    onchange="syncInputs();render()" onpaste="setTimeout(syncInputs,10)">`;
+
+  /* ── 相手 ── */
+  if(k==='who'){
+    const all = [...DB.people].sort(byUse);
+    const short = c => { const t=String(c||'').replace(/（.*?）/g,''); return t.length>8?t.slice(0,8)+'…':t; };
+    return `
+      ${W.people.length?`<div class="rowg" style="margin-bottom:10px">${W.people.map(nm=>`
+        <button class="chip" aria-pressed="true" onclick="toggleWho('${esc(nm).replace(/'/g,"\\'")}')"
+          style="min-height:40px;padding:8px 12px">${esc(nm)} ✕</button>`).join('')}</div>`:''}
+      <select class="inp" onchange="if(this.value){toggleWho(this.value);this.value='';}">
+        <option value="">— 相手をえらぶ（よく会う順）—</option>
+        ${all.filter(x=>!W.people.includes(x.name)).map(x=>
+          `<option value="${esc(x.name)}">${esc(pinMark(x.pin)+x.name+(x.company?'（'+short(x.company)+'）':''))}</option>`).join('')}
+      </select>
+      <div class="rowg" style="margin-top:10px">
+        <button class="btn" style="min-height:42px;padding:9px 13px" onclick="addPersonDlg()">＋ 追加</button>
+        ${W.people.length?`<button class="btn" style="min-height:42px;padding:9px 13px" onclick="editPersonDlg('${esc(W.people[W.people.length-1]).replace(/'/g,"\\'")}')">✏️ 名前を直す</button>
+        <button class="btn" style="min-height:42px;padding:9px 13px" onclick="togglePin('people','name','${esc(W.people[W.people.length-1]).replace(/'/g,"\\'")}')">📌 上に</button>`:''}
+      </div>`;
+  }
+
+  /* ── 用件 ── */
+  if(k==='what'){
+    const list = [...DB.purposes].sort(byUse);
+    return `<select class="inp" onchange="pick('purpose',this.value)">
+        <option value="">— えらぶ —</option>
+        ${selOpts(list.map(x=>({v:x.label, t:pinMark(x.pin)+x.label+(x.count?'（'+x.count+'回）':'')})), W.purpose||'')}
+        ${W.purpose && !list.some(x=>x.label===W.purpose) ? `<option value="${esc(W.purpose)}" selected>${esc(W.purpose)}</option>`:''}
+      </select>
+      ${W.purpose?`<div class="rowg" style="margin-top:9px">
+        <button class="btn" style="min-height:40px;padding:8px 12px" onclick="togglePin('purposes','label','${esc(W.purpose).replace(/'/g,"\\'")}')">📌 上に</button></div>`:''}`;
+  }
+
+  /* ── 移動・宿泊 ── */
+  if(k==='move'){
+    const list = [...DB.transports].sort(byUse);
+    const nights = W.nights||0;
+    return `
+      <div class="lbl">移動手段</div>
+      <select class="inp" style="margin-top:5px" onchange="pick('transport',this.value)">
+        <option value="">— なし・えらぶ —</option>
+        ${selOpts(list.map(x=>({v:x.label, t:pinMark(x.pin)+x.label})), W.transport||'')}
+      </select>
+      ${W.transport && isMultiDay() ? `<label class="inline" style="margin-top:9px;cursor:pointer">
+        <input type="checkbox" style="width:auto" ${W.roundTrip!==false?'checked':''} onchange="W.roundTrip=this.checked;render()">
+        <span style="font-size:13.5px;color:var(--sub)">行きと帰りだけ ${esc(W.transport)}（間の日は移動なし）</span></label>`:''}
+
+      <div class="lbl" style="margin-top:16px">宿泊</div>
+      <div class="rowg" style="margin-top:5px;gap:9px;align-items:flex-end">
+        <div style="flex:1;min-width:120px">
+          <select class="inp" onchange="pick('nights', +this.value)">
+            ${selOpts([0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,20,21,28,30].map(n=>({v:String(n), t:n===0?'日帰り':n+'泊'})), String(nights))}
+          </select>
+        </div>
+        <div style="flex:1;min-width:110px">
+          <div class="lbl">それ以外の泊数</div>
+          <input class="inp" type="number" min="0" max="365" style="margin-top:4px" value="${nights}"
+            onchange="pick('nights', Math.max(0, Math.min(365, +this.value||0)))">
+        </div>
+      </div>
+      ${nights>0 && W.date ? `<div class="hint" style="margin-top:8px">${esc(stayRange())}</div>`:''}`;
+  }
+
+  /* ── メモ ── */
+  if(k==='memo') return `<textarea class="inp" id="freeIn" placeholder="例：資料を3部持参"
+    onchange="syncInputs()" onpaste="setTimeout(syncInputs,10)">${esc(W.memo)}</textarea>`;
+  return '';
+}
+
+/** 何日もまたぐ予定か */
+function isMultiDay(){
+  if(W.dateEnd && W.date && W.dateEnd !== W.date) return true;
+  return (W.nights||0) > 0;
+}
+/** 宿泊の日付範囲を言葉にする */
+function stayRange(){
+  if(!W.date) return '';
+  const n = W.nights||0;
+  const last = new Date(new Date(W.date+'T00:00:00Z').getTime() + n*86400000).toISOString().slice(0,10);
+  return W.date.replace(/-/g,'/') + ' 泊まりはじめ 〜 ' + last.replace(/-/g,'/') + ' 帰り（' + n + '泊' + (n+1) + '日）';
+}
+/** 📌 上に持っていく／解除 */
+function togglePin(listName, keyName, val){
+  const it = (DB[listName]||[]).find(x => x[keyName] === val);
+  if(!it) return;
+  it.pin = !it.pin;
+  saveDB(); render();
+  toast(it.pin ? '上に固定しました' : '固定をはずしました');
+}
+/** 相手の名前を直す */
+function editPersonDlg(name){
+  const p = DB.people.find(x=>x.name===name);
+  if(!p) return;
+  dlg('相手をなおす', `
+    <div class="set"><label>名前</label><input class="inp" id="ed_n" value="${esc(p.name)}"></div>
+    <div class="set"><label>会社</label><input class="inp" id="ed_c" value="${esc(p.company||'')}"></div>
+    <p class="hint">名前を直すと、覚えている記録もいっしょに直ります。</p>
+    <div class="rowg" style="margin-top:13px">
+      <button class="btn pri" onclick="savePersonEdit('${esc(name).replace(/'/g,"\\'")}')">保存</button>
+      <button class="btn" onclick="closeDlg()">やめる</button>
+      <span class="grow"></span>
+      <button class="btn" style="color:var(--bad);border-color:var(--bad)" onclick="delPerson('${esc(name).replace(/'/g,"\\'")}')">🗑 消す</button></div>`);
+}
+function savePersonEdit(oldName){
+  const nn = dropPunct((document.getElementById('ed_n')||{}).value);
+  if(!nn){ toast('名前を入れてください'); return; }
+  const p = DB.people.find(x=>x.name===oldName);
+  if(p){ p.name = nn; p.company = dropPunct((document.getElementById('ed_c')||{}).value); }
+  if(W && W.people) W.people = W.people.map(x => x===oldName ? nn : x);
+  (DB.patterns||[]).forEach(pt => { pt.people = (pt.people||[]).map(x => x===oldName ? nn : x); });
+  saveDB(); closeDlg(); render(); toast('直しました');
+}
+function delPerson(name){
+  DB.people = DB.people.filter(x=>x.name!==name);
+  if(W && W.people) W.people = W.people.filter(x=>x!==name);
+  saveDB(); closeDlg(); render(); toast('消しました');
+}
+/** 区分の一覧（設定で足したものも含む） */
+function kindList(){
+  return Object.keys(KIND_META);
+}
+
+const STD_AREAS = ['沖縄','東京','千葉','埼玉','その他'];
+function areaUse(){
+  const u = {};
+  DB.places.forEach(p=>{ const a=p.area||'その他'; u[a]=(u[a]||0)+(p.count||0); });
+  return u;
+}
+function areaList(){
+  const u = areaUse();
+  const set = new Set([...STD_AREAS, ...DB.places.map(p=>p.area||'その他')]);
+  return [...set].sort((a,b)=>(u[b]||0)-(u[a]||0)
+    || (STD_AREAS.indexOf(a)<0?99:STD_AREAS.indexOf(a)) - (STD_AREAS.indexOf(b)<0?99:STD_AREAS.indexOf(b)));
+}
+function quickDates(){
+  const base = new Date(); const out=[];
+  const iso = d => d.getFullYear()+'-'+p2(d.getMonth()+1)+'-'+p2(d.getDate());
+  const add = n => { const d=new Date(base); d.setDate(d.getDate()+n); return d; };
+  out.push({t:'今日', v:iso(base)});
+  out.push({t:'明日', v:iso(add(1))});
+  out.push({t:'明後日', v:iso(add(2))});
+  const wd=['日','月','火','水','木','金','土'];
+  for(let i=3;i<=9;i++){ const d=add(i); if(out.length<8) out.push({t:wd[d.getDay()]+'曜', v:iso(d)}); }
+  return out;
+}
+function placeInfo(pl){
+  const o = originNear(pl) || originFor(W.kind);
+  const d = (o && o.lat!=null && pl.lat!=null) ? distKm(o,pl) : null;
+  return `<div class="card pad" style="margin-top:12px">
+    <div style="font-weight:700">📍 ${esc(pl.label)}</div>
+    <div class="hint" style="margin-top:5px">${pl.address?esc(pl.address):'住所は未登録です'}</div>
+    ${d!=null?`<div style="margin-top:7px;font-size:13.5px">${esc(o.label)} から <b class="num">${d.toFixed(1)} km</b>（直線距離）</div>`
+      :(o&&o.lat==null&&pl.lat!=null?`<div class="hint" style="margin-top:7px">起点（${esc(o.label)}）の座標がまだ入っていないので距離が出せません</div>`:'')}
+    <div class="rowg" style="margin-top:9px">
+      <button class="btn" style="padding:9px 13px;min-height:40px" onclick="editPlaceDlg('${esc(pl.label).replace(/'/g,"\\'")}')">✏️ 住所・位置をなおす</button>
+    </div></div>`;
+}
+function summaryLine(){
+  const b=[];
+  if(W.kind) b.push(W.kind + (W.type?'／'+W.type:''));
+  if(W.date) b.push(W.date.slice(5).replace('-','/') + (W.dateEnd?'〜'+W.dateEnd.slice(5).replace('-','/'):''));
+  if(!W.allDay && W.st) b.push(W.st+'〜'+(W.et||''));
+  else if(W.allDay && W.date) b.push('終日');
+  if(W.place) b.push('📍'+W.place.label);
+  if(W.people.length) b.push('👤'+W.people.join('・'));
+  if(W.purpose) b.push(W.purpose);
+  if(W.nights) b.push(W.nights+'泊');
+  return b.map(esc).join(' ／ ') || '—';
+}
+
+function pick(f,v){
+  if(f==='kind'){ W.kind=v; if(v==='リモート'||v==='プライベート') W.type=null; }
+  else if(f==='type') W.type=v;
+  else if(f==='date') W.date=v;
+  else if(f==='dateEnd') W.dateEnd=v||null;
+  else if(f==='time'){
+    if(v==='allday'){ W.allDay=true; W.st=W.et=null; }
+    else { const [a,b]=v.split('-'); W.allDay=false; W.st=a; W.et=b; }
+  }
+  else if(f==='st'){ W.st=v; W.allDay=false; if(!W.et&&v) W.et=addHour(v); }
+  else if(f==='et'){ W.et=v; W.allDay=false; }
+  else if(f==='purpose') W.purpose=v;
+  else if(f==='transport') W.transport = (W.transport===v?null:v);
+  else if(f==='nights'){
+    W.nights = v;
+    if(v>0 && W.date){   // 泊数から最終日を自動で決める
+      W.dateEnd = new Date(new Date(W.date+'T00:00:00Z').getTime()+v*86400000).toISOString().slice(0,10);
+    } else if(v===0){ W.dateEnd = null; }
+  }
+  const jump = {kind:'kind', type:'type', date:'date', time:'time', purpose:'what'}[f];
+  if(jump && W.open===jump) openNext(jump);
+  render();
+}
+const addHour = t => { const [h,m]=t.split(':').map(Number); return p2((h+1)%24)+':'+p2(m); };
+function toggleWho(n){ const i=W.people.indexOf(n); if(i<0) W.people.push(n); else W.people.splice(i,1); render(); }
+function pickPlace(label){ W.place = DB.places.find(p=>p.label===label)||{label, area:W.placeArea||'', address:'', lat:null,lng:null};
+  if(W.place.area) W.placeArea = W.place.area;
+  if(W.open==='place') openNext('place');
+  render(); }
+function wPrev(){ /* 1画面になったので使わない */ }
+function wNext(skip){
+  if(!skip) syncInputs();
+  const ss = steps();
+  if(W.i >= ss.length-1){ go('confirm'); return; }
+  W.i++; W.heard=''; render(); window.scrollTo(0,0);
+}
+
+/* ═══════════════ 音声 ═══════════════ */
+let rec=null, listening=false, LAST_MIC_ERR='', MIC_PERM='未確認';
+try{
+  if(navigator.permissions && navigator.permissions.query)
+    navigator.permissions.query({name:'microphone'}).then(s=>{MIC_PERM=s.state;},()=>{MIC_PERM='調べられず';});
+}catch(e){ MIC_PERM='調べられず'; }
+
+const inFrame = (()=>{ try{ return window.self!==window.top; }catch(e){ return true; } })();
+
+function diagText(){
+  const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+  return ['この画面の音声機能: '+(SR?'あり':'なし'),
+          '枠の中で動いている: '+(inFrame?'はい':'いいえ'),
+          'マイクの許可: '+MIC_PERM,
+          '最後のエラー: '+(LAST_MIC_ERR||'なし')].join(' ／ ');
+}
+/** 声が使えないときの案内（OSの音声入力へ誘導する） */
+function micFail(why){
+  dlg('🎤 声で入れるには', `
+    <p style="margin-top:0">${esc(why)}</p>
+    <p><b>キーボードの音声入力を使ってください。</b>こちらは枠の制限を受けず、日本語の認識も正確です。</p>
+    <div class="tw"><table>
+      <tr><td><b>iPhone / iPad</b></td><td>入力欄をタップ → キーボード左下（または右下）の <b>🎤</b> を押して話す</td></tr>
+      <tr><td><b>Mac</b></td><td>入力欄をクリック → <b>fnキーを2回</b>押して話す<br>
+        <span class="hint">出ないときは システム設定 → キーボード → 音声入力 をオン</span></td></tr>
+      <tr><td><b>Windows</b></td><td>入力欄をクリック → <b>Windowsキー + H</b></td></tr>
+    </table></div>
+    <p class="hint" style="margin-top:12px">話し終えたら、そのまま「次へ」を押してください。長い予定は
+      ホームの<b>「まとめて話す・書く」</b>で一気に話すのがいちばん速いです。</p>
+    <div class="hint" style="margin-top:12px;padding-top:10px;border-top:1px solid var(--line-soft)">診断：${esc(diagText())}</div>
+    <div class="rowg" style="margin-top:13px"><button class="btn pri" onclick="closeDlg()">わかりました</button>
+      <button class="btn" onclick="closeDlg();go('bulk')">まとめて話す画面へ</button></div>`);
+}
+function micDiag(){
+  const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+  micFail(SR ? 'この画面には音声認識の機能があります。ボタンを押しても反応しないときは、下の診断をご覧ください。'
+             : 'この画面には音声認識の機能がありません（Claudeの枠の中・VSCodeの中ではよくあります）。');
+}
+const MIC_ERR_JA = {
+  'not-allowed':'マイクの使用が許可されませんでした（この枠の中ではブラウザのマイクが使えないことがあります）。',
+  'service-not-allowed':'この画面ではブラウザの音声認識が許可されていません。',
+  'audio-capture':'マイクが見つかりませんでした。',
+  'no-speech':'声が聞き取れませんでした。もう一度お試しください。',
+  'network':'音声認識のサーバーにつながりませんでした。',
+  'aborted':'途中で止まりました。',
+};
+function mic(stepKey){
+  const SR = window.SpeechRecognition || window.webkitSpeechRecognition;
+  if(!SR){ micFail('このブラウザには音声認識の機能がありません。'); return; }
+  if(listening){ rec.stop(); return; }
+  rec = new SR(); rec.lang='ja-JP'; rec.continuous=false; rec.interimResults=true;
+  const btn=document.getElementById('micBtn'), tx=document.getElementById('micTx'), hd=document.getElementById('heard');
+  rec.onstart=()=>{ listening=true; btn.classList.add('on'); tx.textContent='聞いています…（押すと止める）'; };
+  rec.onresult=(ev)=>{
+    let t=''; for(let i=0;i<ev.results.length;i++) t+=ev.results[i][0].transcript;
+    hd.innerHTML = '聞き取り：<b>'+esc(t)+'</b>';
+    if(ev.results[ev.results.length-1].isFinal){ W.heard=t; applyVoice(stepKey, t); }
+  };
+  rec.onerror=(e)=>{
+    LAST_MIC_ERR = e.error||'不明';
+    if(e.error==='no-speech'){ toast('声が聞き取れませんでした'); return; }
+    micFail(MIC_ERR_JA[e.error] || ('音声が使えませんでした（'+e.error+'）'));
+  };
+  rec.onend=()=>{ listening=false; btn.classList.remove('on'); tx.textContent='声で答える'; };
+  try{ rec.start(); }
+  catch(err){ LAST_MIC_ERR=String(err&&err.name||err); micFail('音声を始められませんでした。'); }
+}
+/** まとめて話した内容を読み取って、以降の質問の答えとして入れる */
+function readAll(){
+  const el = document.getElementById('freeIn');
+  const text = el ? el.value.trim() : '';
+  if(!text){ toast('先に話すか、書いてください'); return; }
+  W.allText = text;
+  const r = P.parse(text, {today: todayISO()});
+  if(!r.events.length){ toast('読み取れませんでした。1問ずつ答えてください'); return; }
+
+  if(r.events.length > 1){   // 複数の予定に分かれたときは、まとめて確認する画面へ
+    BULKTEXT = text; BULK = r.events.map(e=>{ e.colorId=colorOf(e.calendarKind);
+      e.calendarId = DB.settings.calIds[e.calendarKind]||''; return e; });
+    go('bulk'); toast(r.events.length+'件に分かれました。まとめて確認してください');
+    return;
+  }
+  const e = r.events[0];
+  W.kind = e.calendarKind;
+  W.type = e.eventType==='出張' ? '出張' : (e.eventType==='会社内' ? '社内' : null);
+  W.date = e.startTime.slice(0,10);
+  if(e.isAllDay){
+    const last = prevDayISO(e.endTime.slice(0,10));
+    W.dateEnd = (last !== W.date) ? last : null;
+    W.allDay = true; W.st=null; W.et=null;
+  } else {
+    W.allDay = false; W.st = e.startTime.slice(11,16); W.et = e.endTime.slice(11,16);
+  }
+  const label = e.place || e.area;
+  if(label){
+    W.place = DB.places.find(x=>x.label===label) || {label, area:e.area||'', address:'', lat:null, lng:null};
+    W.placeArea = W.place.area || e.area || '';
+  }
+  W.people = (e.attendees||[]).slice();
+  W.purpose = e.purpose || null;
+  W.transport = e.transport || null;
+  W.nights = e.hasAccommodation ? 1 : 0;
+  W.memo = e.memo || '';
+  W.url = e.meetingUrl || '';
+  // 話して入れたものは、すべて「あとで確かめる」印を付ける
+  W.voiced = {}; W.okd = {};
+  ['kind','type','date','time','place','who','what','move','memo'].forEach(k=>{ if(checkValue(k)) W.voiced[k]=true; });
+  W.open = null; PENDING=[]; render(); window.scrollTo(0,0);
+  toast('読み取りました。下の一覧で確かめてください');
+}
+function putSampleStep(){
+  const ta = document.getElementById('freeIn');
+  if(ta){ ta.value = BULK_SAMPLE; ta.focus(); }
+}
+
+/** どのステップでも「ここに話す・書く」欄を出す（Aqua Voice・キーボードの🎤の受け皿） */
+/* ══ 元に戻す（消す操作の直前を1つだけ覚えておく） ══ */
+let UNDO = null;
+function snapshot(what){
+  try{
+    UNDO = {what, W: W?JSON.parse(JSON.stringify(W)):null,
+            bulk: JSON.parse(JSON.stringify(BULK||[])), bulkText: BULKTEXT||''};
+  }catch(e){ UNDO=null; }
+}
+function undo(){
+  if(!UNDO) return;
+  if(UNDO.W) W = UNDO.W;
+  BULK = UNDO.bulk; BULKTEXT = UNDO.bulkText;
+  UNDO = null; PENDING=[]; render();
+  const ta=document.getElementById('bulkTx'); if(ta) ta.value = BULKTEXT;
+  toast('元に戻しました');
+}
+/** 入力欄に書いた（話した）文字だけを消す */
+function clearFree(){
+  snapshot('入力欄');
+  const el = document.getElementById('freeIn');
+  if(el){ el.value=''; el.focus(); }
+  if(W) W.heard='';
+  if(W && W.open==='all'){ W.allText=''; render(); }
+}
+/** この予定をまるごと捨ててやり直す */
+function resetWizard(){
+  dlg('全部消しますか', `
+    <p style="margin-top:0">いま入れた内容を<b>全部消します</b>。
+    覚えている場所や相手のデータは消えません。<br><b>消したあとでも「↩︎」で1回だけ戻せます。</b></p>
+    <div class="rowg" style="margin-top:14px">
+      <button class="btn" style="border-color:var(--bad);color:var(--bad)"
+        onclick="snapshot('予定まるごと');closeDlg();newWizard();PENDING=[];render();toast('全部消しました')">全部消す</button>
+      <button class="btn pri" onclick="closeDlg()">やめる</button></div>`);
+}
+/** 開いている欄の入力を、合図に頼らずDOMから直接読む（外部の音声アプリ対策） */
+function syncInputs(){
+  if(VIEW!=='wizard' || !W || !W.open) return false;
+  const k = W.open;
+  const el = document.getElementById('freeIn');
+  if(!el) return false;
+  const v = String(el.value||'').trim();
+  if(!v) return false;
+  if(k==='all'){ W.allText = v; return true; }
+  if(k==='memo'){ W.memo = dropPunct(v); return true; }
+  if(k==='url'){ const u = v.match(/https?:\/\/\S+/); W.url = dropPunct(u?u[0]:v); return true; }
+  applyVoice(k, v, false);
+  return true;
+}
+
+function freeBox(k){
+  const ph = {kind:'例：リモート', type:'例：出張', date:'例：来週の金曜', time:'例：午後2時から4時',
+    place:'例：◯◯事務所', who:'例：◯◯社長', what:'例：現場確認', move:'例：飛行機で1泊'}[k];
+  if(!ph) return '';
+  return `<div class="rowg" style="margin-top:11px;gap:8px">
+    <input class="inp" id="freeIn" placeholder="${ph}" autocomplete="off" style="flex:1;min-width:140px"
+      onkeydown="if(event.key==='Enter'){event.preventDefault();applyFree('${k}',true);}"
+      onpaste="setTimeout(()=>applyFree('${k}',false),10)">
+    <button class="btn" onclick="applyFree('${k}',true)">入れる</button>
+  </div>`;
+}
+function applyFree(k, advance){
+  const el = document.getElementById('freeIn');
+  const v = el ? el.value.trim() : '';
+  if(!v) return false;
+  applyVoice(k, v, !!advance);
+  return true;
+}
+/** 声・外部の音声アプリで入れた項目に印を付ける（あとで必ず確認させるため） */
+function markVoiced(k){ if(W){ W.voiced = W.voiced||{}; W.voiced[k]=true; if(W.okd) delete W.okd[k]; } }
+function applyVoice(k, text, adv){
+  if(adv===undefined) adv = true;
+  markVoiced(k);
+  text = dropPunct(text);
+  const t = dropPunct(P.normalize(text));
+  if(k==='kind'){
+    const hit = Object.keys(KIND_META).find(kd => t.includes(kd)) ||
+      (/リモート|オンライン|ズーム|ミート/.test(t)?'リモート':null) ||
+      (/私用|家族|プライベート/.test(t)?'プライベート':null) ||
+      (/沖実|沖縄実業/.test(t)?'沖実':null) || (/キャパ/.test(t)?'キャパテクノ':null) || (/ヒップ|HYP/i.test(t)?'HYP':null);
+    if(hit){ pick('kind',hit); if(adv) openNext(k); render(); return; }
+  }
+  if(k==='type'){ if(/出張|外/.test(t)){pick('type','出張');if(adv)openNext(k);return;} if(/社内|事務所|会社/.test(t)){pick('type','社内');if(adv)openNext(k);return;} }
+  if(k==='date'||k==='time'){
+    const r = P.parse(t+' 予定', {today: todayISO()});
+    const e = r.events[0];
+    if(e && !r.ambiguities.some(a=>a.includes('日付'))){
+      if(k==='date'){ W.date = e.startTime.slice(0,10);
+        if(e.isAllDay){ const last=new Date(new Date(e.endTime.slice(0,10)+'T00:00:00Z').getTime()-86400000).toISOString().slice(0,10);
+                        W.dateEnd = (last!==W.date)?last:null; }
+        render(); if(adv) openNext(k); render(); return; }
+    }
+    if(k==='time'){
+      if(/終日|一日|決めない/.test(t)){ pick('time','allday'); if(adv) openNext(k); render(); return; }
+      if(e && !e.isAllDay){ W.allDay=false; W.st=e.startTime.slice(11,16); W.et=e.endTime.slice(11,16); render(); if(adv) openNext(k); render(); return; }
+    }
+  }
+  if(k==='place'){
+    const known = DB.places.find(p => t.includes(p.label));
+    if(known){ pickPlace(known.label); if(adv) openNext(k); render(); return; }
+    const label = t.replace(/[で。、]/g,' ').trim();
+    if(label){ W.place={label, area:'', address:'', lat:null, lng:null}; render(); toast('新しい場所「'+label+'」を使います'); return; }
+  }
+  if(k==='who'){
+    const hits = DB.people.filter(p => t.includes(p.name)).map(p=>p.name);
+    if(hits.length){ W.people = [...new Set([...W.people, ...hits])]; render(); if(adv) openNext(k); render(); return; }
+    const m = t.match(/([一-龥ァ-ヶA-Za-z][一-龥ァ-ヶーA-Za-z]{0,5})(社長|専務|常務|会長|部長|課長|取締役|税理士|先生|さん|様)/);
+    if(m){ W.people.push(m[0]); render(); return; }
+  }
+  if(k==='what'){ W.purpose = t.replace(/[。、]/g,'').trim()||null; render(); if(adv) openNext(k); render(); return; }
+  if(k==='url'){ const u=t.match(/https?:\/\/\S+/); if(u){ W.url=u[0]; render(); if(adv) openNext(k); render(); return; } }
+  if(k==='move'){
+    const tr = DB.transports.find(x=>t.includes(x.label)); if(tr) W.transport=tr.label;
+    const n = t.match(/(\d+)\s*泊/); if(n) W.nights=+n[1]; else if(/日帰り/.test(t)) W.nights=0;
+    render(); return;
+  }
+  if(k==='memo'){ W.memo = dropPunct(text); render(); return; }
+  toast('うまく聞き取れませんでした。指で選んでください');
+  render();
+}
+function autoNext(){ /* 1画面になったので画面移動はしない */ }
+
+/* ═══════════════ 聞き間違いの確認 ═══════════════ */
+const ROLE_RE = /(社長|専務|常務|会長|部長|課長|係長|主任|取締役|店長|所長|税理士|弁護士|社労士|先生|さん|様|氏)$/;
+/** 同じ役職の人を、よく会う順に候補として出す（音声の聞き間違いは同じ役職に化けやすい） */
+function similarPeople(name){
+  const m = String(name||'').match(ROLE_RE);
+  const role = m ? m[1] : '';
+  return DB.people.filter(p => p.name!==name && (role ? p.name.endsWith(role) : true))
+                  .sort(byUse).slice(0,5);
+}
+function similarPlaces(label, area){
+  return DB.places.filter(p => p.label!==label && (!area || (p.area||'')===area))
+                  .sort(byUse).slice(0,5);
+}
+/** 声で入れた項目のうち、まだ「OK」を押していないもの */
+function pendingChecks(){
+  const v = W && W.voiced ? W.voiced : {};
+  const ok = W && W.okd ? W.okd : {};
+  return Object.keys(v).filter(k => v[k] && !ok[k]);
+}
+function markOk(k){ W.okd = W.okd||{}; W.okd[k]=true; PENDING=[]; render(); }
+function markAllOk(){ W.okd = W.okd||{}; Object.keys(W.voiced||{}).forEach(k=>{W.okd[k]=true;}); PENDING=[]; render(); toast('確認しました'); }
+
+const CHECK_LABEL = {kind:'区分', type:'種類', date:'日付', time:'時間', place:'場所',
+                     who:'相手', what:'用件', move:'移動・宿泊', memo:'メモ', url:'会議URL'};
+function checkValue(k){
+  if(!W) return '';
+  return ({kind:W.kind, type:W.type,
+    date:(W.date||'')+(W.dateEnd?'〜'+W.dateEnd:''),
+    time:W.allDay?'終日':(W.st||'')+'〜'+(W.et||''),
+    place:W.place?W.place.label:'', who:W.people.join('・'), what:W.purpose||'',
+    move:[W.transport, W.nights?W.nights+'泊':''].filter(Boolean).join(' '),
+    memo:W.memo||'', url:W.url||''})[k] || '';
+}
+function checkCard(){
+  const ps = pendingChecks();
+  if(!ps.length) return '';
+  return `<div class="card" style="margin-bottom:14px;border-color:var(--warn)">
+    <div class="pad" style="background:var(--warn-bg);color:var(--warn);font-weight:700;font-size:14px">
+      🎤 声で入れた項目です。聞き間違いがないか確かめてください</div>
+    ${ps.map(k=>`
+      <div class="pad" style="border-top:1px solid var(--line-soft)">
+        <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
+          <span class="lbl" style="min-width:56px">${esc(CHECK_LABEL[k]||k)}</span>
+          <b style="font-size:16px;flex:1;min-width:120px">${esc(checkValue(k)||'（空）')}</b>
+          <button class="btn" style="min-height:40px;padding:8px 14px" onclick="markOk('${k}')">✓ これでOK</button>
+          <button class="btn" style="min-height:40px;padding:8px 14px" onclick="backTo('${k}')">✏️ 直す</button>
+        </div>
+        ${suggestRow(k)}
+      </div>`).join('')}
+    <div class="pad" style="border-top:1px solid var(--line-soft)">
+      <div class="rowg"><button class="btn pri" onclick="markAllOk()">全部これでOK</button>
+        <button class="btn" onclick="speakConfirm()">🔊 読み上げて確かめる</button></div></div>
+  </div>`;
+}
+/** 「もしかして」候補 */
+function suggestRow(k){
+  let list=[], apply='';
+  if(k==='who' && W.people.length){
+    list = similarPeople(W.people[W.people.length-1]).map(p=>p.name);
+    apply = 'swapWho';
+  } else if(k==='place' && W.place){
+    list = similarPlaces(W.place.label, W.place.area).map(p=>p.label);
+    apply = 'swapPlace';
+  }
+  if(!list.length) return '';
+  return `<div style="margin-top:9px">
+    <span class="hint">もしかして：</span>
+    <div class="rowg" style="margin-top:6px;gap:6px">${list.map(x=>`
+      <button class="chip" style="min-height:38px;padding:7px 12px" onclick="${apply}('${esc(x).replace(/'/g,"\\'")}')">${esc(x)}</button>`).join('')}</div></div>`;
+}
+function swapWho(name){
+  if(W.people.length) W.people[W.people.length-1] = name; else W.people.push(name);
+  W.okd = W.okd||{}; W.okd['who']=true; PENDING=[]; render(); toast(name+' に直しました');
+}
+function swapPlace(label){
+  W.place = DB.places.find(p=>p.label===label) || W.place;
+  W.okd = W.okd||{}; W.okd['place']=true; PENDING=[]; render(); toast(label+' に直しました');
+}
+/** 耳で確かめる（運転中・手が離せないとき用） */
+function speakConfirm(){
+  if(!('speechSynthesis' in window)){ toast('この画面では読み上げできません'); return; }
+  const e = (PENDING.length?PENDING:[buildEvent()])[0];
+  const when = e.isAllDay
+    ? e.startTime.slice(5,7)+'月'+e.startTime.slice(8,10)+'日、終日'
+    : e.startTime.slice(5,7)+'月'+e.startTime.slice(8,10)+'日、'+e.startTime.slice(11,13)+'時'+e.startTime.slice(14,16)+'分から';
+  const t = [e.calendarKind+'の予定', when,
+             e.place?'場所は'+e.place.label:'', e.attendees.length?'相手は'+e.attendees.join('、'):'',
+             e.purpose?'用件は'+e.purpose:''].filter(Boolean).join('。');
+  try{
+    const u = new SpeechSynthesisUtterance(t);
+    u.lang='ja-JP'; u.rate=0.95;
+    speechSynthesis.cancel(); speechSynthesis.speak(u);
+    toast('読み上げます');
+  }catch(err){ toast('読み上げできませんでした'); }
+}
+
+/* ═══════════════ 確認 ═══════════════ */
+function buildEvent(){
+  const kind = W.kind||'HYP';
+  const type = kind==='リモート'?'リモート' : kind==='プライベート'?'プライベート' : (W.type||'社内');
+  const who = W.people.join('・');
+  const area = W.place ? (W.place.area||'') : '';
+  const areaPlace = W.place ? [area, W.place.label].filter(Boolean).join('　') : '';
+  // タイトルに入れるのは「場所」と「相手」だけ。用件などは説明欄へ
+  const shortTx = v => (v && String(v).trim().length<=24) ? String(v).trim() : null;
+  let title;
+  if(type==='出張') title = P.formatTitle('出張', areaPlace||shortTx(W.purpose), who);
+  else if(type==='リモート') title = P.formatTitle('リモート', who||shortTx(W.purpose)||'打ち合わせ');
+  else if(type==='プライベート') title = P.formatTitle('プライベート', [who,shortTx(W.purpose)].filter(Boolean).join(' ')||'予定');
+  else title = P.formatTitle(kind, [areaPlace,who].filter(Boolean).join('　')||shortTx(W.purpose)||'予定');
+
+  const d0 = W.date||todayISO();
+  const dEnd = W.dateEnd||d0;
+  let startTime, endTime;
+  if(W.allDay){
+    startTime = d0+'T00:00:00Z';
+    endTime = new Date(new Date(dEnd+'T00:00:00Z').getTime()+86400000).toISOString().slice(0,10)+'T00:00:00Z';
+  } else {
+    startTime = d0+'T'+(W.st||'09:00')+':00+09:00';
+    endTime = dEnd+'T'+(W.et||addHour(W.st||'09:00'))+':00+09:00';
+  }
+  const L=['【訪問予定】'];
+  L.push('・目的：'+(W.purpose||'（未記入）'));
+  L.push('・相手：'+(who||'（未記入）'));
+  if(areaPlace) L.push('・場所：'+areaPlace);
+  if(type==='出張'){
+    if(W.transport && W.nights>0 && W.roundTrip!==false){
+      const last = new Date(new Date((W.date||todayISO())+'T00:00:00Z').getTime()+(W.nights||0)*86400000).toISOString().slice(0,10);
+      L.push('・移動手段：'+W.transport+'（行き '+(W.date||'').replace(/-/g,'/')+' ／ 帰り '+last.replace(/-/g,'/')+'）');
+      L.push('　　　　　　※あいだの日は移動なし');
+    } else {
+      L.push('・移動手段：'+(W.transport||'（未記入）'));
+    }
+    L.push('・宿泊：'+(W.nights>0?W.nights+'泊'+(W.nights+1)+'日':'日帰り'));
+    if(W.place&&W.place.address) L.push('・住所：'+W.place.address);
+    const o = originNear(W.place) || originFor(kind);
+    if(W.place&&W.place.lat!=null&&o&&o.lat!=null) L.push('・直線距離：約'+distKm(o,W.place).toFixed(1)+'km（'+(o.label||'起点')+'から）');
+  }
+  if(W.memo) L.push('・メモ：'+W.memo);
+  if(W.url) L.push('・会議URL：'+W.url);
+
+  return {
+    calendarKind:kind, eventType:type, title, isAllDay:W.allDay, startTime, endTime, timeZone:'Asia/Tokyo',
+    colorId: colorOf(kind), calendarId: DB.settings.calIds[kind]||'',
+    location: W.url || (W.place ? (W.place.address||areaPlace) : null),
+    attendees:[...W.people], purpose:W.purpose, transport:W.transport,
+    hasAccommodation: W.nights>0, nights:W.nights, memo:W.memo, meetingUrl:W.url||null,
+    place: W.place, description:L.join('\n'), reminderMinutes:30, recurrence:null,
+  };
+}
+let PENDING = [];
+function vConfirm(){
+  if(!PENDING.length) PENDING=[buildEvent()];
+  return `<div class="lbl">この内容で登録します</div>
+    <div style="margin-top:10px">${checkCard()}</div>
+    <div>${PENDING.map((e,i)=>evCard(e,i)).join('')}</div>
+    <div class="hint" style="margin-top:12px">直したい行の「なおす」を押すと、その質問に戻ります。</div>`;
+}
+function evCard(e,i){
+  const jump = k => `<button class="edit" onclick="backTo('${k}')">なおす</button>`;
+  const when = e.isAllDay
+    ? `<span class="num">${e.startTime.slice(0,10).replace(/-/g,'/')}</span>${e.endTime.slice(0,10)!==addDayISO(e.startTime.slice(0,10))?` 〜 <span class="num">${prevDayISO(e.endTime.slice(0,10)).replace(/-/g,'/')}</span>`:''} ・終日`
+    : `<span class="num">${e.startTime.slice(0,10).replace(/-/g,'/')} ${e.startTime.slice(11,16)}–${e.endTime.slice(11,16)}</span>`;
+  return `<div class="ev">
+    <div class="ev-h"><span class="badge" style="background:${hexOf(e.calendarKind)}">${esc(e.calendarKind)}</span>
+      <span class="ev-t">${esc(e.title)}</span></div>
+    <div class="kv">
+      <div>日時</div><div>${when}${jump('date')}</div>
+      <div>入り先</div><div>${esc(KIND_META[e.calendarKind].cal)}<span class="cnt num" style="color:var(--faint);margin-left:8px">色 ${e.colorId}</span>${jump('kind')}</div>
+      ${e.place?`<div>場所</div><div>${esc(e.place.label)}${jump('place')}</div>`:''}
+      ${e.attendees.length?`<div>相手</div><div>${esc(e.attendees.join('・'))}${jump('who')}</div>`:''}
+      ${e.purpose?`<div>目的</div><div>${esc(e.purpose)}${jump('what')}</div>`:''}
+      ${e.eventType==='出張'?`<div>移動</div><div>${esc(e.transport||'—')} ／ ${e.nights>0?e.nights+'泊':'日帰り'}${jump('move')}</div>`:''}
+      ${e.memo?`<div>メモ</div><div>${esc(e.memo)}${jump('memo')}</div>`:''}
+      ${e.meetingUrl?`<div>URL</div><div style="word-break:break-all;font-size:12.5px">${esc(e.meetingUrl)}${jump('url')}</div>`:''}
+    </div>
+    ${!e.calendarId?`<div class="warn" style="border-radius:0">⚠️ このカレンダーのIDが未設定です（⚙️で設定してください）</div>`:''}
+  </div>`;
+}
+const addDayISO = s => new Date(new Date(s+'T00:00:00Z').getTime()+86400000).toISOString().slice(0,10);
+const prevDayISO = s => new Date(new Date(s+'T00:00:00Z').getTime()-86400000).toISOString().slice(0,10);
+function backTo(k){ W.open=k; PENDING=[]; go('wizard'); }
+function barConfirm(){
+  const left = pendingChecks().length;
+  return `<button class="btn" onclick="PENDING=[];go('wizard')">戻る</button>
+    <span class="grow"></span>
+    ${left?`<span class="hint" style="margin-right:8px">確認 残り${left}件</span>`:''}
+    <button class="btn pri" id="goBtn" onclick="finish()" ${left?'disabled':''} style="min-width:190px">
+      ${left ? '確認してください' : (MCP?'✅ カレンダーに入れる':'✅ 登録する')}</button>`;
+}
+
+/* ═══════════════ Googleカレンダーへ直接入れる ═══════════════ */
+let MCP=null, MCP_SERVER=null, MCP_AUTH='unknown', MCP_READY=false;
+async function initMcp(){
+  try{
+    const m = window.claude && window.claude.use ? await window.claude.use('mcp') : null;
+    if(m){
+      const {servers} = await m.listTools();
+      const s = (servers||[]).find(x => (x.tools||[]).some(t=>t.name==='create_event'));
+      if(s && s.tools.length){ MCP=m; MCP_SERVER=s.server; MCP_AUTH=s.authStatus||'unknown'; }
+      else if(s){ MCP_AUTH='waiting'; }
+    }
+  }catch(e){ /* 使えないだけ。コピー方式で動く */ }
+  MCP_READY=true; render();
+}
+function toolInput(e){
+  const inp = {
+    summary: e.title, startTime: e.startTime, endTime: e.endTime, allDay: !!e.isAllDay,
+    colorId: String(e.colorId), description: e.description, notificationLevel:'NONE',
+    overrideReminders:[{method:'popup', minutes: e.reminderMinutes||30}],
+  };
+  if(e.calendarId) inp.calendarId = e.calendarId;
+  if(e.location) inp.location = e.location;
+  if(!e.isAllDay) inp.timeZone = 'Asia/Tokyo';
+  if(e.recurrence) inp.recurrenceData = [e.recurrence];
+  return inp;
+}
+function mcpErrMsg(err){
+  const c = (err&&err.code)||'';
+  const t = {
+    needs_reauth:'Googleカレンダーとの接続が切れています。claude.ai の 設定 → コネクタ でつなぎ直してください。',
+    server_not_connected:'Googleカレンダーがつながっていません。claude.ai の 設定 → コネクタ で追加してください。',
+    selection_required:'同じ名前のコネクタが複数あります。claude.ai 側でどれを使うか選んでください。',
+    server_not_found:'Googleカレンダーのコネクタが見つかりませんでした。',
+    blocked_by_policy:'この操作は許可されていません。',
+    approval_required:'この操作には承認が必要です。',
+    not_in_manifest:'このページから呼べない操作です。',
+    tool_error:'カレンダー側で断られました：'+((err&&err.message)||''),
+    bad_request:'送った内容に問題がありました：'+((err&&err.message)||''),
+    server_unavailable:'Googleにつながりませんでした。⚠️ 入ったかどうか分からないので、カレンダーを見てから、もう一度押してください。',
+    upstream_error:'うまくいきませんでした。⚠️ 二重に入らないよう、カレンダーを見てから押し直してください。',
+    cancelled:'途中で止まりました。⚠️ 入ったかどうか分かりません。カレンダーをご確認ください。',
+  };
+  return t[c] || ('うまくいきませんでした（'+(c||'原因不明')+'）');
+}
+let SENDING_NOW=false;
+async function registerDirect(list){
+  if(SENDING_NOW) return;
+  SENDING_NOW = true;
+  const btn = document.getElementById('goBtn');
+  if(btn){ btn.disabled=true; btn.textContent='登録しています…'; }
+  const done=[], failed=[];
+  for(const e of list){
+    try{
+      const r = await MCP.callTool(MCP_SERVER, 'create_event', toolInput(e));
+      const p = (r && r.payload) || {};
+      done.push({e, link:p.htmlLink||'', id:p.id||''});
+    }catch(err){ failed.push({e, msg:mcpErrMsg(err), code:(err&&err.code)||''}); }
+  }
+  SENDING_NOW = false;
+  if(done.length) learn(done.map(d=>d.e));
+  showResult(done, failed);
+}
+function showResult(done, failed){
+  dlg(failed.length? (done.length?'一部だけ入りました':'入りませんでした') : '入りました', `
+    ${done.length?`<div style="font-size:15px;font-weight:700;color:var(--ok)">✅ ${done.length}件、カレンダーに入りました</div>
+      <div class="tw" style="margin-top:10px"><table>${done.map(d=>`<tr>
+        <td><span class="sq" style="display:inline-block;background:${hexOf(d.e.calendarKind)};margin-right:8px"></span>${esc(d.e.title)}</td>
+        <td>${d.link?`<a href="${esc(d.link)}" target="_blank" rel="noopener">見る</a>`:''}</td></tr>`).join('')}</table></div>`:''}
+    ${failed.length?`<div class="warn" style="margin-top:12px">⚠️ ${failed.length}件が入りませんでした<br>
+      ${failed.map(f=>`・${esc(f.e.title)}<br><span style="font-weight:400">${esc(f.msg)}</span>`).join('<br>')}</div>
+      <div class="rowg" style="margin-top:11px">
+        <button class="btn" onclick="closeDlg();showSend(PENDING.length?PENDING:BULK)">📋 コピーして Claude に貼る</button></div>`:''}
+    <div class="rowg" style="margin-top:15px">
+      <button class="btn pri" onclick="closeDlg();newWizard();PENDING=[];go('home')">終わる</button>
+      <button class="btn" onclick="closeDlg();newWizard();PENDING=[];go('wizard')">続けてもう1件</button></div>`);
+}
+
+/* ═══════════════ 登録 ═══════════════ */
+function finish(){
+  syncInputs();
+  const list = PENDING.length?PENDING:[buildEvent()];
+  if(MCP){ registerDirect(list); return; }
+  learn(list);
+  showSend(list);
+}
+function learn(list){
+  list.forEach(e=>{
+    if(e.place&&e.place.label){
+      const it = bump(DB.places,'label',e.place.label);
+      if(e.place.area&&!it.area) it.area=e.place.area;
+      if(e.place.address&&!it.address) it.address=e.place.address;
+      if(e.place.lat!=null&&it.lat==null){ it.lat=e.place.lat; it.lng=e.place.lng; }
+    }
+    (e.attendees||[]).forEach(n=>bump(DB.people,'name',n));
+    if(e.purpose) bump(DB.purposes,'label',e.purpose);
+    if(e.transport) bump(DB.transports,'label',e.transport);
+    if(!e.isAllDay) bump(DB.times,'label', e.startTime.slice(11,16)+'-'+e.endTime.slice(11,16));
+    learnPattern(e);
+    DB.log.unshift({t:new Date().toISOString(), title:e.title, kind:e.calendarKind,
+                    color:e.colorId, start:e.startTime, allDay:e.isAllDay});
+  });
+  DB.log = DB.log.slice(0,300);
+  saveDB();
+}
+function sendText(list){
+  return '【カレンダー登録をお願いします】以下の '+list.length+' 件を、指定どおりに登録してください。\n\n' +
+  list.map((e,i)=>{
+    const L=['── '+(i+1)+'件目 ──'];
+    L.push('カレンダーID: '+(e.calendarId||'（未設定）'));
+    L.push('colorId: "'+e.colorId+'"');
+    L.push('タイトル: '+e.title);
+    L.push('終日: '+(e.isAllDay?'はい':'いいえ'));
+    L.push('開始: '+e.startTime);
+    L.push('終了: '+e.endTime+(e.isAllDay?'  ※最終日の翌日（exclusive）':''));
+    if(!e.isAllDay) L.push('タイムゾーン: Asia/Tokyo');
+    if(e.location) L.push('場所: '+e.location);
+    L.push('リマインダー: '+e.reminderMinutes+'分前');
+    L.push('説明:'); L.push(e.description);
+    return L.join('\n');
+  }).join('\n\n');
+}
+function gcalUrl(e){
+  const z = s => s.replace(/[-:]/g,'').replace(/\.\d+/,'');
+  const dates = e.isAllDay
+    ? e.startTime.slice(0,10).replace(/-/g,'')+'/'+e.endTime.slice(0,10).replace(/-/g,'')
+    : z(new Date(e.startTime).toISOString().slice(0,19))+'Z/'+z(new Date(e.endTime).toISOString().slice(0,19))+'Z';
+  const p = new URLSearchParams();
+  p.set('action','TEMPLATE'); p.set('text',e.title); p.set('dates',dates);
+  p.set('details',e.description); p.set('ctz','Asia/Tokyo');
+  if(e.location) p.set('location',e.location);
+  if(e.recurrence) p.set('recur',e.recurrence);
+  if(e.calendarId) p.set('src', e.calendarId);   // どのカレンダーに入れるかの指定
+  return 'https://calendar.google.com/calendar/render?'+p.toString();
+}
+function showSend(list){
+  const txt = sendText(list);
+  dlg('登録する', `
+    <p style="margin-top:0;font-size:14px">下の文をコピーして Claude に貼れば、<b>色もカレンダーも指定どおり</b>に入ります。</p>
+    <pre id="sendPre">${esc(txt)}</pre>
+    <div class="rowg" style="margin-top:13px">
+      <button class="btn pri" onclick="copyText(document.getElementById('sendPre').textContent)">📋 コピーする</button>
+      ${list.map((e,i)=>`<a class="btn" href="${esc(gcalUrl(e))}" target="_blank" rel="noopener">🌐 Googleで開く${list.length>1?' ('+(i+1)+')':''}</a>`).join('')}
+    </div>
+    <p class="hint" style="margin-top:12px">🌐 は認証なしで今すぐ入りますが、<b>色とカレンダーの指定はできません</b>（Googleの仕様）。色分けまで正確にやるなら 📋 を使ってください。</p>
+    <div class="rowg" style="margin-top:14px"><button class="btn" onclick="closeDlg();newWizard();go('home')">終わる</button>
+      <button class="btn" onclick="closeDlg();newWizard();go('wizard')">続けてもう1件</button></div>`);
+}
+function copyText(t){
+  const done = ()=>toast('コピーしました。Claudeに貼ってください');
+  if(navigator.clipboard&&navigator.clipboard.writeText) navigator.clipboard.writeText(t).then(done, ()=>fallback(t,done));
+  else fallback(t,done);
+}
+function fallback(t,done){
+  const ta=document.createElement('textarea'); ta.value=t; ta.style.position='fixed'; ta.style.opacity='0';
+  document.body.appendChild(ta); ta.select();
+  try{ document.execCommand('copy'); done(); }catch(e){ toast('コピーできませんでした。長押しで選んでください'); }
+  document.body.removeChild(ta);
+}
+
+/* ═══════════════ まとめて入力 ═══════════════ */
+let BULK = [];
+/** 話す順（この順で答えると、いつも同じ形になる） */
+const BULK_Q = [
+  {n:'①', q:'いつ？（何日から何日まで）', ex:'8月25日'},
+  {n:'②', q:'場所はどこ？',        ex:'場所は◯◯事務所'},
+  {n:'③', q:'誰に会う？',          ex:'相手は◯◯社長'},
+  {n:'④', q:'時間は何時？',        ex:'時間は10時から12時'},
+  {n:'⑤', q:'用件は？',            ex:'用件は打ち合わせ'},
+  {n:'⑥', q:'移動手段は？',        ex:'移動手段は飛行機で1泊'},
+  {n:'⑦', q:'メモは？',            ex:'メモは資料を3部持参'},
+];
+const BULK_SAMPLE = BULK_Q.map(x=>x.ex).join('、');
+
+/** 話した内容が、どの項目に入ったか */
+function fillCheck(e){
+  const last = e.isAllDay ? prevDayISO(e.endTime.slice(0,10)) : e.endTime.slice(0,10);
+  const span = e.startTime.slice(5,10).replace('-','/') +
+    (last!==e.startTime.slice(0,10) ? '〜'+last.slice(5).replace('-','/') : '');
+  return [
+    {n:'①', q:'いつ',   ok:true,                    v:span},
+    {n:'②', q:'場所',   ok:!!(e.place||e.area),      v:[e.area,e.place].filter(Boolean).join(' ')},
+    {n:'③', q:'相手',   ok:!!(e.attendees||[]).length, v:(e.attendees||[]).join('・')},
+    {n:'④', q:'時間',   ok:!e.isAllDay,              v:e.isAllDay?'終日':e.startTime.slice(11,16)+'–'+e.endTime.slice(11,16)},
+    {n:'⑤', q:'用件',   ok:!!e.purpose,              v:e.purpose||''},
+    {n:'⑥', q:'移動',   ok:!!e.transport||e.hasAccommodation, v:[e.transport, e.hasAccommodation?'宿泊あり':''].filter(Boolean).join(' ')},
+    {n:'⑦', q:'メモ',   ok:!!e.memo,                 v:e.memo||''},
+  ];
+}
+
+function vBulk(){
+  return `<div class="lbl">まとめて話す・書く</div>
+    <h2 class="q">この順で答えてください</h2>
+    <div class="sub">全部でなくて構いません。分かるところだけで登録できます。<br>
+      <b>「場所は〜」「相手は〜」と頭に付けて話すと、取り違えが減ります。</b></div>
+
+    <div class="card" style="margin-top:14px">
+      <div class="tw"><table>
+        ${BULK_Q.map(x=>`<tr><td style="width:30px;color:var(--faint)" class="num">${x.n}</td>
+          <td style="font-weight:700">${esc(x.q)}</td>
+          <td style="color:var(--sub);font-size:12.5px">${esc(x.ex)}</td></tr>`).join('')}
+      </table></div>
+      <div class="pad" style="padding-top:11px;border-top:1px solid var(--line-soft)">
+        <button class="btn" onclick="putSample()">この形をお手本として入れる</button>
+        <p class="hint" style="margin-top:10px">泊まりの出張は <b>「5月21日から25日まで」</b> と言えば、その期間の終日予定になります。
+        そこに時間を足すと<b>日をまたぐ1件</b>になるので、日ごとに分けたいときは <b>「次に」</b> で区切ってください。</p>
+      </div>
+    </div>
+
+    <textarea class="inp" id="bulkTx" style="margin-top:14px;min-height:130px"
+      placeholder="${esc(BULK_SAMPLE)}">${esc(BULKTEXT)}</textarea>
+    <div class="hint" style="margin-top:6px">🎤 Aqua Voice でここに話しかけられます。「次に」「翌日」で区切ると複数の予定になります。</div>
+    <button class="mic" id="micBtn" onclick="bulkMic()">🎤 <span id="micTx">この画面のマイクで入れる</span></button>
+    <div class="heard" id="heard"></div>
+
+    ${BULK.length?`<div style="margin-top:18px"><div class="lbl">読み取った内容（${BULK.length}件）</div>
+      <div style="margin-top:9px">${BULK.map((e,i)=>evCardRead(e,i)).join('')}</div></div>`:''}`;
+}
+function clearBulk(){
+  snapshot('まとめて入力');
+  BULKTEXT=''; BULK=[];
+  const ta=document.getElementById('bulkTx'); if(ta){ ta.value=''; ta.focus(); }
+  render(); toast('全部消しました');
+}
+function putSample(){
+  const ta=document.getElementById('bulkTx');
+  if(ta){ ta.value = BULK_SAMPLE; ta.focus(); BULKTEXT=ta.value; }
+}
+let BULKTEXT='';
+function barBulk(){
+  return `<button class="btn" onclick="go('home')">戻る</button>
+    <button class="btn" onclick="clearBulk()" title="話した内容と読み取り結果を全部消す">🗑 全部消す</button>
+    ${UNDO?`<button class="btn" onclick="undo()" style="color:var(--act);border-color:var(--act)">↩︎ 戻す</button>`:''}
+    <button class="btn" onclick="doBulk()">読み取る</button>
+    <span class="grow"></span>
+    <button class="btn pri" id="goBtn" onclick="bulkRegister()" ${BULK.length?'':'disabled'}>${MCP?'✅ '+BULK.length+'件をカレンダーに入れる':'✅ '+BULK.length+'件を登録'}</button>`;
+}
+function doBulk(){
+  BULKTEXT = document.getElementById('bulkTx').value;
+  if(!BULKTEXT.trim()){ toast('先に入力してください'); return; }
+  const r = P.parse(BULKTEXT, {today: todayISO()});
+  BULK = r.events.map(e=>{ e.colorId = colorOf(e.calendarKind); e.calendarId = DB.settings.calIds[e.calendarKind]||''; return e; });
+  render();
+  if(!BULK.length) toast('読み取れませんでした');
+}
+function evCardRead(e,i){
+  const when = e.isAllDay ? e.startTime.slice(0,10).replace(/-/g,'/')+' 終日'
+    : e.startTime.slice(0,10).replace(/-/g,'/')+' '+e.startTime.slice(11,16)+'–'+e.endTime.slice(11,16);
+  return `<div class="ev"><div class="ev-h">
+      <span class="badge" style="background:${hexOf(e.calendarKind)}">${esc(e.calendarKind)}</span>
+      <span class="ev-t">${esc(e.title)}</span></div>
+    <div class="kv"><div>日時</div><div class="num">${esc(when)}</div>
+      ${e.location?`<div>場所</div><div>${esc(e.location)}</div>`:''}
+      ${e.attendees.length?`<div>相手</div><div>${esc(e.attendees.join('・'))}</div>`:''}
+      ${e.recurrence?`<div>繰返し</div><div style="font-size:12px">${esc(e.recurrence)}</div>`:''}</div>
+    <div class="pad" style="padding:11px 15px;background:var(--sunk)">
+      <div class="rowg" style="gap:6px">${fillCheck(e).map(c=>`
+        <span class="pill" style="${c.ok?'color:var(--ok);border-color:var(--ok)':''}">${c.ok?'✅':'—'} ${c.n}${esc(c.q)}${c.v?'：'+esc(c.v):''}</span>`).join('')}</div>
+    </div>
+    ${(e.ambiguities||[]).map(a=>`<div class="warn" style="border-radius:0">⚠️ ${esc(a)}</div>`).join('')}
+    ${bulkSuggest(e,i)}
+    </div>`;
+}
+/** まとめて話したときの聞き間違い直し（相手・場所） */
+function bulkSuggest(e,i){
+  const rows=[];
+  (e.attendees||[]).forEach(name=>{
+    if(P.findContact(name)) return;              // 登録済みなら確認不要
+    const cand = similarPeople(name);
+    if(cand.length) rows.push(`<div style="margin-top:8px"><span class="hint">「${esc(name)}」は登録にありません。もしかして：</span>
+      <div class="rowg" style="margin-top:6px;gap:6px">${cand.map(c=>`
+        <button class="chip" style="min-height:38px;padding:7px 12px"
+          onclick="bulkSwapWho(${i},'${esc(name).replace(/'/g,"\\'")}','${esc(c.name).replace(/'/g,"\\'")}')">${esc(c.name)}</button>`).join('')}
+        <button class="chip ghost" style="min-height:38px;padding:7px 12px"
+          onclick="bulkKeepWho(${i},'${esc(name).replace(/'/g,"\\'")}')">このままでよい</button></div></div>`);
+  });
+  if(!rows.length) return '';
+  return `<div class="pad" style="border-top:1px solid var(--line-soft)">${rows.join('')}</div>`;
+}
+function bulkSwapWho(i, oldN, newN){
+  const e = BULK[i]; if(!e) return;
+  e.attendees = (e.attendees||[]).map(x => x===oldN ? newN : x);
+  e.title = String(e.title||'').split(oldN).join(newN);
+  e.description = String(e.description||'').split(oldN).join(newN);
+  const c = P.findContact(newN);
+  if(c && P.KINDS.indexOf(c.company)>=0 && e.calendarKind!=='リモート' && e.calendarKind!=='プライベート'){
+    e.calendarKind = c.company;
+    e.colorId = colorOf(c.company);
+    e.calendarId = DB.settings.calIds[c.company] || '';
+  }
+  e.ambiguities = (e.ambiguities||[]).filter(a => a.indexOf(oldN) < 0);
+  render(); toast(newN + ' に直しました');
+}
+function bulkKeepWho(i, name){
+  const e = BULK[i]; if(!e) return;
+  e.ambiguities = (e.ambiguities||[]).filter(a => a.indexOf(name) < 0);
+  e.keepNames = (e.keepNames||[]).concat(name);
+  render(); toast('そのまま使います');
+}
+function bulkRegister(){
+  const warn = BULK.filter(e => (e.ambiguities||[]).length);
+  if(warn.length){
+    dlg('確かめてください', `
+      <p style="margin-top:0">${warn.length}件に確認したい点があります。<b>音声の聞き間違いが多いのは、人の名前と場所です。</b></p>
+      ${warn.map(e=>`<div style="margin-top:9px"><b>${esc(e.title)}</b><br>
+        ${(e.ambiguities||[]).map(a=>`<span class="hint">・${esc(a)}</span>`).join('<br>')}</div>`).join('')}
+      <div class="rowg" style="margin-top:15px">
+        <button class="btn" onclick="closeDlg()">戻って直す</button>
+        <button class="btn pri" onclick="closeDlg();doBulkRegister()">このまま登録する</button></div>`);
+    return;
+  }
+  doBulkRegister();
+}
+function doBulkRegister(){ if(MCP){ registerDirect(BULK); return; } learn(BULK); showSend(BULK); }
+function bulkMic(){
+  const SR = window.SpeechRecognition||window.webkitSpeechRecognition;
+  if(!SR){ micFail('このブラウザには音声認識の機能がありません。'); return; }
+  if(listening){ rec.stop(); return; }
+  rec = new SR(); rec.lang='ja-JP'; rec.continuous=true; rec.interimResults=true;
+  const btn=document.getElementById('micBtn'), tx=document.getElementById('micTx');
+  const base = document.getElementById('bulkTx').value;
+  rec.onstart=()=>{ listening=true; btn.classList.add('on'); tx.textContent='聞いています…（押すと止める）'; };
+  rec.onresult=(ev)=>{ let f='',t2='';
+    for(let i=ev.resultIndex;i<ev.results.length;i++){ const s=ev.results[i][0].transcript;
+      if(ev.results[i].isFinal) f+=s; else t2+=s; }
+    const ta=document.getElementById('bulkTx');
+    if(f) ta.value = (ta.value?ta.value+' ':'')+f;
+    document.getElementById('heard').innerHTML = t2?'聞き取り中：<b>'+esc(t2)+'</b>':'';
+  };
+  rec.onend=()=>{ listening=false; btn.classList.remove('on'); tx.textContent='声で入れる';
+                  BULKTEXT=document.getElementById('bulkTx').value; doBulk(); };
+  rec.onerror=(e)=>{ LAST_MIC_ERR=e.error||'不明';
+    if(e.error==='no-speech'){ toast('声が聞き取れませんでした'); return; }
+    micFail(MIC_ERR_JA[e.error] || ('音声が使えませんでした（'+e.error+'）')); };
+  try{ rec.start(); }
+  catch(err){ LAST_MIC_ERR=String(err&&err.name||err); micFail('音声を始められませんでした。'); }
+}
+
+/* ═══════════════ データ管理 ═══════════════ */
+let MTAB='places';
+function vMaster(){
+  const tabs = [['places','場所'],['people','相手'],['purposes','目的'],['transports','移動']];
+  const o = originFor(null);
+  let body='';
+  if(MTAB==='places'){
+    const list=[...DB.places].sort(byUse);
+    body = `<div>${list.map(x=>{
+      const near = originNear(x);
+      const d = (near && near.lat!=null && x.lat!=null) ? distKm(near,x) : null;
+      return `<div class="pad" style="border-top:1px solid var(--line-soft);display:flex;gap:10px;align-items:flex-start">
+        <div style="flex:1;min-width:0">
+          <div style="font-weight:700;font-size:15px">${esc(x.label)}
+            <span class="pill" style="margin-left:6px">${esc(x.area||'—')}</span>
+            <span class="num" style="color:var(--faint);font-size:12px;margin-left:4px">${x.count||0}回</span></div>
+          <div class="hint" style="margin-top:3px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap">
+            ${x.address ? esc(x.address) : '<span style="color:var(--faint)">住所は未登録</span>'}</div>
+          ${x.lat!=null
+            ? `<div class="hint" style="margin-top:2px">📍 ${x.lat.toFixed(4)}, ${x.lng.toFixed(4)}${d!=null?` ・ <b class="num">${d.toFixed(1)}km</b>（${esc(near.label)}から）`:''}</div>`
+            : `<div class="hint" style="margin-top:2px;color:var(--warn)">⚠️ 位置が未登録（距離を出せません）</div>`}
+        </div>
+        <div style="display:flex;flex-direction:column;gap:4px">
+          <button class="mini" onclick="editPlaceDlg('${esc(x.label).replace(/'/g,"\\'")}')">✏️</button>
+          <button class="mini" onclick="delItem('places','label','${esc(x.label).replace(/'/g,"\\'")}')">🗑</button>
+        </div>
+      </div>`;}).join('')}</div>
+      <div class="pad"><button class="btn" onclick="addPlaceDlg()">＋ 場所を足す</button></div>`;
+  } else if(MTAB==='people'){
+    const list=[...DB.people].sort(byUse);
+    body = `<div class="tw"><table><tr><th>相手</th><th>会社</th><th>回数</th><th></th></tr>
+      ${list.map(p=>`<tr><td><b>${esc(p.name)}</b></td><td>${esc(p.company||'—')}</td><td class="n">${p.count||0}</td>
+      <td><button class="mini" onclick="delItem('people','name','${esc(p.name).replace(/'/g,"\\'")}')">🗑</button></td></tr>`).join('')}
+      </table></div><div class="pad"><button class="btn" onclick="addPersonDlg()">＋ 相手を足す</button></div>`;
+  } else {
+    const key = MTAB;
+    const list=[...DB[key]].sort(byUse);
+    body = `<div class="tw"><table><tr><th>${MTAB==='purposes'?'目的':'移動手段'}</th><th>回数</th><th></th></tr>
+      ${list.map(p=>`<tr><td>${esc(p.label)}</td><td class="n">${p.count||0}</td>
+      <td><button class="mini" onclick="delItem('${key}','label','${esc(p.label).replace(/'/g,"\\'")}')">🗑</button></td></tr>`).join('')}
+      </table></div><div class="pad"><button class="btn" onclick="addSimpleDlg('${key}')">＋ 足す</button></div>`;
+  }
+  return `<div class="lbl">覚えているデータ</div>
+    <h2 class="q">使うほど、上に出てきます</h2>
+    <div class="sub">よく使う順に並びます。消したものは候補に出ません。</div>
+    <div class="card" style="margin-top:14px">
+      <div class="tabs">${tabs.map(([k,t])=>`<button class="tab" aria-selected="${MTAB===k}" onclick="MTAB='${k}';render()">${t}</button>`).join('')}</div>
+      ${body}
+    </div>
+    <div class="rowg" style="margin-top:14px"><button class="btn" onclick="go('home')">ホームへ</button></div>`;
+}
+function delItem(list,key,val){
+  DB[list] = DB[list].filter(x=>x[key]!==val); saveDB(); render(); toast('消しました');
+}
+
+/* ══ 場所を決める補助（通信なしで動く） ══ */
+function cityFromAddress(ad){
+  let best=null;
+  for(const name in CITY_BOOK){
+    if(ad.indexOf(name)>=0 && (!best || name.length>best.name.length)) best={name, c:CITY_BOOK[name]};
+  }
+  return best;
+}
+function nearestCity(lat,lng){
+  let best=null;
+  for(const name in CITY_BOOK){
+    const d = distKm({lat,lng}, CITY_BOOK[name]);
+    if(!best || d<best.d) best={name, d, area:CITY_BOOK[name].area};
+  }
+  return best;
+}
+function nearestPlaces(lat,lng,maxKm){
+  return DB.places.filter(x=>x.lat!=null)
+    .map(x=>({p:x, d:distKm({lat,lng},x)}))
+    .filter(x=>x.d<=maxKm).sort((a,b)=>a.d-b.d).slice(0,4);
+}
+
+/* ══ 📍 いまここ ══ */
+function useHere(){
+  if(!navigator.geolocation){
+    dlg('現在地が使えません','<p style="margin-top:0">この画面では現在地を取れません。場所の名前を選ぶか、「＋ 新しい場所」から登録してください。</p><div class="rowg"><button class="btn pri" onclick="closeDlg()">閉じる</button></div>');
+    return;
+  }
+  toast('現在地を調べています…');
+  navigator.geolocation.getCurrentPosition(
+    pos => {
+      const {latitude:lat, longitude:lng, accuracy:acc} = pos.coords;
+      hereDlg(lat, lng, acc, nearestCity(lat,lng), nearestPlaces(lat,lng,0.4));
+    },
+    err => {
+      const m = {1:'位置情報の使用が許可されませんでした。ブラウザの設定で、この画面に位置情報を許可してください。',
+                 2:'現在地が取れませんでした（電波の届きにくい場所かもしれません）。',
+                 3:'時間がかかりすぎました。もう一度お試しください。'}[err.code] || '現在地が取れませんでした。';
+      dlg('現在地が使えません', `<p style="margin-top:0">${esc(m)}</p>
+        <div class="hint">屋内では数十メートルずれることがあります。</div>
+        <div class="rowg" style="margin-top:13px"><button class="btn pri" onclick="closeDlg()">閉じる</button>
+        <button class="btn" onclick="closeDlg();addPlaceDlg()">名前で登録する</button></div>`);
+    },
+    {enableHighAccuracy:true, timeout:12000, maximumAge:30000}
+  );
+}
+function hereDlg(lat,lng,acc,near,cands){
+  HERE = {lat,lng,acc,area:near?near.area:''};
+  dlg('📍 いまいる場所', `
+    <div style="font-size:15px">だいたい <b>${near?esc(near.name):'（不明）'}</b> のあたりです
+      <span class="hint">（誤差 約${Math.round(acc)}m）</span></div>
+    ${cands.length?`<div class="lbl" style="margin-top:14px">すぐ近くの、覚えている場所</div>
+      <div class="rowg" style="margin-top:7px">${cands.map(c=>`
+        <button class="chip" onclick="pickNear('${esc(c.p.label).replace(/'/g,"\\'")}')">📍 ${esc(c.p.label)}
+        <span class="cnt">${Math.round(c.d*1000)}m</span></button>`).join('')}</div>
+      <div class="hint" style="margin-top:8px">この中にあれば、それを押すだけで済みます。</div>`:''}
+    <div class="set" style="margin-top:16px"><label>ここに名前を付けて覚える</label>
+      <input class="inp" id="hr_l" value="${near?esc(near.name)+'（名前なしの場所）':''}" placeholder="例：◯◯ビル"></div>
+    <div class="rowg">
+      <button class="btn pri" onclick="saveHere()">この場所を使う</button>
+      <a class="btn" href="https://www.google.com/maps/search/?api=1&query=${lat},${lng}" target="_blank" rel="noopener">🗺 地図で見る</a>
+      <button class="btn" onclick="closeDlg()">やめる</button>
+    </div>
+    <p class="hint" style="margin-top:11px">名前を付けて保存すると、<b>次からは選ぶだけ</b>になります。旅費の距離もこの位置から計算されます。</p>`);
+}
+let HERE = null;
+function pickNear(label){ pickPlace(label); closeDlg(); toast(label+' にしました'); }
+function saveHere(){
+  if(!HERE) return;
+  const name = dropPunct((document.getElementById('hr_l')||{}).value) || ('いまいる場所 '+new Date().toLocaleDateString('ja-JP'));
+  const rec = {label:name, area:HERE.area||W.placeArea||'その他', address:'',
+               lat:+HERE.lat.toFixed(6), lng:+HERE.lng.toFixed(6)};
+  const ex = DB.places.find(x=>x.label===name);
+  if(ex) Object.assign(ex, rec); else DB.places.push(Object.assign({count:0,last:''},rec));
+  saveDB();
+  W.place = DB.places.find(x=>x.label===name);
+  W.placeArea = W.place.area;
+  closeDlg(); render(); toast('「'+name+'」として覚えました');
+}
+
+/* ══ 名前・住所・地図URLから位置を決める ══ */
+function autoPlace(){
+  const g = id => document.getElementById(id);
+  const name = dropPunct((g('pl_l')||{}).value||'');
+  const ad   = dropPunct((g('pl_ad')||{}).value||'');
+  const map  = g('pl_map');
+  if(map) map.href = 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent((name+' '+ad).trim()||'日本');
+  let co = parseCoords((g('pl_c')||{}).value||'');
+  let how = '';
+  if(co) how = '✅ 位置が入りました（'+co.lat.toFixed(5)+', '+co.lng.toFixed(5)+'）';
+  else if(PLACE_BOOK[name]){
+    co = {lat:PLACE_BOOK[name].lat, lng:PLACE_BOOK[name].lng};
+    how = '✅ 知っている場所でした（'+name+'）';
+    if(g('pl_a') && !g('pl_a').value) g('pl_a').value = PLACE_BOOK[name].area;
+  } else {
+    const hit = ad ? cityFromAddress(ad) : null;
+    if(hit){
+      co = {lat:hit.c.lat, lng:hit.c.lng};
+      how = '📍 住所から「'+hit.name+'」あたりと判断しました（誤差 数km）。正確にしたいときは地図のURLを貼ってください';
+      if(g('pl_a') && !g('pl_a').value) g('pl_a').value = hit.c.area;
+    }
+  }
+  const msg = g('pl_msg');
+  if(msg) msg.innerHTML = how || '位置はまだ分かりません。地図を開いて、その画面の<b>URLを丸ごと貼る</b>のがいちばん簡単です。';
+  return co;
+}
+
+function addPlaceDlg(){ editPlaceDlg(null); }
+function editPlaceDlg(label){
+  const p = label ? DB.places.find(x=>x.label===label)
+                  : {label:'', area:(W&&W.placeArea)||'', address:'', lat:null, lng:null, count:0, last:''};
+  const areas = [...new Set(['沖縄','東京','千葉','埼玉','その他', ...DB.places.map(x=>x.area||'その他')])];
+  dlg(label?'場所をなおす':'場所を足す', `
+    <div class="set"><label>場所の名前</label>
+      <input class="inp" id="pl_l" value="${esc(p.label)}" placeholder="例：◯◯ビル"
+             list="pbook" oninput="autoPlace()" autocomplete="off">
+      <datalist id="pbook">${Object.keys(PLACE_BOOK).map(k=>`<option value="${esc(k)}"></option>`).join('')}</datalist>
+    </div>
+    <div class="set"><label>地域</label>
+      <select class="inp" id="pl_a">${areas.map(a=>`<option value="${esc(a)}" ${p.area===a?'selected':''}>${esc(a)}</option>`).join('')}</select></div>
+    <div class="set"><label>住所（分かれば。入れると位置をおおよそ計算します）</label>
+      <input class="inp" id="pl_ad" value="${esc(p.address||'')}" placeholder="例：沖縄県糸満市西崎町…" oninput="autoPlace()"></div>
+    <div class="set"><label>位置</label>
+      <input class="inp" id="pl_c" value="${p.lat!=null?p.lat+', '+p.lng:''}"
+             placeholder="地図のURLを丸ごと貼ってOK" oninput="autoPlace()">
+      <div class="hint" id="pl_msg" style="margin-top:6px"></div></div>
+    <div class="rowg">
+      <a class="btn" id="pl_map" href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(p.label||'')}" target="_blank" rel="noopener">🗺 この名前で地図を開く</a>
+      <button class="btn" onclick="closeDlg();useHere()">📍 いまここ</button>
+    </div>
+    <p class="hint" style="margin-top:11px"><b>いちばん簡単なやり方</b>：🗺 で地図を開く → 目的の場所を押す →
+      <b>アドレス欄のURLをコピー</b> → 上の「位置」に貼る。これで正確な位置が入ります。</p>
+    <div class="rowg" style="margin-top:14px">
+      <button class="btn pri" onclick="savePlace('${label?esc(label).replace(/'/g,"\\'"):''}')">保存</button>
+      <button class="btn" onclick="closeDlg()">やめる</button></div>`);
+  setTimeout(autoPlace, 30);
+}
+function savePlace(orig){
+  const l = dropPunct(document.getElementById('pl_l').value);
+  if(!l){ toast('名前を入れてください'); return; }
+  const co = autoPlace();
+  const rec = {label:l, area:document.getElementById('pl_a').value,
+               address:dropPunct(document.getElementById('pl_ad').value),
+               lat:co?co.lat:null, lng:co?co.lng:null};
+  const ex = DB.places.find(x=>x.label===(orig||l));
+  if(ex) Object.assign(ex, rec); else DB.places.push(Object.assign({count:0,last:''},rec));
+  if(W && VIEW==='wizard'){ W.place = DB.places.find(x=>x.label===l); W.placeArea = rec.area; }
+  saveDB(); closeDlg(); render();
+  toast(co ? '保存しました（位置あり）' : '保存しました（位置なし）');
+}
+function addPersonDlg(){
+  dlg('相手を足す', `
+    <div class="set"><label>名前（役職まで）</label><input class="inp" id="pe_n" placeholder="例：◯◯部長"></div>
+    <div class="set"><label>会社</label><input class="inp" id="pe_c" placeholder="例：◯◯商事"></div>
+    <div class="rowg"><button class="btn pri" onclick="savePerson()">保存</button><button class="btn" onclick="closeDlg()">やめる</button></div>`);
+}
+function savePerson(){
+  const n=dropPunct(document.getElementById('pe_n').value); if(!n){toast('名前を入れてください');return;}
+  if(!DB.people.find(x=>x.name===n)) DB.people.push({name:n, company:dropPunct(document.getElementById('pe_c').value), count:0,last:''});
+  if(W&&VIEW==='wizard'&&!W.people.includes(n)) W.people.push(n);
+  saveDB(); closeDlg(); render(); toast('覚えました');
+}
+function addSimpleDlg(key){
+  dlg('足す', `<div class="set"><label>名前</label><input class="inp" id="sm_l"></div>
+    <div class="rowg"><button class="btn pri" onclick="saveSimple('${key}')">保存</button><button class="btn" onclick="closeDlg()">やめる</button></div>`);
+}
+function saveSimple(key){
+  const l=dropPunct(document.getElementById('sm_l').value); if(!l) return;
+  if(!DB[key].find(x=>x.label===l)) DB[key].push({label:l,count:0,last:''});
+  saveDB(); closeDlg(); render();
+}
+
+/* ═══════════════ 設定 ═══════════════ */
+function vSettings(){
+  const os = DB.settings.origins||[];
+  return `<div class="lbl">設定</div><h2 class="q">この道具の決めごと</h2>
+  <div class="card pad" style="margin-top:14px">
+    <div class="lbl">起点（旅費の距離をはかる出発地）</div>
+    <p class="hint" style="margin-top:6px">予定の区分に合う起点が<b>自動で選ばれます</b>。沖実の予定なら那覇から、それ以外は東京から測ります。</p>
+    ${os.map((o,i)=>`
+      <div style="margin-top:15px;padding-top:15px;border-top:1px solid var(--line-soft)">
+        <div class="set"><label>どの区分の出発地か</label>
+          <select class="inp" id="or_k${i}">
+            ${['HYP','沖実','キャパテクノ','プライベート','リモート'].map(k=>`<option value="${k}" ${o.key===k?'selected':''}>${k}</option>`).join('')}
+          </select></div>
+        <div class="set"><label>名前</label><input class="inp" id="or_l${i}" value="${esc(o.label||'')}"></div>
+        <div class="set"><label>住所</label><input class="inp" id="or_a${i}" value="${esc(o.address||'')}"></div>
+        <div class="set"><label>座標 ${o.lat==null?'<span style="color:var(--warn)">← まだ空です</span>':''}</label>
+          <input class="inp" id="or_c${i}" value="${o.lat!=null?o.lat+', '+o.lng:''}" placeholder="35.6812, 139.7671"></div>
+        <div class="rowg">
+          <a class="btn" href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(o.address||o.label||'')}" target="_blank" rel="noopener">🗺 地図で開いて座標を取る</a>
+          ${os.length>1?`<button class="btn" onclick="delOrigin(${i})">消す</button>`:''}
+        </div>
+      </div>`).join('')}
+    <div class="rowg" style="margin-top:16px">
+      <button class="btn pri" onclick="saveOrigins()">起点を保存</button>
+      <button class="btn" onclick="addOrigin()">＋ 起点を足す</button>
+    </div>
+    <p class="hint" style="margin-top:11px">座標の取り方：地図を開く → 目的の場所を<b>右クリック</b>（スマホは長押し）→ 出てきた「35.68…, 139.76…」を押すとコピーされます。それを上の欄に貼ってください。</p>
+  </div>
+
+  <div class="card pad" style="margin-top:12px">
+    <div class="lbl">Googleの受け口（入れると自動で登録されます）</div>
+    <p class="hint" style="margin-top:6px">ここを入れると、<b>「保存」を押さずに直接カレンダーへ入り、色も付きます</b>。
+      入れ方は同じフォルダの「AppsScript用コード.gs」に書いてあります。</p>
+    <div class="set" style="margin-top:10px"><label>受け口のURL</label>
+      <input class="inp" id="gas_u" value="${esc((DB.settings.gas||{}).url||'')}" placeholder="https://script.google.com/macros/s/..../exec"></div>
+    <div class="set"><label>合言葉</label>
+      <input class="inp" id="gas_s" value="${esc((DB.settings.gas||{}).secret||'')}" placeholder="コードに書いたものと同じ文字"></div>
+    <div class="rowg">
+      <button class="btn pri" onclick="saveGas()">保存</button>
+      <button class="btn" onclick="testGas()">つながるか試す</button>
+    </div>
+    <div class="hint" style="margin-top:8px">${gasReady()?'✅ いまは自動で登録されます':'いまは「Googleを開いて保存」方式です'}</div>
+  </div>
+
+  <div class="card pad" style="margin-top:12px">
+    <div class="lbl">リモートの色</div>
+    <div class="rowg" style="margin-top:9px">
+      ${[['5','5：バナナ（黄色）※仕様書の意図はこちら'],['4','4：フラミンゴ（サーモン）※仕様書の数字']].map(([v,t])=>`
+        <button class="chip" aria-pressed="${DB.settings.remoteColor===v}" onclick="DB.settings.remoteColor='${v}';saveDB();render()">
+        <span class="sq" style="background:${v==='4'?'var(--k-rem)':'var(--k-ban)'}"></span>${t}</button>`).join('')}
+    </div>
+    <p class="hint" style="margin-top:10px">仕様書には「4＝バナナ黄色」とありましたが、Googleの4は<b>サーモン色</b>で、黄色は5です。
+      書かれていた意図（黄色）を採って<b>5を既定</b>にしてあります。仕様書の数字どおり4にしたいときは上で選び直してください。</p>
+  </div>
+
+  <div class="card pad" style="margin-top:12px">
+    <div class="lbl">区分（カレンダーの分け方）</div>
+    <div class="tw" style="margin-top:8px"><table>
+      ${Object.keys(KIND_META).map(k=>`<tr>
+        <td><span class="sq" style="display:inline-block;background:${hexOf(k)};margin-right:7px"></span><b>${esc(k)}</b></td>
+        <td style="font-size:12px;color:var(--sub)">${esc(KIND_META[k].cal||'')}</td>
+        <td class="n">色 ${colorOf(k)}</td>
+        <td>${(DB.settings.kinds||{})[k]?`<button class="mini" onclick="delKind('${esc(k)}')">🗑</button>`:''}</td></tr>`).join('')}
+    </table></div>
+    <button class="btn" style="margin-top:10px" onclick="addKindDlg()">＋ 区分を足す</button>
+    <p class="hint" style="margin-top:8px">元からある5つは消せません。足した区分だけ消せます。</p>
+  </div>
+
+  <div class="card pad" style="margin-top:12px">
+    <div class="lbl">カレンダーの行き先</div>
+    <div class="tw" style="margin-top:9px"><table>
+      ${Object.keys(KIND_META).map(k=>`<tr><td><span class="sq" style="display:inline-block;background:${hexOf(k)};margin-right:7px"></span>${k}</td>
+      <td style="font-size:11.5px;color:var(--sub);word-break:break-all">${esc(DB.settings.calIds[k]||'未設定')}</td>
+      <td class="n">色 ${colorOf(k)}</td></tr>`).join('')}
+    </table></div>
+    <p class="hint" style="margin-top:9px">2026-08-22 にGoogleから実際の一覧を取って入れてあります。</p>
+  </div>
+
+  <div class="card pad" style="margin-top:12px">
+    <div class="lbl">この道具の版</div>
+    <div style="margin-top:7px;display:flex;align-items:center;gap:12px;flex-wrap:wrap">
+      <b class="num" style="font-size:15px">${esc(APP_VERSION)}</b>
+      <button class="btn" style="min-height:40px;padding:9px 14px" onclick="doUpdate()">🔄 最新にする</button>
+    </div>
+    <p class="hint" style="margin-top:8px">QRを読み直す必要はありません。この印を押すか、開き直せば最新になります。</p>
+  </div>
+
+  <div class="card pad" style="margin-top:12px">
+    <div class="lbl">おぼえたデータ</div>
+    <div class="rowg" style="margin-top:10px">
+      <button class="btn" onclick="exportDB()">📤 書き出す（他の端末へ）</button>
+      <button class="btn" onclick="importDlg()">📥 読み込む</button>
+      <button class="btn" onclick="resetDlg()">🗑 全部消す</button>
+    </div>
+  </div>
+
+  <div class="card pad" style="margin-top:12px">
+    <div class="lbl">音声</div>
+    <p class="hint" style="margin-top:7px">各質問の下にある入力欄には、<b>Aqua Voice</b> やキーボードのマイクでそのまま話しかけられます。
+      「声で答える」ボタン（ブラウザの音声認識）は、Claudeの枠の中では使えないことがあります。</p>
+    <div class="rowg" style="margin-top:10px">
+      <button class="btn" onclick="micDiag()">🎤 いま音声が使えるか調べる</button>
+    </div>
+    <p class="hint" style="margin-top:10px">データはこの端末のブラウザに保存されます。iPhoneとMacで同じ内容にしたいときは「書き出す→読み込む」で移せます。</p>
+  </div>
+  <div class="rowg" style="margin-top:14px"><button class="btn" onclick="go('home')">ホームへ</button></div>`;
+}
+function addKindDlg(){
+  const cals = Object.assign({}, P.CALENDAR_IDS, P.OTHER_CALENDARS||{});
+  dlg('区分を足す', `
+    <div class="set"><label>区分の名前</label><input class="inp" id="kd_n" placeholder="例：◯◯"></div>
+    <div class="set"><label>入れるカレンダー</label>
+      <select class="inp" id="kd_c">
+        ${Object.keys(cals).map(k=>`<option value="${esc(cals[k])}">${esc(k)}</option>`).join('')}
+        <option value="__other__">その他（IDを手で入れる）</option>
+      </select></div>
+    <div class="set"><label>カレンダーIDを手で入れる場合</label>
+      <input class="inp" id="kd_id" placeholder="xxxx@group.calendar.google.com"></div>
+    <div class="set"><label>色</label>
+      <select class="inp" id="kd_col">
+        ${[1,2,3,4,5,6,7,8,9,10,11].map(c=>`<option value="${c}">${c}：${esc(P.COLOR_NAME[c]||'')}</option>`).join('')}
+      </select></div>
+    <div class="rowg" style="margin-top:13px">
+      <button class="btn pri" onclick="saveKind()">足す</button>
+      <button class="btn" onclick="closeDlg()">やめる</button></div>`);
+}
+function saveKind(){
+  const nm = dropPunct((document.getElementById('kd_n')||{}).value);
+  if(!nm){ toast('名前を入れてください'); return; }
+  if(KIND_META[nm]){ toast('その名前はもうあります'); return; }
+  const sel = (document.getElementById('kd_c')||{}).value;
+  const manual = dropPunct((document.getElementById('kd_id')||{}).value);
+  const calId = (sel==='__other__' ? manual : sel);
+  if(!calId){ toast('カレンダーを選ぶか、IDを入れてください'); return; }
+  const col = (document.getElementById('kd_col')||{}).value || '8';
+  DB.settings.kinds = DB.settings.kinds || {};
+  DB.settings.kinds[nm] = {color: col, cal: nm, calendarId: calId};
+  DB.settings.calIds[nm] = calId;
+  mergeKinds(); saveDB(); closeDlg(); render();
+  toast('「'+nm+'」を足しました');
+}
+function delKind(k){
+  if(!(DB.settings.kinds||{})[k]) return;
+  delete DB.settings.kinds[k];
+  delete KIND_META[k];
+  saveDB(); render(); toast('消しました');
+}
+function saveGas(){
+  DB.settings.gas = {url: (document.getElementById('gas_u')||{}).value.trim(),
+                     secret: (document.getElementById('gas_s')||{}).value.trim()};
+  saveDB(); render();
+  toast(gasReady() ? '保存しました。これから自動で登録されます' : '保存しました');
+}
+function testGas(){
+  const g = DB.settings.gas||{};
+  const u = (document.getElementById('gas_u')||{}).value.trim() || g.url;
+  if(!u){ toast('URLを入れてください'); return; }
+  window.open(u, '_blank');
+  toast('新しいタブで開きます。「動いています」と出れば成功です');
+}
+function saveOrigins(){
+  const os = DB.settings.origins||[];
+  DB.settings.origins = os.map((o,i)=>{
+    const c=(document.getElementById('or_c'+i)||{}).value||'';
+    const m=c.match(/(-?\d+\.?\d*)\s*[,、]\s*(-?\d+\.?\d*)/);
+    return {key:(document.getElementById('or_k'+i)||{}).value||o.key,
+            label:dropPunct((document.getElementById('or_l'+i)||{}).value),
+            address:dropPunct((document.getElementById('or_a'+i)||{}).value),
+            lat:m?+m[1]:null, lng:m?+m[2]:null};
+  });
+  saveDB(); render();
+  const n = DB.settings.origins.filter(o=>o.lat!=null).length;
+  toast('保存しました（座標が入っているのは '+n+' 件）');
+}
+function addOrigin(){ (DB.settings.origins=DB.settings.origins||[]).push({key:'HYP',label:'',address:'',lat:null,lng:null}); saveDB(); render(); }
+function delOrigin(i){ DB.settings.origins.splice(i,1); saveDB(); render(); toast('消しました'); }
+function exportDB(){ dlg('書き出し', `<p style="margin-top:0;font-size:14px">下の文字を全部コピーして、別の端末の「読み込む」に貼ってください。</p>
+  <pre id="expPre">${esc(JSON.stringify(DB))}</pre>
+  <div class="rowg" style="margin-top:12px"><button class="btn pri" onclick="copyText(document.getElementById('expPre').textContent)">📋 コピー</button>
+  <button class="btn" onclick="closeDlg()">閉じる</button></div>`); }
+function importDlg(){ dlg('読み込み', `<div class="set"><label>書き出した文字を貼ってください</label>
+  <textarea class="inp" id="impTx" style="min-height:120px"></textarea></div>
+  <div class="rowg"><button class="btn pri" onclick="doImport()">読み込む</button><button class="btn" onclick="closeDlg()">やめる</button></div>`); }
+function doImport(){
+  try{ const d=JSON.parse(document.getElementById('impTx').value);
+    localStorage.setItem('koekare.db', JSON.stringify(d)); DB=loadDB(); closeDlg(); render(); toast('読み込みました');
+  }catch(e){ toast('読み込めませんでした'); }
+}
+function resetDlg(){ dlg('全部消す', `<p style="margin-top:0">覚えた場所・相手・記録をすべて消します。元に戻せません。</p>
+  <div class="rowg"><button class="btn" style="border-color:var(--bad);color:var(--bad)" onclick="doReset()">消す</button>
+  <button class="btn pri" onclick="closeDlg()">やめる</button></div>`); }
+function doReset(){ try{localStorage.removeItem('koekare.db');}catch(e){} DB=loadDB(); closeDlg(); go('home'); toast('消しました'); }
+
+/* ═══════════════ 小道具 ═══════════════ */
+function distKm(a,b){
+  const R=6371, r=x=>x*Math.PI/180;
+  const dLat=r(b.lat-a.lat), dLon=r(b.lng-a.lng);
+  const s=Math.sin(dLat/2)**2+Math.cos(r(a.lat))*Math.cos(r(b.lat))*Math.sin(dLon/2)**2;
+  return 2*R*Math.asin(Math.sqrt(s));
+}
+function dlg(title, html){
+  document.getElementById('dlgH').innerHTML =
+    esc(title) + '<button class="icon" onclick="closeDlg()" style="float:right;margin-top:-3px">✕</button>';
+  document.getElementById('dlgB').innerHTML = html;
+  document.getElementById('dlg').showModal();
+}
+function closeDlg(){ document.getElementById('dlg').close(); }
+/** 最新版に入れ替える（覚えたデータは消えません） */
+function updateApp(){
+  dlg('最新にする', `
+    <p style="margin-top:0;font-size:14px">いま使っているのは <b class="num">${esc(APP_VERSION)}</b> の版です。</p>
+    <p class="hint">押すと読み込み直して最新になります。<b>覚えた場所・相手・設定は消えません。</b></p>
+    <div class="rowg" style="margin-top:14px">
+      <button class="btn pri" onclick="doUpdate()">🔄 最新にする</button>
+      <button class="btn" onclick="closeDlg()">やめる</button></div>`);
+}
+function doUpdate(){
+  try{
+    const u = new URL(location.href);
+    u.searchParams.set('_', String(new Date().getTime()));   // 前の中身を使わせない
+    location.replace(u.toString());
+  }catch(e){ location.reload(); }
+}
+function toast(m){ const t=document.getElementById('toast'); t.textContent=m; t.classList.add('on');
+  clearTimeout(t._h); t._h=setTimeout(()=>t.classList.remove('on'),2600); }
+
+/** URLに設定が付いていたら取りこむ（#setup=…）。
+ *  公開の置き場に置くとき、ページ本体に合言葉を書かずに済ませるための入口。
+ *  読み取ったらURLからは消すので、履歴にも残らない。 */
+function applySetupFromUrl(){
+  try{
+    const m = String(location.hash||'').match(/setup=([A-Za-z0-9+/=_%-]+)/);
+    if(!m) return false;
+    const json = decodeURIComponent(escape(atob(decodeURIComponent(m[1]).replace(/-/g,'+').replace(/_/g,'/'))));
+    const cfg = JSON.parse(json);
+    if(cfg.gas)    DB.settings.gas    = Object.assign({}, DB.settings.gas, cfg.gas);
+    if(cfg.calIds) DB.settings.calIds = Object.assign({}, DB.settings.calIds, cfg.calIds);
+    if(cfg.origins) DB.settings.origins = cfg.origins;
+    if(cfg.people && cfg.people.length) {
+      cfg.people.forEach(x => { if(!DB.people.find(y=>y.name===x.name)) DB.people.push(x); });
+    }
+    if(cfg.places && cfg.places.length) {
+      cfg.places.forEach(x => { if(!DB.places.find(y=>y.label===x.label)) DB.places.push(x); });
+    }
+    saveDB();
+    history.replaceState(null, '', location.pathname + location.search);   // URLから設定を消す
+    setTimeout(()=>toast('設定を読みこみました'), 600);
+    return true;
+  }catch(e){ return false; }
+}
+applySetupFromUrl();
+
+/** すでに覚えている場所のうち、位置が空のものを地図帳から補う */
+function fillMissingCoords(){
+  let n=0;
+  DB.places.forEach(x=>{
+    if(x.lat==null){
+      const bk = PLACE_BOOK[x.label] || CITY_BOOK[x.label]
+              || (x.address ? (cityFromAddress(x.address)||{}).c : null);
+      if(bk){ x.lat=bk.lat; x.lng=bk.lng; if(!x.area) x.area=bk.area; n++; }
+    }
+  });
+  if(n) saveDB();
+  return n;
+}
+/** 初期データに新しく足した場所・相手を、既に使っている端末にも配る（既存の回数は壊さない） */
+function mergeSeed(){
+  let added=0;
+  DEF_DB.places.forEach(sp=>{
+    const ex = DB.places.find(x=>x.label===sp.label);
+    if(!ex){ DB.places.push(Object.assign({last:''}, sp)); added++; }
+    else {
+      if(ex.lat==null && sp.lat!=null){ ex.lat=sp.lat; ex.lng=sp.lng; added++; }
+      if(!ex.address && sp.address){ ex.address=sp.address; }
+    }
+  });
+  DEF_DB.people.forEach(sp=>{
+    if(!DB.people.find(x=>x.name===sp.name)){ DB.people.push(Object.assign({last:''}, sp)); added++; }
+  });
+  if(added) saveDB();
+  return added;
+}
+// 点検用：URLで画面とステップを指定できる（?v=wizard&i=3&demo=1）
+if(VIEW==='wizard' || VIEW==='confirm'){
+  newWizard();
+  try{
+    const q = new URLSearchParams(location.search);
+    if(q.get('demo')){
+      const r = P.parse(BULK_SAMPLE, {today: todayISO()});
+      const e = r.events[0];
+      if(e){
+        W.allText = BULK_SAMPLE; W.kind = e.calendarKind;
+        W.type = e.eventType==='出張'?'出張':(e.eventType==='会社内'?'社内':null);
+        W.date = e.startTime.slice(0,10);
+        if(e.isAllDay){ W.allDay=true; } else { W.allDay=false; W.st=e.startTime.slice(11,16); W.et=e.endTime.slice(11,16); }
+        const lb = e.place||e.area;
+        if(lb) W.place = DB.places.find(x=>x.label===lb) || {label:lb, area:e.area||'', address:'', lat:null,lng:null};
+        W.people = (e.attendees||[]).slice(); W.purpose = e.purpose; W.transport = e.transport;
+        W.nights = e.hasAccommodation?1:0; W.memo = e.memo||'';
+        W.voiced = {}; ['kind','date','time','place','who','what','move'].forEach(k=>{ if(checkValue(k)) W.voiced[k]=true; });
+      }
+    }
+    const qo = q.get('open'); if(qo) W.open = qo;
+    const i = parseInt(q.get('i')||'0', 10);
+    if(i>0) W.i = Math.min(i, steps().length-1);
+  }catch(e){}
+}
+/** 自分で足した区分を取りこむ */
+function mergeKinds(){
+  const add = (DB.settings && DB.settings.kinds) || {};
+  Object.keys(add).forEach(k=>{
+    KIND_META[k] = {color: add[k].color||'8', hex: P.COLOR_HEX[add[k].color||'8']||'#616161', cal: add[k].cal||k};
+    if(add[k].calendarId) DB.settings.calIds[k] = add[k].calendarId;
+  });
+}
+mergeKinds();
+const merged = mergeSeed();
+const filled = fillMissingCoords();
+
+render();
+initMcp();
+// 使い方は自動では出さない（右上の ❓ から開く）
+if(filled) setTimeout(()=>toast(filled+'件の場所に位置を入れました'), 900);   // Googleカレンダーに直接つなげるか確かめる（つながらなくても動く）
+</script>
+
+</body>
+</html>
