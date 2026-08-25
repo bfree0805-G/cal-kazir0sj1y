@@ -1044,7 +1044,7 @@ input.inp,textarea.inp,select.inp{font-size:16px}
 <script>
 'use strict';
 const P = window.CalParser;
-const APP_VERSION = '2026-08-25 10:13';   // ビルド時に日時が入る
+const APP_VERSION = '2026-08-25 10:17';   // ビルド時に日時が入る
 
 /* ═══════════════ データ ═══════════════ */
 const KIND_META = {   // 自分で足した区分もここに入る
@@ -3043,11 +3043,22 @@ function toast(m){ const t=document.getElementById('toast'); t.textContent=m; t.
 /** URLに設定が付いていたら取りこむ（#setup=…）。
  *  公開の置き場に置くとき、ページ本体に合言葉を書かずに済ませるための入口。
  *  読み取ったらURLからは消すので、履歴にも残らない。 */
-function applySetupFromUrl(){
+async function applySetupFromUrl(){
   try{
-    const m = String(location.hash||'').match(/setup=([A-Za-z0-9+/=_%-]+)/);
-    if(!m) return false;
-    const json = decodeURIComponent(escape(atob(decodeURIComponent(m[1]).replace(/-/g,'+').replace(/_/g,'/'))));
+    const h = String(location.hash||'');
+    const z = h.match(/setupz=([A-Za-z0-9+/=_%-]+)/);
+    const m = h.match(/setup=([A-Za-z0-9+/=_%-]+)/);
+    if(!z && !m) return false;
+    let json;
+    if(z){
+      // 圧縮された設定をほどく
+      const raw = atob(decodeURIComponent(z[1]).replace(/-/g,'+').replace(/_/g,'/'));
+      const bin = Uint8Array.from(raw, c => c.charCodeAt(0));
+      const ds = new DecompressionStream('gzip');
+      json = await new Response(new Blob([bin]).stream().pipeThrough(ds)).text();
+    } else {
+      json = decodeURIComponent(escape(atob(decodeURIComponent(m[1]).replace(/-/g,'+').replace(/_/g,'/'))));
+    }
     const cfg = JSON.parse(json);
     if(cfg.gas)    DB.settings.gas    = Object.assign({}, DB.settings.gas, cfg.gas);
     if(cfg.calIds) DB.settings.calIds = Object.assign({}, DB.settings.calIds, cfg.calIds);
@@ -3058,13 +3069,16 @@ function applySetupFromUrl(){
     if(cfg.places && cfg.places.length) {
       cfg.places.forEach(x => { if(!DB.places.find(y=>y.label===x.label)) DB.places.push(x); });
     }
+    if(cfg.kinds){
+      DB.settings.kinds = Object.assign({}, DB.settings.kinds, cfg.kinds);
+      mergeKinds();
+    }
     saveDB();
     history.replaceState(null, '', location.pathname + location.search);   // URLから設定を消す
-    setTimeout(()=>toast('設定を読みこみました'), 600);
+    setTimeout(()=>{ render(); toast('設定を読みこみました'); }, 400);
     return true;
-  }catch(e){ return false; }
+  }catch(e){ console.warn('設定の読み込みに失敗', e); return false; }
 }
-applySetupFromUrl();
 
 /** すでに覚えている場所のうち、位置が空のものを地図帳から補う */
 function fillMissingCoords(){
@@ -3134,7 +3148,13 @@ const merged = mergeSeed();
 const filled = fillMissingCoords();
 
 render();
+applySetupFromUrl();
 initMcp();
+
+// 電波がなくても開けるようにする（https のときだけ働く）
+if('serviceWorker' in navigator && location.protocol === 'https:'){
+  navigator.serviceWorker.register('sw.js').catch(()=>{});
+}
 // 使い方は自動では出さない（右上の ❓ から開く）
 if(filled) setTimeout(()=>toast(filled+'件の場所に位置を入れました'), 900);   // Googleカレンダーに直接つなげるか確かめる（つながらなくても動く）
 </script>
