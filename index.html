@@ -1044,7 +1044,7 @@ input.inp,textarea.inp,select.inp{font-size:16px}
 <script>
 'use strict';
 const P = window.CalParser;
-const APP_VERSION = '2026-08-25 10:43';   // ビルド時に日時が入る
+const APP_VERSION = '2026-08-25 10:54';   // ビルド時に日時が入る
 
 /* ═══════════════ データ ═══════════════ */
 const KIND_META = {   // 自分で足した区分もここに入る
@@ -1316,9 +1316,27 @@ const steps = () => STEPS.filter(s => !s.show || s.show(W));
 const ROW_LABEL = {kind:'区分', type:'種類', date:'日付', time:'時間', place:'場所',
                    url:'URL', who:'相手', what:'用件', move:'移動', memo:'メモ'};
 
+/** 設定が入っていないときの案内（入っていれば何も出ない） */
+function setupBanner(){
+  const noGas = !gasReady() && !MCP;
+  const noData = (DB.people||[]).length === 0 && (DB.places||[]).length === 0;
+  if(!noGas && !noData) return '';
+  return `<div class="card pad" style="border-color:var(--warn);background:var(--warn-bg);margin-bottom:12px">
+    <div style="color:var(--warn);font-weight:800;font-size:15px">⚠️ まだ設定が入っていません</div>
+    <div style="margin-top:6px;font-size:13.5px;color:var(--warn);line-height:1.7">
+      ${noData?'覚えている相手・場所が空です。<br>':''}
+      ${noGas?'カレンダーへの自動登録が使えません。<br>':''}
+      <b>設定QRを読みこむと、まとめて入ります。</b></div>
+    <div class="rowg" style="margin-top:10px">
+      <button class="btn" style="border-color:var(--warn);color:var(--warn)" onclick="go('settings')">設定を開く</button>
+    </div>
+  </div>`;
+}
+
 function vWizard(){
   const rows = steps().filter(x => x.k !== 'all');
   return `
+  ${setupBanner()}
   <div class="card">
     <button class="row-btn" onclick="toggleRow('all')" style="border-bottom:1px solid var(--line-soft)">
       <span class="row-k">話す</span>
@@ -2849,7 +2867,15 @@ function saveSimple(key){
 /* ═══════════════ 設定 ═══════════════ */
 function vSettings(){
   const os = DB.settings.origins||[];
+  const ok = gasReady() || MCP;
   return `<div class="lbl">設定</div><h2 class="q">設定</h2>
+  <div class="card pad" style="margin-top:12px;border-color:${ok?'var(--ok)':'var(--warn)'}">
+    <div style="font-weight:800;color:${ok?'var(--ok)':'var(--warn)'}">
+      ${ok ? '✅ カレンダーに自動で登録されます' : '⚠️ 自動登録が使えません（Googleの画面で保存する方式）'}</div>
+    <div class="hint" style="margin-top:6px">
+      相手 <b class="num">${(DB.people||[]).length}</b> 名 ／ 場所 <b class="num">${(DB.places||[]).length}</b> 件 を記憶中
+    </div>
+  </div>
   <div class="card pad" style="margin-top:14px">
     <div class="lbl">起点（旅費の距離をはかる出発地）</div>
     <p class="hint" style="margin-top:6px">予定の区分に合う起点が<b>自動で選ばれます</b>。沖実の予定なら那覇から、それ以外は東京から測ります。</p>
