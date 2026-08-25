@@ -1044,7 +1044,7 @@ input.inp,textarea.inp,select.inp{font-size:16px}
 <script>
 'use strict';
 const P = window.CalParser;
-const APP_VERSION = '2026-08-25 11:00';   // ビルド時に日時が入る
+const APP_VERSION = '2026-08-25 11:28';   // ビルド時に日時が入る
 
 /* ═══════════════ データ ═══════════════ */
 const KIND_META = {   // 自分で足した区分もここに入る
@@ -1327,10 +1327,30 @@ function setupBanner(){
       ${noData?'覚えている相手・場所が空です。<br>':''}
       ${noGas?'カレンダーへの自動登録が使えません。<br>':''}
       <b>設定QRを読みこむと、まとめて入ります。</b></div>
-    <div class="rowg" style="margin-top:10px">
-      <button class="btn" style="border-color:var(--warn);color:var(--warn)" onclick="go('settings')">設定を開く</button>
+    <div class="rowg" style="margin-top:12px">
+      <button class="btn pri" onclick="pasteSetupDlg()" style="flex:1;min-width:150px">設定を貼り付ける</button>
+      <button class="btn" style="background:var(--surface)" onclick="go('settings')">⚙️ 設定を開く</button>
     </div>
   </div>`;
+}
+/** 設定の文字列を直接貼って入れる（QRが読めないときの逃げ道） */
+function pasteSetupDlg(){
+  dlg('設定を貼り付ける', `
+    <p style="margin-top:0;font-size:14px">設定の文字列（<b>#setupz=</b> で始まる長い文字、またはURL全体）を貼ってください。</p>
+    <textarea class="inp" id="setup_tx" style="min-height:110px" placeholder="https://…#setupz=…"></textarea>
+    <div class="rowg" style="margin-top:12px">
+      <button class="btn pri" onclick="doPasteSetup()">読みこむ</button>
+      <button class="btn" onclick="closeDlg()">やめる</button></div>
+    <p class="hint" style="margin-top:11px">設定QRを読めば同じことが起きます。うまく読めないときだけ、こちらを使ってください。</p>`);
+}
+async function doPasteSetup(){
+  const v = (document.getElementById('setup_tx')||{}).value || '';
+  const m = v.match(/setupz=([A-Za-z0-9+/=_%-]+)/) || v.match(/setup=([A-Za-z0-9+/=_%-]+)/);
+  if(!m){ toast('「setupz=」で始まる部分が見つかりません'); return; }
+  location.hash = (v.indexOf('setupz=')>=0 ? 'setupz=' : 'setup=') + m[1];
+  closeDlg();
+  const ok = await applySetupFromUrl();
+  if(ok){ render(); toast('設定が入りました'); } else { toast('読みこめませんでした'); }
 }
 
 function vWizard(){
@@ -3060,10 +3080,71 @@ function doImport(){
     localStorage.setItem('koekare.db', JSON.stringify(d)); DB=loadDB(); closeDlg(); render(); toast('読み込みました');
   }catch(e){ toast('読み込めませんでした'); }
 }
-function resetDlg(){ dlg('全部消す', `<p style="margin-top:0">覚えた場所・相手・記録をすべて消します。元に戻せません。</p>
-  <div class="rowg"><button class="btn" style="border-color:var(--bad);color:var(--bad)" onclick="doReset()">消す</button>
-  <button class="btn pri" onclick="closeDlg()">やめる</button></div>`); }
-function doReset(){ try{localStorage.removeItem('koekare.db');}catch(e){} DB=loadDB(); closeDlg(); go('home'); toast('消しました'); }
+function resetDlg(){
+  const nPeople = (DB.people||[]).length;
+  const nPlaces = (DB.places||[]).length;
+  const nLog    = (DB.log||[]).length;
+  const hasGas  = gasReady();
+  dlg('⚠️ 本当に全部消しますか？', `
+    <div class="card pad" style="border-color:var(--bad);background:var(--warn-bg)">
+      <div style="color:var(--bad);font-weight:800;font-size:15px">これが全部消えます</div>
+      <div class="tw" style="margin-top:9px"><table>
+        <tr><td>覚えた相手</td><td class="n"><b>${nPeople}</b> 名</td></tr>
+        <tr><td>覚えた場所</td><td class="n"><b>${nPlaces}</b> 件（住所・位置ごと）</td></tr>
+        <tr><td>登録した記録</td><td class="n"><b>${nLog}</b> 件</td></tr>
+        <tr><td>よく使う組み合わせ</td><td class="n"><b>${(DB.patterns||[]).length}</b> 件</td></tr>
+        ${hasGas?'<tr><td style="color:var(--bad)"><b>Googleの受け口</b></td><td style="color:var(--bad)"><b>自動登録が使えなくなります</b></td></tr>':''}
+        <tr><td>起点・区分・色の設定</td><td>すべて初期状態に戻ります</td></tr>
+      </table></div>
+    </div>
+    <p class="hint" style="margin-top:11px">消す直前に<b>控えを1つ取ります</b>。すぐなら「↩︎ 元に戻す」で戻せますが、
+      <b>この画面を閉じたあとは戻せません</b>。心配なら先に書き出してください。</p>
+    <div class="rowg" style="margin-top:14px">
+      <button class="btn pri" onclick="closeDlg()">やめる（おすすめ）</button>
+      <button class="btn" onclick="closeDlg();exportDB()">📤 先に書き出す</button>
+    </div>
+    <div class="rowg" style="margin-top:22px;padding-top:14px;border-top:1px solid var(--line-soft)">
+      <button class="btn" style="border-color:var(--bad);color:var(--bad)" onclick="reallyResetDlg()">
+        それでも全部消す</button>
+    </div>`);
+}
+/** 2回目の確認（ここまで来ないと消えない） */
+function reallyResetDlg(){
+  dlg('最終確認', `
+    <p style="margin-top:0;font-size:15px;font-weight:700;color:var(--bad)">
+      本当によろしいですか？</p>
+    <p class="hint">覚えたデータと設定がすべて消え、まっさらな状態になります。</p>
+    <div class="rowg" style="margin-top:16px">
+      <button class="btn pri" onclick="closeDlg()">やめる</button>
+      <span class="grow"></span>
+      <button class="btn" style="border-color:var(--bad);color:var(--bad);background:var(--warn-bg)"
+        onclick="doReset()">はい、消します</button></div>`);
+}
+function doReset(){
+  // 消す直前に控えを取る（戻せるようにするため）
+  try{ localStorage.setItem('koekare.backup', JSON.stringify(DB)); }catch(e){}
+  try{ localStorage.removeItem('koekare.db'); }catch(e){}
+  DB = loadDB();
+  closeDlg();
+  newWizard();
+  go('wizard');
+  dlg('消しました', `
+    <p style="margin-top:0">まっさらな状態に戻しました。</p>
+    <p class="hint"><b>いますぐなら元に戻せます。</b>この画面を閉じると戻せません。</p>
+    <div class="rowg" style="margin-top:14px">
+      <button class="btn pri" onclick="undoReset()">↩︎ 元に戻す</button>
+      <button class="btn" onclick="closeDlg()">閉じる</button></div>`);
+}
+function undoReset(){
+  try{
+    const b = localStorage.getItem('koekare.backup');
+    if(!b){ toast('控えが見つかりませんでした'); return; }
+    localStorage.setItem('koekare.db', b);
+    DB = loadDB(); mergeKinds();
+    closeDlg(); render();
+    toast('元に戻しました');
+  }catch(e){ toast('戻せませんでした'); }
+}
 
 /* ═══════════════ 小道具 ═══════════════ */
 function distKm(a,b){
