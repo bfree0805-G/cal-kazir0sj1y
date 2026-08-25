@@ -1044,7 +1044,7 @@ input.inp,textarea.inp,select.inp{font-size:16px}
 <script>
 'use strict';
 const P = window.CalParser;
-const APP_VERSION = '2026-08-25 10:17';   // ビルド時に日時が入る
+const APP_VERSION = '2026-08-25 10:39';   // ビルド時に日時が入る
 
 /* ═══════════════ データ ═══════════════ */
 const KIND_META = {   // 自分で足した区分もここに入る
@@ -1322,7 +1322,7 @@ function vWizard(){
   <div class="card">
     <button class="row-btn" onclick="toggleRow('all')" style="border-bottom:1px solid var(--line-soft)">
       <span class="row-k">話す</span>
-      <span class="row-v ${W.allText?'':'empty'}">${W.allText?esc(W.allText.slice(0,28))+(W.allText.length>28?'…':''):'まとめて話す・書く（任意）'}</span>
+      <span class="row-v ${W.allText?'':'empty'}">${W.allText?esc(W.allText.slice(0,28))+(W.allText.length>28?'…':''):'まとめて話す・入力（任意）'}</span>
       <span class="row-arrow">${W.open==='all'?'▲':'▼'}</span>
     </button>
     ${W.open==='all' ? `<div class="row-body" style="padding-top:12px">
@@ -1457,7 +1457,7 @@ async function sendViaGas(e){
       <p class="hint" style="margin-top:11px">色とカレンダーの指定つきで入っています。
         念のため、Googleカレンダーで見えているか確かめてください。</p>
       <div class="rowg" style="margin-top:14px">
-        <a class="btn" href="https://calendar.google.com/calendar/r/day/${e.startTime.slice(0,4)}/${+e.startTime.slice(5,7)}/${+e.startTime.slice(8,10)}" target="_blank" rel="noopener">📅 その日を見る</a>
+        <a class="btn" href="https://calendar.google.com/calendar/r/day/${e.startTime.slice(0,4)}/${+e.startTime.slice(5,7)}/${+e.startTime.slice(8,10)}" target="_blank" rel="noopener">📅 当日を表示</a>
         <button class="btn pri" onclick="closeDlg();newWizard();render()">続けてもう1件</button>
         <button class="btn" onclick="closeDlg()">閉じる</button></div>`);
     return true;
@@ -1479,7 +1479,7 @@ function openGcal(e){
     a.href = url; a.target = '_blank'; a.rel = 'noopener';
     document.body.appendChild(a); a.click(); a.remove();
   }catch(err){ window.open(url, '_blank'); }
-  dlg('Googleカレンダーをひらきました', `
+  dlg('Googleカレンダーを開きました', `
     <p style="margin-top:0;font-size:14px">中身が入った状態で開きます。<b>「保存」を押せば登録完了</b>です。</p>
     <div class="card pad"><div class="ttl-prev">${esc(e.title)}</div>
       <div class="hint" style="margin-top:5px">${esc(e.isAllDay
@@ -1501,7 +1501,7 @@ function stepHint(k){
     date:'「明日」「来週の金曜」でも大丈夫です',
     time:'決まっていなければ「終日」でOK',
     place:'よく行く場所は覚えていきます',
-    url:'なければ「とばす」を押してください',
+    url:'なければ「スキップ」を押してください',
     who:'複数えらべます',
     what:'例：打ち合わせ／現場確認',
     move:'泊まりの有無まで入れておくと精算がラクです',
@@ -1522,21 +1522,21 @@ function stepBody(k){
   if(k==='kind'){
     const ks = kindList();
     return `<select class="inp" onchange="pick('kind',this.value)">
-        <option value="">— えらぶ —</option>
+        <option value="">選択してください</option>
         ${selOpts(ks.map(x=>({v:x, t:x+'（色 '+colorOf(x)+'）'})), W.kind)}
       </select>
       ${W.kind?`<div class="hint" style="margin-top:7px">
         <span class="sq" style="display:inline-block;background:${hexOf(W.kind)};margin-right:6px"></span>
         ${esc(KIND_META[W.kind]?KIND_META[W.kind].cal:'（カレンダー未設定）')} に入ります</div>`:''}
       <div class="rowg" style="margin-top:9px">
-        <button class="btn" style="padding:8px 12px;min-height:38px" onclick="go('settings')">＋ 区分を足す・直す</button>
+        <button class="btn" style="padding:8px 12px;min-height:38px" onclick="go('settings')">＋ 区分を追加・修正</button>
       </div>`;
   }
 
   /* ── 種類 ── */
   if(k==='type'){
     return `<select class="inp" onchange="pick('type',this.value)">
-      <option value="">— えらぶ —</option>
+      <option value="">選択してください</option>
       ${selOpts([{v:'出張',t:'🚙 出張（外に出る）'},{v:'社内',t:'🏢 社内・その他'}], W.type)}
     </select>`;
   }
@@ -1566,7 +1566,7 @@ function stepBody(k){
     const list = [...new Set([...learned, ...common])].slice(0,8);
     const cur = W.allDay ? 'allday' : (W.st||'')+'-'+(W.et||'');
     return `<select class="inp" onchange="pick('time',this.value)">
-        ${selOpts([{v:'allday',t:'🌤 終日（時間を決めない）'}].concat(
+        ${selOpts([{v:'allday',t:'🌤 終日（時間指定なし）'}].concat(
           list.map(t=>({v:t, t:t.replace('-','　〜　')}))), cur)}
         ${list.indexOf(cur)<0 && cur!=='allday' && W.st ? `<option value="${esc(cur)}" selected>${esc(cur.replace('-','　〜　'))}</option>`:''}
       </select>
@@ -1598,15 +1598,15 @@ function stepBody(k){
         <div style="flex:2;min-width:160px">
           <div class="lbl">場所（よく行く順）</div>
           <select class="inp" style="margin-top:4px" onchange="pickPlace(this.value)">
-            <option value="">— えらぶ —</option>
+            <option value="">選択してください</option>
             ${selOpts(list.map(x=>({v:x.label, t:pinMark(x.pin)+x.label+(x.count?'（'+x.count+'回）':'')})), W.place?W.place.label:'')}
           </select>
         </div>
       </div>
       <div class="rowg" style="margin-top:10px">
-        <button class="btn" style="flex:1;min-height:42px;padding:9px" onclick="useHere()">📍 いまいる場所</button>
+        <button class="btn" style="flex:1;min-height:42px;padding:9px" onclick="useHere()">📍 現在地</button>
         <button class="btn" style="min-height:42px;padding:9px" onclick="addPlaceDlg()">＋ 追加</button>
-        ${W.place?`<button class="btn" style="min-height:42px;padding:9px" onclick="editPlaceDlg('${esc(W.place.label).replace(/'/g,"\\'")}')">✏️ 直す</button>
+        ${W.place?`<button class="btn" style="min-height:42px;padding:9px" onclick="editPlaceDlg('${esc(W.place.label).replace(/'/g,"\\'")}')">✏️ 修正</button>
         <button class="btn" style="min-height:42px;padding:9px" onclick="togglePin('places','label','${esc(W.place.label).replace(/'/g,"\\'")}')">${W.place.pin?'📌 解除':'📌 上に'}</button>`:''}
       </div>
       ${W.place?placeInfo(W.place):''}`;
@@ -1625,13 +1625,13 @@ function stepBody(k){
         <button class="chip" aria-pressed="true" onclick="toggleWho('${esc(nm).replace(/'/g,"\\'")}')"
           style="min-height:40px;padding:8px 12px">${esc(nm)} ✕</button>`).join('')}</div>`:''}
       <select class="inp" onchange="if(this.value){toggleWho(this.value);this.value='';}">
-        <option value="">— 相手をえらぶ（よく会う順）—</option>
+        <option value="">相手を選択（よく会う順）</option>
         ${all.filter(x=>!W.people.includes(x.name)).map(x=>
           `<option value="${esc(x.name)}">${esc(pinMark(x.pin)+x.name+(x.company?'（'+short(x.company)+'）':''))}</option>`).join('')}
       </select>
       <div class="rowg" style="margin-top:10px">
         <button class="btn" style="min-height:42px;padding:9px 13px" onclick="addPersonDlg()">＋ 追加</button>
-        ${W.people.length?`<button class="btn" style="min-height:42px;padding:9px 13px" onclick="editPersonDlg('${esc(W.people[W.people.length-1]).replace(/'/g,"\\'")}')">✏️ 名前を直す</button>
+        ${W.people.length?`<button class="btn" style="min-height:42px;padding:9px 13px" onclick="editPersonDlg('${esc(W.people[W.people.length-1]).replace(/'/g,"\\'")}')">✏️ 名前を修正</button>
         <button class="btn" style="min-height:42px;padding:9px 13px" onclick="togglePin('people','name','${esc(W.people[W.people.length-1]).replace(/'/g,"\\'")}')">📌 上に</button>`:''}
       </div>`;
   }
@@ -1640,7 +1640,7 @@ function stepBody(k){
   if(k==='what'){
     const list = [...DB.purposes].sort(byUse);
     return `<select class="inp" onchange="pick('purpose',this.value)">
-        <option value="">— えらぶ —</option>
+        <option value="">選択してください</option>
         ${selOpts(list.map(x=>({v:x.label, t:pinMark(x.pin)+x.label+(x.count?'（'+x.count+'回）':'')})), W.purpose||'')}
         ${W.purpose && !list.some(x=>x.label===W.purpose) ? `<option value="${esc(W.purpose)}" selected>${esc(W.purpose)}</option>`:''}
       </select>
@@ -1655,7 +1655,7 @@ function stepBody(k){
     return `
       <div class="lbl">移動手段</div>
       <select class="inp" style="margin-top:5px" onchange="pick('transport',this.value)">
-        <option value="">— なし・えらぶ —</option>
+        <option value="">選択なし</option>
         ${selOpts(list.map(x=>({v:x.label, t:pinMark(x.pin)+x.label})), W.transport||'')}
       </select>
       ${W.transport && isMultiDay() ? `<label class="inline" style="margin-top:9px;cursor:pointer">
@@ -1708,7 +1708,7 @@ function togglePin(listName, keyName, val){
 function editPersonDlg(name){
   const p = DB.people.find(x=>x.name===name);
   if(!p) return;
-  dlg('相手をなおす', `
+  dlg('相手を修正', `
     <div class="set"><label>名前</label><input class="inp" id="ed_n" value="${esc(p.name)}"></div>
     <div class="set"><label>会社</label><input class="inp" id="ed_c" value="${esc(p.company||'')}"></div>
     <p class="hint">名前を直すと、覚えている記録もいっしょに直ります。</p>
@@ -1769,7 +1769,7 @@ function placeInfo(pl){
     ${d!=null?`<div style="margin-top:7px;font-size:13.5px">${esc(o.label)} から <b class="num">${d.toFixed(1)} km</b>（直線距離）</div>`
       :(o&&o.lat==null&&pl.lat!=null?`<div class="hint" style="margin-top:7px">起点（${esc(o.label)}）の座標がまだ入っていないので距離が出せません</div>`:'')}
     <div class="rowg" style="margin-top:9px">
-      <button class="btn" style="padding:9px 13px;min-height:40px" onclick="editPlaceDlg('${esc(pl.label).replace(/'/g,"\\'")}')">✏️ 住所・位置をなおす</button>
+      <button class="btn" style="padding:9px 13px;min-height:40px" onclick="editPlaceDlg('${esc(pl.label).replace(/'/g,"\\'")}')">✏️ 住所・位置を修正</button>
     </div></div>`;
 }
 function summaryLine(){
@@ -2104,7 +2104,7 @@ function checkCard(){
           <span class="lbl" style="min-width:56px">${esc(CHECK_LABEL[k]||k)}</span>
           <b style="font-size:16px;flex:1;min-width:120px">${esc(checkValue(k)||'（空）')}</b>
           <button class="btn" style="min-height:40px;padding:8px 14px" onclick="markOk('${k}')">✓ これでOK</button>
-          <button class="btn" style="min-height:40px;padding:8px 14px" onclick="backTo('${k}')">✏️ 直す</button>
+          <button class="btn" style="min-height:40px;padding:8px 14px" onclick="backTo('${k}')">✏️ 修正</button>
         </div>
         ${suggestRow(k)}
       </div>`).join('')}
@@ -2215,10 +2215,10 @@ function vConfirm(){
   return `<div class="lbl">この内容で登録します</div>
     <div style="margin-top:10px">${checkCard()}</div>
     <div>${PENDING.map((e,i)=>evCard(e,i)).join('')}</div>
-    <div class="hint" style="margin-top:12px">直したい行の「なおす」を押すと、その質問に戻ります。</div>`;
+    <div class="hint" style="margin-top:12px">直したい行の「修正」を押すと、その質問に戻ります。</div>`;
 }
 function evCard(e,i){
-  const jump = k => `<button class="edit" onclick="backTo('${k}')">なおす</button>`;
+  const jump = k => `<button class="edit" onclick="backTo('${k}')">修正</button>`;
   const when = e.isAllDay
     ? `<span class="num">${e.startTime.slice(0,10).replace(/-/g,'/')}</span>${e.endTime.slice(0,10)!==addDayISO(e.startTime.slice(0,10))?` 〜 <span class="num">${prevDayISO(e.endTime.slice(0,10)).replace(/-/g,'/')}</span>`:''} ・終日`
     : `<span class="num">${e.startTime.slice(0,10).replace(/-/g,'/')} ${e.startTime.slice(11,16)}–${e.endTime.slice(11,16)}</span>`;
@@ -2614,22 +2614,22 @@ function vMaster(){
           <button class="mini" onclick="delItem('places','label','${esc(x.label).replace(/'/g,"\\'")}')">🗑</button>
         </div>
       </div>`;}).join('')}</div>
-      <div class="pad"><button class="btn" onclick="addPlaceDlg()">＋ 場所を足す</button></div>`;
+      <div class="pad"><button class="btn" onclick="addPlaceDlg()">＋ 場所を追加</button></div>`;
   } else if(MTAB==='people'){
     const list=[...DB.people].sort(byUse);
     body = `<div class="tw"><table><tr><th>相手</th><th>会社</th><th>回数</th><th></th></tr>
       ${list.map(p=>`<tr><td><b>${esc(p.name)}</b></td><td>${esc(p.company||'—')}</td><td class="n">${p.count||0}</td>
       <td><button class="mini" onclick="delItem('people','name','${esc(p.name).replace(/'/g,"\\'")}')">🗑</button></td></tr>`).join('')}
-      </table></div><div class="pad"><button class="btn" onclick="addPersonDlg()">＋ 相手を足す</button></div>`;
+      </table></div><div class="pad"><button class="btn" onclick="addPersonDlg()">＋ 相手を追加</button></div>`;
   } else {
     const key = MTAB;
     const list=[...DB[key]].sort(byUse);
     body = `<div class="tw"><table><tr><th>${MTAB==='purposes'?'目的':'移動手段'}</th><th>回数</th><th></th></tr>
       ${list.map(p=>`<tr><td>${esc(p.label)}</td><td class="n">${p.count||0}</td>
       <td><button class="mini" onclick="delItem('${key}','label','${esc(p.label).replace(/'/g,"\\'")}')">🗑</button></td></tr>`).join('')}
-      </table></div><div class="pad"><button class="btn" onclick="addSimpleDlg('${key}')">＋ 足す</button></div>`;
+      </table></div><div class="pad"><button class="btn" onclick="addSimpleDlg('${key}')">＋ 追加</button></div>`;
   }
-  return `<div class="lbl">覚えているデータ</div>
+  return `<div class="lbl">保存したデータ</div>
     <h2 class="q">使うほど、上に出てきます</h2>
     <div class="sub">よく使う順に並びます。消したものは候補に出ません。</div>
     <div class="card" style="margin-top:14px">
@@ -2690,7 +2690,7 @@ function useHere(){
 }
 function hereDlg(lat,lng,acc,near,cands){
   HERE = {lat,lng,acc,area:near?near.area:''};
-  dlg('📍 いまいる場所', `
+  dlg('📍 現在地', `
     <div style="font-size:15px">だいたい <b>${near?esc(near.name):'（不明）'}</b> のあたりです
       <span class="hint">（誤差 約${Math.round(acc)}m）</span></div>
     ${cands.length?`<div class="lbl" style="margin-top:14px">すぐ近くの、覚えている場所</div>
@@ -2711,7 +2711,7 @@ let HERE = null;
 function pickNear(label){ pickPlace(label); closeDlg(); toast(label+' にしました'); }
 function saveHere(){
   if(!HERE) return;
-  const name = dropPunct((document.getElementById('hr_l')||{}).value) || ('いまいる場所 '+new Date().toLocaleDateString('ja-JP'));
+  const name = dropPunct((document.getElementById('hr_l')||{}).value) || ('現在地 '+new Date().toLocaleDateString('ja-JP'));
   const rec = {label:name, area:HERE.area||W.placeArea||'その他', address:'',
                lat:+HERE.lat.toFixed(6), lng:+HERE.lng.toFixed(6)};
   const ex = DB.places.find(x=>x.label===name);
@@ -2754,7 +2754,7 @@ function editPlaceDlg(label){
   const p = label ? DB.places.find(x=>x.label===label)
                   : {label:'', area:(W&&W.placeArea)||'', address:'', lat:null, lng:null, count:0, last:''};
   const areas = [...new Set(['沖縄','東京','千葉','埼玉','その他', ...DB.places.map(x=>x.area||'その他')])];
-  dlg(label?'場所をなおす':'場所を足す', `
+  dlg(label?'場所を修正':'場所を追加', `
     <div class="set"><label>場所の名前</label>
       <input class="inp" id="pl_l" value="${esc(p.label)}" placeholder="例：◯◯ビル"
              list="pbook" oninput="autoPlace()" autocomplete="off">
@@ -2769,7 +2769,7 @@ function editPlaceDlg(label){
              placeholder="地図のURLを丸ごと貼ってOK" oninput="autoPlace()">
       <div class="hint" id="pl_msg" style="margin-top:6px"></div></div>
     <div class="rowg">
-      <a class="btn" id="pl_map" href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(p.label||'')}" target="_blank" rel="noopener">🗺 この名前で地図を開く</a>
+      <a class="btn" id="pl_map" href="https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(p.label||'')}" target="_blank" rel="noopener">🗺 この名前で地図を検索</a>
       <button class="btn" onclick="closeDlg();useHere()">📍 いまここ</button>
     </div>
     <p class="hint" style="margin-top:11px"><b>いちばん簡単なやり方</b>：🗺 で地図を開く → 目的の場所を押す →
@@ -2793,7 +2793,7 @@ function savePlace(orig){
   toast(co ? '保存しました（位置あり）' : '保存しました（位置なし）');
 }
 function addPersonDlg(){
-  dlg('相手を足す', `
+  dlg('相手を追加', `
     <div class="set"><label>名前（役職まで）</label><input class="inp" id="pe_n" placeholder="例：◯◯部長"></div>
     <div class="set"><label>会社</label><input class="inp" id="pe_c" placeholder="例：◯◯商事"></div>
     <div class="rowg"><button class="btn pri" onclick="savePerson()">保存</button><button class="btn" onclick="closeDlg()">やめる</button></div>`);
@@ -2805,7 +2805,7 @@ function savePerson(){
   saveDB(); closeDlg(); render(); toast('覚えました');
 }
 function addSimpleDlg(key){
-  dlg('足す', `<div class="set"><label>名前</label><input class="inp" id="sm_l"></div>
+  dlg('追加', `<div class="set"><label>名前</label><input class="inp" id="sm_l"></div>
     <div class="rowg"><button class="btn pri" onclick="saveSimple('${key}')">保存</button><button class="btn" onclick="closeDlg()">やめる</button></div>`);
 }
 function saveSimple(key){
@@ -2817,7 +2817,7 @@ function saveSimple(key){
 /* ═══════════════ 設定 ═══════════════ */
 function vSettings(){
   const os = DB.settings.origins||[];
-  return `<div class="lbl">設定</div><h2 class="q">この道具の決めごと</h2>
+  return `<div class="lbl">設定</div><h2 class="q">設定</h2>
   <div class="card pad" style="margin-top:14px">
     <div class="lbl">起点（旅費の距離をはかる出発地）</div>
     <p class="hint" style="margin-top:6px">予定の区分に合う起点が<b>自動で選ばれます</b>。沖実の予定なら那覇から、それ以外は東京から測ります。</p>
@@ -2838,7 +2838,7 @@ function vSettings(){
       </div>`).join('')}
     <div class="rowg" style="margin-top:16px">
       <button class="btn pri" onclick="saveOrigins()">起点を保存</button>
-      <button class="btn" onclick="addOrigin()">＋ 起点を足す</button>
+      <button class="btn" onclick="addOrigin()">＋ 起点を追加</button>
     </div>
     <p class="hint" style="margin-top:11px">座標の取り方：地図を開く → 目的の場所を<b>右クリック</b>（スマホは長押し）→ 出てきた「35.68…, 139.76…」を押すとコピーされます。それを上の欄に貼ってください。</p>
   </div>
@@ -2853,7 +2853,7 @@ function vSettings(){
       <input class="inp" id="gas_s" value="${esc((DB.settings.gas||{}).secret||'')}" placeholder="コードに書いたものと同じ文字"></div>
     <div class="rowg">
       <button class="btn pri" onclick="saveGas()">保存</button>
-      <button class="btn" onclick="testGas()">つながるか試す</button>
+      <button class="btn" onclick="testGas()">接続を確認</button>
     </div>
     <div class="hint" style="margin-top:8px">${gasReady()?'✅ いまは自動で登録されます':'いまは「Googleを開いて保存」方式です'}</div>
   </div>
@@ -2878,7 +2878,7 @@ function vSettings(){
         <td class="n">色 ${colorOf(k)}</td>
         <td>${(DB.settings.kinds||{})[k]?`<button class="mini" onclick="delKind('${esc(k)}')">🗑</button>`:''}</td></tr>`).join('')}
     </table></div>
-    <button class="btn" style="margin-top:10px" onclick="addKindDlg()">＋ 区分を足す</button>
+    <button class="btn" style="margin-top:10px" onclick="addKindDlg()">＋ 区分を追加</button>
     <p class="hint" style="margin-top:8px">元からある5つは消せません。足した区分だけ消せます。</p>
   </div>
 
@@ -2893,7 +2893,7 @@ function vSettings(){
   </div>
 
   <div class="card pad" style="margin-top:12px">
-    <div class="lbl">この道具の版</div>
+    <div class="lbl">この道具のバージョン</div>
     <div style="margin-top:7px;display:flex;align-items:center;gap:12px;flex-wrap:wrap">
       <b class="num" style="font-size:15px">${esc(APP_VERSION)}</b>
       <button class="btn" style="min-height:40px;padding:9px 14px" onclick="doUpdate()">🔄 最新にする</button>
@@ -2902,7 +2902,7 @@ function vSettings(){
   </div>
 
   <div class="card pad" style="margin-top:12px">
-    <div class="lbl">おぼえたデータ</div>
+    <div class="lbl">保存したデータ</div>
     <div class="rowg" style="margin-top:10px">
       <button class="btn" onclick="exportDB()">📤 書き出す（他の端末へ）</button>
       <button class="btn" onclick="importDlg()">📥 読み込む</button>
@@ -2923,7 +2923,7 @@ function vSettings(){
 }
 function addKindDlg(){
   const cals = Object.assign({}, P.CALENDAR_IDS, P.OTHER_CALENDARS||{});
-  dlg('区分を足す', `
+  dlg('区分を追加', `
     <div class="set"><label>区分の名前</label><input class="inp" id="kd_n" placeholder="例：◯◯"></div>
     <div class="set"><label>入れるカレンダー</label>
       <select class="inp" id="kd_c">
@@ -2937,7 +2937,7 @@ function addKindDlg(){
         ${[1,2,3,4,5,6,7,8,9,10,11].map(c=>`<option value="${c}">${c}：${esc(P.COLOR_NAME[c]||'')}</option>`).join('')}
       </select></div>
     <div class="rowg" style="margin-top:13px">
-      <button class="btn pri" onclick="saveKind()">足す</button>
+      <button class="btn pri" onclick="saveKind()">追加</button>
       <button class="btn" onclick="closeDlg()">やめる</button></div>`);
 }
 function saveKind(){
